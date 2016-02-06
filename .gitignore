@@ -1,0 +1,9 @@
+sources/mechta-web-api/.settings
+sources/mechta-web-api/.classpath
+sources/mechta-web-api/.project
+sources/mechta-web-api/eclipse/*
+sources/mechta-web-api/lib/*
+sources/mechta-web-api/tmp/*
+
+
+
