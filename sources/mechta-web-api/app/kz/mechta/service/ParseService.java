@@ -36,6 +36,8 @@ public class ParseService {
 
 
 			for (Element element : elements) {
+				Document doc2 = Jsoup.connect("http://www.mechta.kz/catalog/" + Long.parseLong(element.select("a[href]").first().attr("abs:href").substring(29, element.select("a[href]").first().attr("abs:href").length()-1)) + "/").get();
+				Elements imagesCategory = doc2.select("div.section_div");
 				
 				/*
 				 * Записываем в базу данных главную категорию (которая находится в блоке 
@@ -45,6 +47,7 @@ public class ParseService {
 				category.setName(element.select("a[href]").first().text());
 				category.setNumberOnSite(Long.parseLong(element.select("a[href]").first().attr("abs:href").substring(29, element.select("a[href]").first().attr("abs:href").length()-1)));
 				category.setDeleted(false);
+				category.setImage(imagesCategory.get(1).select("[src]").get(0).attr("abs:src"));
 				category.save();
 				
 				/*
@@ -59,6 +62,10 @@ public class ParseService {
 				 */
 				Elements secondOneTabMenuElements = element.select("div.onetabmenu");
 
+		//		System.out.println("http://www.mechta.kz/catalog/" + category.getNumberOnSite() + "/");
+		//		System.out.println(imagesCategory.size());
+				Integer ind = 0;
+				
 				for (Element secondElement : secondElements) {
 					/*
 					 * Заносим в базу данных категории второго уровня
@@ -67,8 +74,18 @@ public class ParseService {
 					secondCategory.setName(secondElement.select("a[href]").first().text());
 					secondCategory.setNumberOnSite(Long.parseLong(secondElement.select("a[href]").first().attr("abs:href").substring(29, secondElement.select("a[href]").first().attr("abs:href").length()-1)));
 					Category parentCategory = Category.findById(category.getId());
+					//System.out.println (ind);
+				//	System.out.println (imagesCategory.get(ind).select("[src]"));
+					/*
+					if (imagesCategory.get(ind).select("[src]").isEmpty())
+						System.out.println (imagesCategory.get(ind).select("[src]"));
+					else
+						secondCategory.setImage(imagesCategory.get(ind).select("[src]").get(0).attr("abs:src"));
+					*/
 					secondCategory.setCategory(parentCategory);
 					secondCategory.setDeleted(false);
+					ind++;
+					
 					secondCategory.save();
 					
 					/*
@@ -91,6 +108,7 @@ public class ParseService {
 						thirdCategory.setName(thirdElement.select("a[href]").first().text());
 						thirdCategory.setNumberOnSite(Long.parseLong(thirdElement.select("a[href]").first().attr("abs:href").substring(29, thirdElement.select("a[href]").first().attr("abs:href").length()-1)));
 						Category parentCategory2 = Category.findById(secondCategory.getId());
+						
 						thirdCategory.setCategory(parentCategory2);
 						thirdCategory.setDeleted(false);
 						thirdCategory.save();
@@ -109,9 +127,28 @@ public class ParseService {
 					Category parentCategory = Category.findById(category.getId());
 					secondCategory1.setCategory(parentCategory);
 					secondCategory1.setDeleted(false);
+					
+				
 					secondCategory1.save();
 				}
+				//System.out.println("*************");				
+				for (int i=0; i< imagesCategory.size(); i++) {
+				//	System.out.println (Long.parseLong(imagesCategory.select("a[href]").get(i).attr("abs:href").substring(29, imagesCategory.select("a[href]").get(i).attr("abs:href").length()-1)));
+					Long num = Long.parseLong(imagesCategory.select("a[href]").get(i).attr("abs:href").substring(29, imagesCategory.select("a[href]").get(i).attr("abs:href").length()-1));
+					
+					if (imagesCategory.get(i).select("[src]").isEmpty()) {}
+						//System.out.println (imagesCategory.get(i).select("[src]"));
+					else {
+						String image = imagesCategory.get(i).select("[src]").get(0).attr("abs:src");
+						JPA.em().createQuery("Update Category set imageUrl = :image where numberOnSite = :num").
+						setParameter("image", image).setParameter("num", num).executeUpdate();
+					}
+				}
+				
+				
+				//System.out.println("---------");					
 			}
+
 		}
 		
 		/**

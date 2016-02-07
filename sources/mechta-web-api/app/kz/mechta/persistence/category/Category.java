@@ -19,6 +19,12 @@ public class Category extends PersistentObject {
 	private String name;
 	
 	/**
+	 * картинка
+	 */
+	@Column(name="imageUrl", length=150)
+	private String imageUrl;
+	
+	/**
 	 * Сссылка на родительскую категорию
 	 */
 	@ManyToOne
@@ -54,6 +60,10 @@ public class Category extends PersistentObject {
 	
 	public void setName (String name) {
 		this.name = name;
+	}
+	
+	public void setImage (String imageUrl) {
+		this.imageUrl = imageUrl;
 	}
 	
 	public String getName () {
