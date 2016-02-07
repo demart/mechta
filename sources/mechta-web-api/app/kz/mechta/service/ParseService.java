@@ -17,6 +17,7 @@ import kz.mechta.models.ResponseWrapper;
 import kz.mechta.models.StoreWrapper;
 import kz.mechta.persistence.category.Category;
 import kz.mechta.persistence.city.City;
+import kz.mechta.persistence.product.OrderProduct;
 import play.db.jpa.JPA;
 
 public class ParseService {
@@ -120,7 +121,7 @@ public class ParseService {
 		 * @param codeCity
 		 * @throws IOException
 		 */
-		public static StoreWrapper parseProducts (Long numberOnSiteCategory, Long cityId, Integer page) throws IOException {
+		public static StoreWrapper parseProducts (Long numberOnSiteCategory, Long cityId, Integer page, Long typeOrder) throws IOException {
 			/*
 			 * Просмотр каталога для Астаны идет по ссылке mechta.kz, для этого реализован цикл IF
 			 * Для других городов mechta.kz/nameOnSiteCity/catalog/numberOnSiteCategory/?PAGEN_1=page
@@ -129,11 +130,12 @@ public class ParseService {
 			//System.out.println ("Answer: " + StringUtils.isNotEmpty(nameOnSiteCity));
 			//System.out.println ("Answer: " + StringUtils.isEmpty(nameOnSiteCity));
 			City city = City.findById(cityId);
+			OrderProduct orderProduct = OrderProduct.findById(typeOrder);
 			if (StringUtils.isEmpty(city.getNameOnSite()))
-				doc = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page).get();
+				doc = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()).get();
 
 			else
-				doc = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page).get();
+				doc = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()).get();
 			/*
 			for (int j=0; j<10; j++)
 				System.out.println ("");
@@ -143,9 +145,9 @@ public class ParseService {
 			 */
 			Document doc2 = null;
 			if (StringUtils.isNotEmpty(city.getNameOnSite()))
-				doc2 = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory + "/").get();
+				doc2 = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory + "/"  + "?sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()).get();
 			else
-				doc2 = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/").get();
+				doc2 = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/"  + "?sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()).get();
 			Elements pages = doc2.select("div.modern-page-navigation");
 			
 			/*
@@ -187,7 +189,7 @@ public class ParseService {
 				 */
 				Elements places = product.select("table.m4_tablenal");
 				Elements counts = product.select("div.nal_m, div.nal_s, div.nal_b, div.nal_1");
-				System.out.println("Places: " + places.select("a[href]").size() + "  Counts: " + counts.size());
+				//System.out.println("Places: " + places.select("a[href]").size() + "  Counts: " + counts.size());
 				
 				ArrayList<AvailabilityProductModel> modelsAvailabilityProduct = new ArrayList<AvailabilityProductModel>();
 				for (int i = 0; i < counts.size(); i++) {

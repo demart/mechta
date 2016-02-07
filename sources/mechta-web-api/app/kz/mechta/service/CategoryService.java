@@ -4,7 +4,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import kz.mechta.models.CategoryModel;
+import kz.mechta.models.OrderProductModel;
 import kz.mechta.persistence.category.Category;
+import kz.mechta.persistence.product.OrderProduct;
 import play.db.jpa.JPA;
 
 public class CategoryService {
@@ -54,6 +56,21 @@ public class CategoryService {
 	public static void updateParseCategories() {
 		JPA.em().createQuery("Update Category set deleted = 'TRUE' where deleted = 'FALSE'").executeUpdate();
 		
+	}
+	
+	public static ArrayList<OrderProductModel> getListOrderProduct (List<OrderProduct> orderProduct) {
+		ArrayList<OrderProductModel> models = new ArrayList<OrderProductModel>();
+		
+		for (OrderProduct order: orderProduct) {
+		
+			OrderProductModel model = OrderProductModel.buildModel(order);
+			models.add(model);
+		}
+		return models;
+	}
+	
+	public static List<OrderProduct> getOrder (){
+		return JPA.em().createQuery("from OrderProduct order by id asc").getResultList();
 	}
 
 	

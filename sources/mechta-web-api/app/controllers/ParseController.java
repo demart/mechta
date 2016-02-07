@@ -6,11 +6,13 @@ import java.util.List;
 
 import kz.mechta.models.CategoryModel;
 import kz.mechta.models.CityModel;
+import kz.mechta.models.OrderProductModel;
 import kz.mechta.models.ProductModel;
 import kz.mechta.models.ResponseWrapper;
 import kz.mechta.models.StoreWrapper;
 import kz.mechta.persistence.category.Category;
 import kz.mechta.persistence.city.City;
+import kz.mechta.persistence.product.OrderProduct;
 import kz.mechta.service.CategoryService;
 import kz.mechta.service.CityService;
 import kz.mechta.service.ParseService;
@@ -40,10 +42,10 @@ public class ParseController extends Controller {
 	 * @param page
 	 * @throws IOException
 	 */
-	public static void parseProducts(Long numberOnSiteCategory, Long cityId, Integer page) throws IOException {
+	public static void parseProducts(Long numberOnSiteCategory, Long cityId, Integer page, Long typeOrder) throws IOException {
     	
 		//System.out.println(numberOnSiteCategory + "  " + cityId + "  " + page);
-		StoreWrapper model = ParseService.parseProducts(numberOnSiteCategory, cityId, page);
+		StoreWrapper model = ParseService.parseProducts(numberOnSiteCategory, cityId, page, typeOrder);
     	ResponseWrapper wrapper = new ResponseWrapper();
     	wrapper.data = model.getProducts().toArray();
     	wrapper.countOfPages = model.getCountOfPages();
@@ -94,6 +96,18 @@ public class ParseController extends Controller {
 		wrapper.data = model;
 		wrapper.success = true;
 		renderJSON(wrapper);
+	}
+	
+	
+	public static void readOrders () {
+    	ResponseWrapper wrapper = new ResponseWrapper();
+    	List<OrderProduct> orders = CategoryService.getOrder();
+    	//System.out.println (categories.size());
+    	ArrayList<OrderProductModel> models = CategoryService.getListOrderProduct(orders);
+    	wrapper.data = models.toArray();
+    	wrapper.count = models.size();
+    	wrapper.success = true;
+    	renderJSON(wrapper);
 	}
 	
 }
