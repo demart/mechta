@@ -22,10 +22,12 @@ public class ProductModel {
 	
 	private Integer previousCost;
 	
+	private List<ImageModel> images;
+	
 	public static ProductModel buildModel (Long numberOnSite, String name, String imageUrl, 
 			String description, Integer cost, List<AvailabilityProductModel> productAvailability,
 			List<CharacteristicsProductsModel> characteristics, Long numberOnSiteCategory, 
-			Integer previousCost) {
+			Integer previousCost, List<ImageModel> images) {
 		ProductModel model = new ProductModel();
 		model.imageUrl = imageUrl;
 		model.name = name;
@@ -36,6 +38,7 @@ public class ProductModel {
 		model.characteristics = characteristics;
 		model.numberOnSiteCategory = numberOnSiteCategory;
 		model.previousCost = previousCost;
+		model.images = images;
 		
 		return model;
 	}

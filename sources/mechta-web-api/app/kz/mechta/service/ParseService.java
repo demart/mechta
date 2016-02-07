@@ -12,6 +12,7 @@ import org.jsoup.select.Elements;
 
 import kz.mechta.models.AvailabilityProductModel;
 import kz.mechta.models.CharacteristicsProductsModel;
+import kz.mechta.models.ImageModel;
 import kz.mechta.models.ProductModel;
 import kz.mechta.models.ResponseWrapper;
 import kz.mechta.models.StoreWrapper;
@@ -260,7 +261,7 @@ public class ParseService {
 							Long.parseLong(product.select("a[href]").first().attr("abs:href").substring(url.length(), product.select("a[href]").first().attr("abs:href").length() - 1)),
 							product.select("a[href]").first().text(),
 							allImagesOfProducts.get(index).select("[src]").get(0).attr("abs:src"),
-							null, 0, null, null, numberOnSiteCategory, previousCost);
+							null, 0, null, null, numberOnSiteCategory, previousCost, null);
 							models.add(productModel);
 				}
 				
@@ -271,7 +272,7 @@ public class ParseService {
 						allImagesOfProducts.get(index).select("[src]").get(0).attr("abs:src"),
 						product.select("div.m4_font110").first().text(), 
 						Integer.parseInt(product.select("div.m4_fleft").first().text().substring(0, product.select("div.m4_fleft").first().text().length() - 6).replaceAll(" ", "").substring(product.select("div.m4_fleft").first().text().substring(0, product.select("div.m4_fleft").first().text().length() - 6).replaceAll(" ", "").lastIndexOf(".") + 1)),
-						modelsAvailabilityProduct, null, numberOnSiteCategory, previousCost);
+						modelsAvailabilityProduct, null, numberOnSiteCategory, previousCost, null);
 						models.add(productModel);
 				}
 				index++;
@@ -373,16 +374,28 @@ public class ParseService {
 			 * Блок отвечающий парсингу характеристик товара
 			 */
 			ArrayList<CharacteristicsProductsModel> characteristics = new ArrayList<CharacteristicsProductsModel> ();
+			ArrayList<ImageModel> images = new ArrayList<ImageModel>();
 			Elements characteristicsDoc = doc.select("div.m4_pgdiv");
-			if (cost != null)
+			if (cost != null) {
 				for (int i = 0; i < doc.select("div.m4_pgdiv").size(); i = i + 2) {
 				CharacteristicsProductsModel mod =  CharacteristicsProductsModel.buildModel(
 						characteristicsDoc.get(i).text(), characteristicsDoc.get(i+1).text());
 				characteristics.add(mod);
 			}
+				//System.out.println (doc.select("div.more_photo").size());
+				for (int i=0; i<doc.select("div.more_photo").size(); i++) {
+					ImageModel model = new ImageModel();
+					model.setImage(doc.select("div.more_photo").get(i).select("[src]").get(0).attr("abs:src"));
+					images.add(model);
+				}
+					
+				
+			}
+			
+			
 			
 			ProductModel model = ProductModel.buildModel(numberOnSite, nameOfProduct, url, description, cost, 
-					modelsAvailabilityProduct, characteristics, numberOnSiteCategory, previousCost);
+					modelsAvailabilityProduct, characteristics, numberOnSiteCategory, previousCost, images);
 			return model;
 		}
 		
