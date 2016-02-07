@@ -1,16 +1,18 @@
 package kz.mechta.models;
 
+import java.util.ArrayList;
+
 public class CharacteristicsProductsModel {
 
-		private String key;
+		private String name;
+
+		ArrayList<KeyValueCharacteristicsProductsModel> keyValue;
 		
-		private String value;
-		
-		public static CharacteristicsProductsModel buildModel(String key, String value) {
+		public static CharacteristicsProductsModel buildModel(String name, ArrayList<KeyValueCharacteristicsProductsModel> keyValue) {
 			CharacteristicsProductsModel model = new CharacteristicsProductsModel();
 			
-			model.key = key;
-			model.value = value;
+			model.name = name;
+			model.keyValue = keyValue;
 			
 			return model;
 		}
