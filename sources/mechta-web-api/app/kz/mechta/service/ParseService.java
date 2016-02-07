@@ -336,9 +336,13 @@ public class ParseService {
 			 * Ссылка на картинку
 			 */
 			String url = null;
-			if (cost != null)
+			if (cost != null)  {
+				if (doc.select("div.gal_more_photo").size() == 0) {
+					
+				}
+				else
 				url = doc.select("div.gal_more_photo").first().select("[src]").get(0).attr("abs:src");
-			
+			}
 			/*
 			 * Предыдущая цена
 			 */
