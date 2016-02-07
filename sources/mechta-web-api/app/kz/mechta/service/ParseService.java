@@ -289,44 +289,54 @@ public class ParseService {
 			/*
 			 * Цена товара
 			 */
-			Integer cost = Integer.parseInt(doc.select("span.m4_prs30").first().text().substring(0, doc.select("span.m4_prs30").first().text().length()).replaceAll(" ", ""));
+			Integer cost = null;
+			if (StringUtils.isNotEmpty(doc.select("span.m4_prs30").first().text()))
+				cost = Integer.parseInt(doc.select("span.m4_prs30").first().text().substring(0, doc.select("span.m4_prs30").first().text().length()).replaceAll(" ", ""));
 					/*
 			 * Ссылка на картинку
 			 */
-			String url = doc.select("div.gal_more_photo").first().select("[src]").get(0).attr("abs:src");
+			String url = null;
+			if (cost != null)
+				url = doc.select("div.gal_more_photo").first().select("[src]").get(0).attr("abs:src");
 			
 			/*
 			 * Предыдущая цена
 			 */
 			Integer previousCost = null;
-			if (doc.select("span.m4_prs18").size() != 0)
+			if (doc.select("span.m4_prs18").size() != 0 && cost != null)
 				previousCost = Integer.parseInt(doc.select("span.m4_prs18").text().replaceAll(" ", ""));
 			
 			
 			/*
 			 *Наличий товара 
 			 */
+			
 			Elements places = doc.select("table.m4_tablenal");
 			Elements counts = doc.select("div.nal_m, div.nal_s, div.nal_b, div.nal_1");
 			ArrayList<AvailabilityProductModel> modelsAvailabilityProduct = new ArrayList<AvailabilityProductModel>();
-			for (int i = 0; i < counts.size(); i++) {
-			//	System.out.println("Place: " + places.select("a[href]").get(i).text() + " count: " + counts.get(i).text());
-				AvailabilityProductModel model = AvailabilityProductModel.buildModel(places.select("a[href]").get(i).text(), 
-						counts.get(i).text());
-				modelsAvailabilityProduct.add(model);
+			if (cost != null) {
+				for (int i = 0; i < counts.size(); i++) {
+				//	System.out.println("Place: " + places.select("a[href]").get(i).text() + " count: " + counts.get(i).text());
+					AvailabilityProductModel model = AvailabilityProductModel.buildModel(places.select("a[href]").get(i).text(), 
+							counts.get(i).text());
+					modelsAvailabilityProduct.add(model);
+				}
 			}
 			
 			/*
 			 * Описание товара
 			 */
-			String description = doc.select("div.detailtext").first().text();
+			String description = null;
+			if (cost != null)
+				description= doc.select("div.detailtext").first().text();
 
 			/*
 			 * Блок отвечающий парсингу характеристик товара
 			 */
 			ArrayList<CharacteristicsProductsModel> characteristics = new ArrayList<CharacteristicsProductsModel> ();
 			Elements characteristicsDoc = doc.select("div.m4_pgdiv");
-			for (int i = 0; i < doc.select("div.m4_pgdiv").size(); i = i + 2) {
+			if (cost != null)
+				for (int i = 0; i < doc.select("div.m4_pgdiv").size(); i = i + 2) {
 				CharacteristicsProductsModel mod =  CharacteristicsProductsModel.buildModel(
 						characteristicsDoc.get(i).text(), characteristicsDoc.get(i+1).text());
 				characteristics.add(mod);
