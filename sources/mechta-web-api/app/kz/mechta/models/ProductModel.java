@@ -16,8 +16,16 @@ public class ProductModel {
 	
 	private List<AvailabilityProductModel> productAvailability;
 	
+	private List<CharacteristicsProductsModel> characteristics;
+	
+	private Long numberOnSiteCategory;
+	
+	private Integer previousCost;
+	
 	public static ProductModel buildModel (Long numberOnSite, String name, String imageUrl, 
-			String description, Integer cost, List<AvailabilityProductModel> productAvailability) {
+			String description, Integer cost, List<AvailabilityProductModel> productAvailability,
+			List<CharacteristicsProductsModel> characteristics, Long numberOnSiteCategory, 
+			Integer previousCost) {
 		ProductModel model = new ProductModel();
 		model.imageUrl = imageUrl;
 		model.name = name;
@@ -25,6 +33,9 @@ public class ProductModel {
 		model.description = description;
 		model.cost = cost;
 		model.productAvailability = productAvailability;
+		model.characteristics = characteristics;
+		model.numberOnSiteCategory = numberOnSiteCategory;
+		model.previousCost = previousCost;
 		
 		return model;
 	}

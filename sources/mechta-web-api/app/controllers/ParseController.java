@@ -6,6 +6,7 @@ import java.util.List;
 
 import kz.mechta.models.CategoryModel;
 import kz.mechta.models.CityModel;
+import kz.mechta.models.ProductModel;
 import kz.mechta.models.ResponseWrapper;
 import kz.mechta.models.StoreWrapper;
 import kz.mechta.persistence.category.Category;
@@ -78,6 +79,21 @@ public class ParseController extends Controller {
     	wrapper.count = models.size();
     	wrapper.success = true;
     	renderJSON(wrapper);
+	}
+	
+	/**
+	 * Получение всей информации о товаре
+	 * @param numberOnSiteCategory
+	 * @param cityId
+	 * @param numberOnSite
+	 * @throws IOException
+	 */
+	public static void parseProduct (Long numberOnSiteCategory, Long cityId, Long numberOnSite) throws IOException {
+		ResponseWrapper wrapper = new ResponseWrapper();
+		ProductModel model = ParseService.parseProductInformation(numberOnSiteCategory, cityId, numberOnSite);
+		wrapper.data = model;
+		wrapper.success = true;
+		renderJSON(wrapper);
 	}
 	
 }

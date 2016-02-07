@@ -11,6 +11,7 @@ import org.jsoup.nodes.Element;
 import org.jsoup.select.Elements;
 
 import kz.mechta.models.AvailabilityProductModel;
+import kz.mechta.models.CharacteristicsProductsModel;
 import kz.mechta.models.ProductModel;
 import kz.mechta.models.ResponseWrapper;
 import kz.mechta.models.StoreWrapper;
@@ -185,12 +186,12 @@ public class ParseService {
 				 * Сбор информации о наличие. Вначале собираем места, а затем количество.
 				 */
 				Elements places = product.select("table.m4_tablenal");
-				Elements counts = product.select("div.nal_m, div.nal_s, div.nal_b");
+				Elements counts = product.select("div.nal_m, div.nal_s, div.nal_b, div.nal_1");
 				System.out.println("Places: " + places.select("a[href]").size() + "  Counts: " + counts.size());
 				
 				ArrayList<AvailabilityProductModel> modelsAvailabilityProduct = new ArrayList<AvailabilityProductModel>();
 				for (int i = 0; i < counts.size(); i++) {
-					System.out.println("Place: " + places.select("a[href]").get(i).text());
+					//System.out.println("Place: " + places.select("a[href]").get(i).text());
 					AvailabilityProductModel model = AvailabilityProductModel.buildModel(places.select("a[href]").get(i).text(), 
 							counts.get(i).text());
 
@@ -207,14 +208,20 @@ public class ParseService {
 				 * поэтому там сплошные обрезания цен, что в итоге остается только красная
 				 */
 				
+				/*
+				 * Предыдущая цена
+				 */
+				Integer previousCost = null;
+				if (product.select("span.m4_prs18").size() != 0)
+					previousCost = Integer.parseInt(product.select("span.m4_prs18").text().replaceAll(" ", ""));
+				
+				
 				if (StringUtils.isNotEmpty(product.ownText()) == true) {
 					ProductModel productModel = ProductModel.buildModel(
 							Long.parseLong(product.select("a[href]").first().attr("abs:href").substring(url.length(), product.select("a[href]").first().attr("abs:href").length() - 1)),
 							product.select("a[href]").first().text(),
 							allImagesOfProducts.get(index).select("[src]").get(0).attr("abs:src"),
-							null, 
-							0,
-							null);
+							null, 0, null, null, numberOnSiteCategory, previousCost);
 							models.add(productModel);
 				}
 				
@@ -225,7 +232,7 @@ public class ParseService {
 						allImagesOfProducts.get(index).select("[src]").get(0).attr("abs:src"),
 						product.select("div.m4_font110").first().text(), 
 						Integer.parseInt(product.select("div.m4_fleft").first().text().substring(0, product.select("div.m4_fleft").first().text().length() - 6).replaceAll(" ", "").substring(product.select("div.m4_fleft").first().text().substring(0, product.select("div.m4_fleft").first().text().length() - 6).replaceAll(" ", "").lastIndexOf(".") + 1)),
-						modelsAvailabilityProduct);
+						modelsAvailabilityProduct, null, numberOnSiteCategory, previousCost);
 						models.add(productModel);
 				}
 				index++;
@@ -251,6 +258,83 @@ public class ParseService {
 					allProducts.size(), models);
 			
 			return store;
+		}
+		
+		/**
+		 * Парсинг определенного товара
+		 * @param numberOnSiteCategory
+		 * @param cityId
+		 * @param numberOnSite
+		 * @return
+		 * @throws IOException
+		 */
+		public static ProductModel parseProductInformation (Long numberOnSiteCategory, Long cityId, Long numberOnSite) throws IOException {
+			/*
+			 * Аналогично как при парсинге всех товаров каталога
+			 */
+			Document doc = null;
+			City city = City.findById(cityId);
+			if (StringUtils.isEmpty(city.getNameOnSite()))
+				doc = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/" + numberOnSite + "/").get();
+
+			else
+				doc = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/" + numberOnSite + "/").get();
+			
+
+			/*
+			 * название товара
+			 */
+			String nameOfProduct = doc.title().substring(0, doc.title().lastIndexOf("-"));
+			
+			/*
+			 * Цена товара
+			 */
+			Integer cost = Integer.parseInt(doc.select("span.m4_prs30").first().text().substring(0, doc.select("span.m4_prs30").first().text().length()).replaceAll(" ", ""));
+					/*
+			 * Ссылка на картинку
+			 */
+			String url = doc.select("div.gal_more_photo").first().select("[src]").get(0).attr("abs:src");
+			
+			/*
+			 * Предыдущая цена
+			 */
+			Integer previousCost = null;
+			if (doc.select("span.m4_prs18").size() != 0)
+				previousCost = Integer.parseInt(doc.select("span.m4_prs18").text().replaceAll(" ", ""));
+			
+			
+			/*
+			 *Наличий товара 
+			 */
+			Elements places = doc.select("table.m4_tablenal");
+			Elements counts = doc.select("div.nal_m, div.nal_s, div.nal_b, div.nal_1");
+			ArrayList<AvailabilityProductModel> modelsAvailabilityProduct = new ArrayList<AvailabilityProductModel>();
+			for (int i = 0; i < counts.size(); i++) {
+			//	System.out.println("Place: " + places.select("a[href]").get(i).text() + " count: " + counts.get(i).text());
+				AvailabilityProductModel model = AvailabilityProductModel.buildModel(places.select("a[href]").get(i).text(), 
+						counts.get(i).text());
+				modelsAvailabilityProduct.add(model);
+			}
+			
+			/*
+			 * Описание товара
+			 */
+			String description = doc.select("div.detailtext").first().text();
+
+			/*
+			 * Блок отвечающий парсингу характеристик товара
+			 */
+			ArrayList<CharacteristicsProductsModel> characteristics = new ArrayList<CharacteristicsProductsModel> ();
+			Elements characteristicsDoc = doc.select("div.m4_pgdiv");
+			for (int i = 0; i < doc.select("div.m4_pgdiv").size(); i = i + 2) {
+				CharacteristicsProductsModel mod =  CharacteristicsProductsModel.buildModel(
+						characteristicsDoc.get(i).text(), characteristicsDoc.get(i+1).text());
+				characteristics.add(mod);
+			}
+			
+			ProductModel model = ProductModel.buildModel(numberOnSite, nameOfProduct, url, description, cost, 
+					modelsAvailabilityProduct, characteristics, numberOnSiteCategory, previousCost);
+			return model;
 		}
 		
 		/*

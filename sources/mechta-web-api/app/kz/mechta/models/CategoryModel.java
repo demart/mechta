@@ -10,7 +10,7 @@ public class CategoryModel {
 	
 	private String name;
 	
-	private boolean noParent;
+	private boolean parent;
 	
 	private boolean children;
 	
@@ -20,9 +20,9 @@ public class CategoryModel {
 		model.name = category.getName();
 		model.numberOnSite = category.getNumberOnSite();
 		if (category.getCategory() == null)
-			model.noParent = true;
+			model.parent = true;
 		else
-			model.noParent = false;
+			model.parent = false;
 		
 		model.children = children;
 		return model;
