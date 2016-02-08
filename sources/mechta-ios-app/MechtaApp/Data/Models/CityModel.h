@@ -1,0 +1,19 @@
+//
+//  CityModel.h
+//  MechtaApp
+//
+//  Created by Artem Demidovich on 2/5/16.
+//  Copyright © 2016 Aphion Software. All rights reserved.
+//
+
+#import <Foundation/Foundation.h>
+
+@interface CityModel : NSObject
+
+@property int id;
+
+@property NSString* name;
+
+@property int order;
+
+@end
