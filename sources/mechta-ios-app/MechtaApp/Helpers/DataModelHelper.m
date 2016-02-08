@@ -30,6 +30,47 @@
 
 
 
++ (RKObjectMapping*) getObjectMappingForProduct {
+    RKObjectMapping* productCharacteristicMapping = [RKObjectMapping mappingForClass:[ProductCharacteristicModel class]];
+    [productCharacteristicMapping addAttributeMappingsFromDictionary:@{
+                                                                            @"key": @"key",
+                                                                            @"value": @"value",
+                                                                            }];
+    
+    RKObjectMapping* productCharacteristicGroupMapping = [RKObjectMapping mappingForClass:[ProductCharacteristicGroupModel class]];
+    [productCharacteristicGroupMapping addAttributeMappingsFromDictionary:@{
+                                                                        @"name": @"name",
+                                                                        }];
+    [productCharacteristicGroupMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"keyValue" toKeyPath:@"keyValue"  withMapping:productCharacteristicMapping]];
+    
+    RKObjectMapping* productAvailableInShopMapping = [RKObjectMapping mappingForClass:[ProductAvailableInShopModel class]];
+    [productAvailableInShopMapping addAttributeMappingsFromDictionary:@{
+                                                         @"name": @"name",
+                                                         @"count": @"amount",
+                                                         }];
+    
+    RKObjectMapping* productMapping = [RKObjectMapping mappingForClass:[ProductModel class]];
+    [productMapping addAttributeMappingsFromDictionary:@{
+                                                         //@"id": @"id",
+                                                         @"numberOnSite": @"numberOnSite",
+                                                         @"name": @"name",
+                                                         @"imageUrl": @"imageUrl",
+                                                         @"description": @"content",
+                                                         @"cost": @"cost",
+                                                         @"previousCost": @"previousCost",
+                                                         @"numberOnSiteCategory": @"numberOnSiteCategory"
+                                                         }];
+    
+    [productMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"productAvailability" toKeyPath:@"productAvailability"  withMapping:productAvailableInShopMapping]];
+    
+    [productMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"characteristics" toKeyPath:@"characteristics"  withMapping:productCharacteristicGroupMapping]];
+    
+    return productMapping;
+}
+
+
+
+
 + (RKResponseDescriptor*) buildResponseDescriptorForCities {
     RKObjectMapping* cityModel = [RKObjectMapping mappingForClass:[CityModel class]];
     [cityModel addAttributeMappingsFromDictionary:@{
@@ -49,9 +90,11 @@
     RKObjectMapping* categoryModel = [RKObjectMapping mappingForClass:[CategoryModel class]];
     [categoryModel addAttributeMappingsFromDictionary:@{
                                                     @"id": @"id",
+                                                    @"numberOnSite": @"numberOnSite",
                                                     @"name": @"name",
                                                     @"order": @"order",
-                                                    @"children": @"hasChildren",
+                                                    @"hasChildren": @"hasChildren",
+                                                    @"imageUrl": @"imageUrl",
                                                     }];
     
     RKObjectMapping* wrapperMapping = [DataModelHelper getObjectMappingForResponseWrapperModelWithDataMapping:categoryModel];
@@ -61,5 +104,15 @@
     return responseWrapperDescriptor;
 }
 
+
++ (RKResponseDescriptor*) buildResponseDescriptorForProducts {
+    RKObjectMapping* productMapping = [DataModelHelper getObjectMappingForProduct];
+    
+    RKObjectMapping* wrapperMapping = [DataModelHelper getObjectMappingForResponseWrapperModelWithDataMapping:productMapping];
+    
+    RKResponseDescriptor *responseWrapperDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:wrapperMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful) ];
+    
+    return responseWrapperDescriptor;
+}
 
 @end

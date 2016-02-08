@@ -13,4 +13,9 @@
 @property (weak, nonatomic) IBOutlet UIImageView *productImageView;
 @property (weak, nonatomic) IBOutlet UILabel *productNameField;
 @property (weak, nonatomic) IBOutlet UILabel *productPriceField;
+@property (weak, nonatomic) IBOutlet UILabel *productDescriptionField;
+
+-(void) setPrice:(long)productPrice;
+-(void) setUnavailable;
+
 @end

@@ -10,4 +10,6 @@
 
 @interface ProductsTableViewController : UITableViewController
 
+- (void) setProductsCategory:(long)categoryId;
+
 @end

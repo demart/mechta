@@ -12,14 +12,14 @@
 
 @property long id;
 
+@property long numberOnSite;
+
 @property NSString* name;
 
 @property int order;
 
-@property BOOL hasChildren; // children
+@property BOOL hasChildren;
 
-//@property NSMutableArray *children;
-
-//@property CategoryModel *parent;
+@property NSString* imageUrl;
 
 @end

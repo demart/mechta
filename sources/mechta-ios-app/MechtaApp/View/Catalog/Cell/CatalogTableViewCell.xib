@@ -46,6 +46,7 @@
             </tableViewCellContentView>
             <connections>
                 <outlet property="catalogNameField" destination="qzF-8b-BAU" id="ghA-a3-hUC"/>
+                <outlet property="categoryImageView" destination="UIs-Pz-PbQ" id="tGU-RJ-hky"/>
             </connections>
             <point key="canvasLocation" x="245" y="363"/>
         </tableViewCell>

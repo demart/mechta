@@ -1,4 +1,4 @@
-//
+    //
 //  CatalogTableViewController.m
 //  MechtaApp
 //
@@ -18,10 +18,15 @@
 #import "ProductsTableViewController.h"
 #import "DejalActivityView.h"
 
+#import "LocalStorageService.h"
+
 @interface CatalogTableViewController ()
 
 @property long parentCategoryId;
 @property NSMutableArray *categories;
+
+@property NSMutableDictionary *loadImageOperations;
+@property NSOperationQueue *loadImageOperationQueue;
 
 @end
 
@@ -30,12 +35,9 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    //self.catalogItems = [CatalogService getCategoriesWithParent:self.selectedCatalog];
+    self.loadImageOperationQueue = [[NSOperationQueue alloc] init];
+    [self.loadImageOperationQueue setMaxConcurrentOperationCount:3];
+
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -48,7 +50,6 @@
         [self.cityChoiceButton setTitle:cityModel.name];
     }
     
-    
     // Загружаем категории
     [self loadCategories];
     
@@ -57,6 +58,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
 }
+
+- (void) viewWillDisappear:(BOOL)animated {
+    [super viewWillDisappear:animated];
+    
+    [_loadImageOperationQueue cancelAllOperations];
+    [_loadImageOperations removeAllObjects];
+}
+
 
 #pragma mark - Loading data
 
@@ -100,6 +109,46 @@
 }
 
 
+- (void) loadUserAvatarInCell:(CatalogTableViewCell*) cell onIndexPath:(NSIndexPath*)indexPath withImageUrl:(NSString*)imageUrl {
+    UIImage *loadedImage =(UIImage *)[LocalStorageService  loadImageFromLocalCache:imageUrl];
+    
+    if (loadedImage != nil) {
+        cell.categoryImageView.image = loadedImage;
+    } else {
+        NSBlockOperation *loadImageOperation = [[NSBlockOperation alloc] init];
+        __weak NSBlockOperation *weakOperation = loadImageOperation;
+        
+        [loadImageOperation addExecutionBlock:^(void){
+            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:
+                                                                                   imageUrl
+                                                                                   ]]];
+            [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
+                if (! weakOperation.isCancelled) {
+                    CatalogTableViewCell *updateCell = (CatalogTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
+                    if (updateCell != nil && image != nil) {
+                        updateCell.categoryImageView.image = image;
+                    }
+                    
+                    
+                    if (image != nil) {
+                        [LocalStorageService  saveImageToLocalCache:imageUrl withData:image];
+                    } else {
+                        cell.categoryImageView.image = [UIImage imageNamed:@"catalog_cell_default_icon"];
+                    }
+                    [self.loadImageOperations removeObjectForKey:indexPath];
+                }
+            }];
+        }];
+        
+        [_loadImageOperations setObject: loadImageOperation forKey:indexPath];
+        if (loadImageOperation) {
+            [_loadImageOperationQueue addOperation:loadImageOperation];
+        }
+    }
+}
+
+
+
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -123,6 +172,12 @@
     CategoryModel *model = self.categories[indexPath.row];
     [cell.catalogNameField setText:model.name];
     
+    if (model.imageUrl != nil) {
+        [self loadUserAvatarInCell:cell onIndexPath:indexPath withImageUrl:model.imageUrl];
+    } else {
+        cell.categoryImageView.image = [UIImage imageNamed:@"catalog_cell_default_icon"];
+    }
+    
     return cell;
 }
 
@@ -135,41 +190,6 @@
         [self performSegueWithIdentifier:@"showProductsSergue" sender:self];
     }
 }
-
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
 
 -(CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     return 60;
@@ -186,9 +206,10 @@
     }
     
     if ([segue.destinationViewController isKindOfClass:[ProductsTableViewController class]]) {
-        //ProductsTableViewController *viewController = (ProductsTableViewController*)segue.destinationViewController;
-        // NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
-        NSLog(@"Products was selected...");
+        ProductsTableViewController *viewController = (ProductsTableViewController*)segue.destinationViewController;
+         NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
+        CategoryModel *model = self.categories[indexPath.row];
+        [viewController setProductsCategory:model.numberOnSite];
     }
     
     if ([segue.destinationViewController isKindOfClass:[CatalogTableViewController class]]) {
@@ -196,7 +217,6 @@
         NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
         CategoryModel *model = self.categories[indexPath.row];
         viewController.parentCategoryId = model.id;
-        NSLog(@"Show children of the selected category...");
     }
     
     

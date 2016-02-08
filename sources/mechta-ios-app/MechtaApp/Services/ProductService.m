@@ -10,31 +10,31 @@
 
 @implementation ProductService
 
-+ (NSMutableArray*) getProductsFromCategory:(long)categoryId fromPage:(long)page inCity:(long)cityId {
-    NSMutableArray *prodcuts = [[NSMutableArray alloc] init];
++ (void) retrieveProductsWithCategoryId:(long)parentId withPage:(long)page inCityId:(long)cityId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure {
     
-    [prodcuts addObject:[ProductService createTempProductWithName:@"Пылесос SAMSUNG VC 19F50 VNCY" andPrice:56990]];
-    [prodcuts addObject:[ProductService createTempProductWithName:@"Газовая плита DE LUXE 5040.36 Г (кр)" andPrice:53800]];
-    [prodcuts addObject:[ProductService createTempProductWithName:@"Утюг PHILIPS GC 4926/00" andPrice:57990]];
-    [prodcuts addObject:[ProductService createTempProductWithName:@"Микроволновая печь LG MG 6343 BMR" andPrice:57990]];
-    [prodcuts addObject:[ProductService createTempProductWithName:@"Пылесос LG V K8810HUMR" andPrice:44990]];
-    [prodcuts addObject:[ProductService createTempProductWithName:@"Микроволновая печь GORENJE MO 4250 CLI" andPrice:58690]];
-    [prodcuts addObject:[ProductService createTempProductWithName:@"Швейная машина TOYOTA SUPER J 15" andPrice:59890]];
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[UrlHelper productsUrlWithCategoryId:parentId withPage:page inCityId:cityId]] ];
     
-    return prodcuts;
-}
+    RKResponseDescriptor *responseWrapperDescriptor = [DataModelHelper buildResponseDescriptorForProducts];
+    
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseWrapperDescriptor ]];
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        ResponseWrapperModel *response = (ResponseWrapperModel*)[mappingResult.array objectAtIndex:0];
+        
+        NSLog(@"Success: %i", response.success);
+        NSLog(@"Data: %@", response.data);
+        NSLog(@"Count: %i", response.count);
+        NSLog(@"CountOfPages: %i", response.countOfPages);
+        NSLog(@"CountOfProducts: %i", response.countOfProducts);
+        
+        success(response);
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Operation failed with error: %@", error);
+        failure(error);
+    }];
+    
+    [objectRequestOperation start];
 
-
-+ (ProductModel*) createTempProductWithName:(NSString*)name andPrice:(long) price {
-    ProductModel *model = [[ProductModel alloc] init];
-    model.id = 0;
-    model.name = name;
-    model.cost = price;
-    model.imageUrl = @"";
-//    model.availableInShop = nil;
-    model.content = @"test description";
-    
-    return model;
 }
 
 @end

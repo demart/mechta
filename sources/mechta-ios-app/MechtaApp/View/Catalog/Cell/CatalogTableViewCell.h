@@ -11,4 +11,6 @@
 @interface CatalogTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *catalogNameField;
 
+@property (weak, nonatomic) IBOutlet UIImageView *categoryImageView;
+
 @end

@@ -43,6 +43,11 @@
 		8DB0787B1C68761000C07F69 /* ExtraHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DB078791C68761000C07F69 /* ExtraHeaderTableViewCell.xib */; };
 		8DB0787F1C6876A700C07F69 /* ExtraMenuItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB0787D1C6876A700C07F69 /* ExtraMenuItemTableViewCell.m */; };
 		8DB078801C6876A700C07F69 /* ExtraMenuItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DB0787E1C6876A700C07F69 /* ExtraMenuItemTableViewCell.xib */; };
+		8DC7E1F91C68D4CA00E6E416 /* LocalStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC7E1F81C68D4CA00E6E416 /* LocalStorageService.m */; };
+		8DC7E1FE1C69194F00E6E416 /* LoadMoreTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC7E1FC1C69194F00E6E416 /* LoadMoreTableViewCell.m */; };
+		8DC7E1FF1C69194F00E6E416 /* LoadMoreTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC7E1FD1C69194F00E6E416 /* LoadMoreTableViewCell.xib */; };
+		8DC7E2031C692FE800E6E416 /* ProductImageTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DC7E2011C692FE800E6E416 /* ProductImageTableViewCell.m */; };
+		8DC7E2041C692FE800E6E416 /* ProductImageTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DC7E2021C692FE800E6E416 /* ProductImageTableViewCell.xib */; };
 		93B00D9D4268ECF79206F6F9 /* libPods-MechtaApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99497EC30B72DFC69B7460C0 /* libPods-MechtaApp.a */; };
 /* End PBXBuildFile section */
 
@@ -113,6 +118,14 @@
 		8DB0787C1C6876A700C07F69 /* ExtraMenuItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtraMenuItemTableViewCell.h; path = View/Extra/Cell/ExtraMenuItemTableViewCell.h; sourceTree = "<group>"; };
 		8DB0787D1C6876A700C07F69 /* ExtraMenuItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtraMenuItemTableViewCell.m; path = View/Extra/Cell/ExtraMenuItemTableViewCell.m; sourceTree = "<group>"; };
 		8DB0787E1C6876A700C07F69 /* ExtraMenuItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExtraMenuItemTableViewCell.xib; path = View/Extra/Cell/ExtraMenuItemTableViewCell.xib; sourceTree = "<group>"; };
+		8DC7E1F71C68D4CA00E6E416 /* LocalStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LocalStorageService.h; path = Services/LocalStorageService.h; sourceTree = "<group>"; };
+		8DC7E1F81C68D4CA00E6E416 /* LocalStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LocalStorageService.m; path = Services/LocalStorageService.m; sourceTree = "<group>"; };
+		8DC7E1FB1C69194F00E6E416 /* LoadMoreTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LoadMoreTableViewCell.h; path = View/Catalog/Cell/LoadMoreTableViewCell.h; sourceTree = "<group>"; };
+		8DC7E1FC1C69194F00E6E416 /* LoadMoreTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LoadMoreTableViewCell.m; path = View/Catalog/Cell/LoadMoreTableViewCell.m; sourceTree = "<group>"; };
+		8DC7E1FD1C69194F00E6E416 /* LoadMoreTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = LoadMoreTableViewCell.xib; path = View/Catalog/Cell/LoadMoreTableViewCell.xib; sourceTree = "<group>"; };
+		8DC7E2001C692FE800E6E416 /* ProductImageTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductImageTableViewCell.h; path = View/Catalog/Cell/ProductImageTableViewCell.h; sourceTree = "<group>"; };
+		8DC7E2011C692FE800E6E416 /* ProductImageTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductImageTableViewCell.m; path = View/Catalog/Cell/ProductImageTableViewCell.m; sourceTree = "<group>"; };
+		8DC7E2021C692FE800E6E416 /* ProductImageTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductImageTableViewCell.xib; path = View/Catalog/Cell/ProductImageTableViewCell.xib; sourceTree = "<group>"; };
 		99497EC30B72DFC69B7460C0 /* libPods-MechtaApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MechtaApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC70FC5DCE47CE5C61F142BA /* Pods-MechtaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MechtaApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MechtaApp/Pods-MechtaApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -201,6 +214,8 @@
 				8D29C3DD1C64AD2B00E7EFCD /* CatalogService.m */,
 				8D29C3F31C64C1DE00E7EFCD /* ProductService.h */,
 				8D29C3F41C64C1DE00E7EFCD /* ProductService.m */,
+				8DC7E1F71C68D4CA00E6E416 /* LocalStorageService.h */,
+				8DC7E1F81C68D4CA00E6E416 /* LocalStorageService.m */,
 			);
 			name = Services;
 			sourceTree = "<group>";
@@ -307,6 +322,12 @@
 				8D29C3F91C64C4ED00E7EFCD /* ProductTableViewCell.h */,
 				8D29C3FA1C64C4ED00E7EFCD /* ProductTableViewCell.m */,
 				8D29C3FB1C64C4ED00E7EFCD /* ProductTableViewCell.xib */,
+				8DC7E1FB1C69194F00E6E416 /* LoadMoreTableViewCell.h */,
+				8DC7E1FC1C69194F00E6E416 /* LoadMoreTableViewCell.m */,
+				8DC7E1FD1C69194F00E6E416 /* LoadMoreTableViewCell.xib */,
+				8DC7E2001C692FE800E6E416 /* ProductImageTableViewCell.h */,
+				8DC7E2011C692FE800E6E416 /* ProductImageTableViewCell.m */,
+				8DC7E2021C692FE800E6E416 /* ProductImageTableViewCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -407,8 +428,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DC7E1FF1C69194F00E6E416 /* LoadMoreTableViewCell.xib in Resources */,
 				8DB0787B1C68761000C07F69 /* ExtraHeaderTableViewCell.xib in Resources */,
 				8D29C3D81C64A6B800E7EFCD /* CityTableViewCell.xib in Resources */,
+				8DC7E2041C692FE800E6E416 /* ProductImageTableViewCell.xib in Resources */,
 				8DB078801C6876A700C07F69 /* ExtraMenuItemTableViewCell.xib in Resources */,
 				8D29C3FD1C64C4ED00E7EFCD /* ProductTableViewCell.xib in Resources */,
 				8D16EE4B1C6480130009FD47 /* LaunchScreen.storyboard in Resources */,
@@ -464,6 +487,7 @@
 				8D16EE431C6480130009FD47 /* ViewController.m in Sources */,
 				8D29C3E61C64BA2600E7EFCD /* CategoryModel.m in Sources */,
 				8D77CA0B1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m in Sources */,
+				8DC7E1F91C68D4CA00E6E416 /* LocalStorageService.m in Sources */,
 				8D4850221C68B00000A07CF0 /* DejalActivityView.m in Sources */,
 				8D29C4001C64CD4100E7EFCD /* ProductDetailTableViewController.m in Sources */,
 				8D16EE401C6480130009FD47 /* AppDelegate.m in Sources */,
@@ -473,6 +497,7 @@
 				8D77CA081C688B9E00DA2C26 /* ResponseWrapperModel.m in Sources */,
 				8D879ABD1C6491D100D802F4 /* CitiesTableViewController.m in Sources */,
 				8D29C3E21C64B2DC00E7EFCD /* CityModel.m in Sources */,
+				8DC7E1FE1C69194F00E6E416 /* LoadMoreTableViewCell.m in Sources */,
 				8D29C3E91C64BEE000E7EFCD /* ProductsTableViewController.m in Sources */,
 				8D29C3DB1C64A84400E7EFCD /* CityService.m in Sources */,
 				8D29C3CA1C6494A400E7EFCD /* CatalogTableViewCell.m in Sources */,
@@ -481,6 +506,7 @@
 				8D16EE3D1C6480130009FD47 /* main.m in Sources */,
 				8D29C3F21C64C10400E7EFCD /* ProductAvailableInShopModel.m in Sources */,
 				8D29C3F51C64C1DE00E7EFCD /* ProductService.m in Sources */,
+				8DC7E2031C692FE800E6E416 /* ProductImageTableViewCell.m in Sources */,
 				8D879AC01C6491FD00D802F4 /* CatalogTableViewController.m in Sources */,
 				8DB0787F1C6876A700C07F69 /* ExtraMenuItemTableViewCell.m in Sources */,
 				8D29C3FC1C64C4ED00E7EFCD /* ProductTableViewCell.m in Sources */,

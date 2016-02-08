@@ -11,6 +11,7 @@
 #import "ResponseWrapperModel.h"
 #import "CityModel.h"
 #import "CategoryModel.h"
+#import "ProductModel.h"
 
 #import "RKObjectManager.h"
 #import "RKObjectMapping.h"
@@ -27,5 +28,8 @@
 + (RKResponseDescriptor*) buildResponseDescriptorForCities;
 
 + (RKResponseDescriptor*) buildResponseDescriptorForCategories;
+
++ (RKResponseDescriptor*) buildResponseDescriptorForProducts;
+
 
 @end

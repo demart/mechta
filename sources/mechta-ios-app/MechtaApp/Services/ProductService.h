@@ -8,9 +8,13 @@
 
 #import <Foundation/Foundation.h>
 #import "ProductModel.h"
+#import "ResponseWrapperModel.h"
+#import "UrlHelper.h"
+#import "DataModelHelper.h"
 
 @interface ProductService : NSObject
 
-+ (NSMutableArray*) getProductsFromCategory:(long)categoryId fromPage:(long)page inCity:(long)cityId;
++ (void) retrieveProductsWithCategoryId:(long)parentId withPage:(long)page inCityId:(long)cityId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure;
+
 
 @end

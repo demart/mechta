@@ -12,7 +12,9 @@
 
 @interface ProductModel : NSObject
 
-@property long id;
+//@property long id;
+
+@property long numberOnSite;
 
 @property NSString* name;
 
@@ -23,6 +25,8 @@
 @property long cost;
 
 @property long previousCost;
+
+@property long numberOnSiteCategory;
 
 // Список где можно купить
 @property NSMutableArray *productAvailability;

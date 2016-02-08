@@ -7,7 +7,10 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ProductModel.h"
 
 @interface ProductDetailTableViewController : UITableViewController
+
+- (void) setProductModel:(ProductModel*)model;
 
 @end

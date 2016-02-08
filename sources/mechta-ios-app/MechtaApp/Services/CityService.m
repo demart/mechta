@@ -32,23 +32,6 @@ static NSMutableArray *cities;
 
 + (NSMutableArray*) getCities {
     return cities;
-    
-    /*
-    NSMutableArray *cities = [[NSMutableArray alloc] init];
-    [cities addObject:@"Астана"];
-    [cities addObject:@"Алматы"];
-    [cities addObject:@"Актау"];
-    [cities addObject:@"Караганда"];
-    [cities addObject:@"Кокшетау"];
-    [cities addObject:@"Костанай"];
-    [cities addObject:@"Павлодар"];
-    [cities addObject:@"Петропавловск"];
-    [cities addObject:@"Семей"];
-    [cities addObject:@"Уральск"];
-    [cities addObject:@"Усть-Каменогорск"];
-    [cities addObject:@"Шымкент"];
-    return cities;
-     */
 }
 
 
