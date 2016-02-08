@@ -12,12 +12,16 @@
 
 @interface ProductAvailableInShopModel : NSObject
 
-@property int id;
 
-@property ProductModel *product;
-
-@property ShopModel *shop;
+@property NSString *name;
 
 @property NSString* amount;
+
+
+//@property long id;
+
+//@property ProductModel *product;
+
+//@property ShopModel *shop;
 
 @end

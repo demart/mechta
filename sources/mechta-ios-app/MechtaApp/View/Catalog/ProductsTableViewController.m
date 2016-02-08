@@ -56,7 +56,7 @@
     ProductModel *model = self.products[indexPath.row];
     
     [cell.productNameField setText:model.name];
-    [cell.productPriceField setText:[[NSString alloc] initWithFormat:@"%i тг.", model.price]];
+    [cell.productPriceField setText:[[NSString alloc] initWithFormat:@"%i тг.", model.cost]];
     
     return cell;
 }

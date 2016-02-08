@@ -10,10 +10,12 @@
 
 @interface CityModel : NSObject
 
-@property int id;
+@property long id;
 
 @property NSString* name;
 
-@property int order;
+
+//@property int order;
+
 
 @end

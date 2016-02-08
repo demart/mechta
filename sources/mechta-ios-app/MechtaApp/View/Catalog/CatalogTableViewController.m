@@ -38,7 +38,12 @@
 }
 
 -(void) viewWillAppear:(BOOL)animated {
-    [self.cityChoiceButton setTitle:[CityService getSelectedCity]];
+    CityModel *cityModel = [CityService getSelectedCityModel];
+    if (cityModel == nil) {
+        [self.cityChoiceButton setTitle:@"Выберите город"];
+    } else {
+        [self.cityChoiceButton setTitle:cityModel.name];
+    }
 }
 
 - (void)didReceiveMemoryWarning {

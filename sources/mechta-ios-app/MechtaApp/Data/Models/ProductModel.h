@@ -7,6 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ProductAvailableInShopModel.h"
+#import "ProductCharacteristicGroupModel.h"
 
 @interface ProductModel : NSObject
 
@@ -14,13 +16,17 @@
 
 @property NSString* name;
 
-@property long price;
-
-@property NSString* picture;
-
-// Список где можно купить
-@property NSMutableArray *availableInShop;
+@property NSString* imageUrl;
 
 @property NSString* content;
+
+@property long cost;
+
+@property long previousCost;
+
+// Список где можно купить
+@property NSMutableArray *productAvailability;
+
+@property NSMutableArray *characteristics;
 
 @end

@@ -9,9 +9,13 @@
 #import "CitiesTableViewController.h"
 #import "CityTableViewCell.h"
 
+#import "DejalActivityView.h"
+
 #import "CityService.h"
 
 @interface CitiesTableViewController ()
+
+@property long parentCategoryId;
 
 @end
 
@@ -29,8 +33,55 @@
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
+
+-(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:YES];
+    
+    [self loadCities];
+}
+
+
+#pragma mark - Loading data from Server
+
+- (void) loadCities {
+    if ([CityService getCities] == nil) {
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Подождите\nИдет загрузка..."];
+        [CityService retrieveCities:^(ResponseWrapperModel *response) {
+            if (response.success) {
+                [self.tableView reloadData];
+                [DejalBezelActivityView removeViewAnimated:YES];
+            } else {
+                [DejalBezelActivityView removeViewAnimated:NO];
+                // SHOW ERROR
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Ошибка"
+                                                                               message:@"Не удалось загрузить список городов."
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                      handler:^(UIAlertAction * action) {}];
+                [alert addAction:defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        } onFailure:^(NSError *error) {
+            [DejalBezelActivityView removeViewAnimated:NO];
+            // SHOW ERROR
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Ошибка"
+                                                                           message:@"Не удалось загрузить список городов."
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }];
+        
+    } else {
+        [self.tableView reloadData];
+    }
+    
+}
+
+
 
 #pragma mark - Table view data source
 
@@ -50,20 +101,20 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"CityCell"];
     }
     
-    NSString *cityName = [CityService getCities][indexPath.row];
-    if ([[CityService getSelectedCity] isEqualToString:cityName]) {
+    CityModel *cityModel = [CityService getCities][indexPath.row];
+    if ([CityService getSelectedCityModel].id == cityModel.id) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
     
-    [cell.cityNameField setText:cityName];
+    [cell.cityNameField setText:cityModel.name];
     
     return cell;
 }
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [CityService selectCityWithName:[CityService getCities][indexPath.row]];
+    [CityService selectCityModel:[CityService getCities][indexPath.row]];
     [self.tableView reloadData];
 }
 

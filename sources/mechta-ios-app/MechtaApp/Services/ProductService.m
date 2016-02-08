@@ -29,9 +29,9 @@
     ProductModel *model = [[ProductModel alloc] init];
     model.id = 0;
     model.name = name;
-    model.price = price;
-    model.picture = @"";
-    model.availableInShop = nil;
+    model.cost = price;
+    model.imageUrl = @"";
+//    model.availableInShop = nil;
     model.content = @"test description";
     
     return model;

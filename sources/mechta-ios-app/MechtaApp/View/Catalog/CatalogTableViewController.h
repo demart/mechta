@@ -13,4 +13,5 @@
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cityChoiceButton;
 
 - (IBAction)cityChoiceButtonAction:(UIBarButtonItem *)sender;
+
 @end

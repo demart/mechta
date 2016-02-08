@@ -7,15 +7,21 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "ResponseWrapperModel.h"
 #import "CityModel.h"
 
 @interface CityService : NSObject
 
-+ (NSString*) getSelectedCity;
+// Выбрать город
++ (void) selectCityModel:(CityModel*)model;
 
-+ (void) selectCityWithName:(NSString*) cityName;
+// Возвращает выбранный город
++ (CityModel*) getSelectedCityModel;
 
+// Возвращает загруженные города
 + (NSMutableArray*) getCities;
 
+// Загружает города с сайта
++ (void) retrieveCities:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure;
 
 @end

@@ -10,16 +10,16 @@
 
 @interface CategoryModel : NSObject
 
-@property int id;
+@property long id;
 
 @property NSString* name;
 
 @property int order;
 
-@property BOOL hasChildren;
+@property BOOL hasChildren; // children
 
-@property NSMutableArray *children;
+//@property NSMutableArray *children;
 
-@property CategoryModel *parent;
+//@property CategoryModel *parent;
 
 @end

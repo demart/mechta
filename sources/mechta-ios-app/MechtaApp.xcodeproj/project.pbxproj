@@ -30,6 +30,12 @@
 		8D29C3FC1C64C4ED00E7EFCD /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D29C3FA1C64C4ED00E7EFCD /* ProductTableViewCell.m */; };
 		8D29C3FD1C64C4ED00E7EFCD /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D29C3FB1C64C4ED00E7EFCD /* ProductTableViewCell.xib */; };
 		8D29C4001C64CD4100E7EFCD /* ProductDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D29C3FF1C64CD4100E7EFCD /* ProductDetailTableViewController.m */; };
+		8D48501A1C689F0400A07CF0 /* UrlHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4850191C689F0400A07CF0 /* UrlHelper.m */; };
+		8D48501D1C68A20C00A07CF0 /* DataModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D48501C1C68A20C00A07CF0 /* DataModelHelper.m */; };
+		8D4850221C68B00000A07CF0 /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4850211C68B00000A07CF0 /* DejalActivityView.m */; };
+		8D77CA081C688B9E00DA2C26 /* ResponseWrapperModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D77CA071C688B9E00DA2C26 /* ResponseWrapperModel.m */; };
+		8D77CA0B1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D77CA0A1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m */; };
+		8D77CA0E1C68971100DA2C26 /* ProductCharacteristicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D77CA0D1C68971100DA2C26 /* ProductCharacteristicModel.m */; };
 		8D879ABD1C6491D100D802F4 /* CitiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D879ABC1C6491D100D802F4 /* CitiesTableViewController.m */; };
 		8D879AC01C6491FD00D802F4 /* CatalogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D879ABF1C6491FD00D802F4 /* CatalogTableViewController.m */; };
 		8DB078751C68751C00C07F69 /* ExtraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB078741C68751C00C07F69 /* ExtraTableViewController.m */; };
@@ -37,9 +43,11 @@
 		8DB0787B1C68761000C07F69 /* ExtraHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DB078791C68761000C07F69 /* ExtraHeaderTableViewCell.xib */; };
 		8DB0787F1C6876A700C07F69 /* ExtraMenuItemTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB0787D1C6876A700C07F69 /* ExtraMenuItemTableViewCell.m */; };
 		8DB078801C6876A700C07F69 /* ExtraMenuItemTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DB0787E1C6876A700C07F69 /* ExtraMenuItemTableViewCell.xib */; };
+		93B00D9D4268ECF79206F6F9 /* libPods-MechtaApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99497EC30B72DFC69B7460C0 /* libPods-MechtaApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		7955F51A2DFAD56D3D447CA9 /* Pods-MechtaApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MechtaApp.release.xcconfig"; path = "Pods/Target Support Files/Pods-MechtaApp/Pods-MechtaApp.release.xcconfig"; sourceTree = "<group>"; };
 		8D16EE381C6480130009FD47 /* MechtaApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MechtaApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8D16EE3C1C6480130009FD47 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		8D16EE3E1C6480130009FD47 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -81,6 +89,18 @@
 		8D29C3FB1C64C4ED00E7EFCD /* ProductTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductTableViewCell.xib; path = View/Catalog/Cell/ProductTableViewCell.xib; sourceTree = "<group>"; };
 		8D29C3FE1C64CD4100E7EFCD /* ProductDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDetailTableViewController.h; path = View/Catalog/ProductDetailTableViewController.h; sourceTree = "<group>"; };
 		8D29C3FF1C64CD4100E7EFCD /* ProductDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDetailTableViewController.m; path = View/Catalog/ProductDetailTableViewController.m; sourceTree = "<group>"; };
+		8D4850181C689F0400A07CF0 /* UrlHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UrlHelper.h; path = Helpers/UrlHelper.h; sourceTree = "<group>"; };
+		8D4850191C689F0400A07CF0 /* UrlHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UrlHelper.m; path = Helpers/UrlHelper.m; sourceTree = "<group>"; };
+		8D48501B1C68A20C00A07CF0 /* DataModelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataModelHelper.h; path = Helpers/DataModelHelper.h; sourceTree = "<group>"; };
+		8D48501C1C68A20C00A07CF0 /* DataModelHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataModelHelper.m; path = Helpers/DataModelHelper.m; sourceTree = "<group>"; };
+		8D4850201C68B00000A07CF0 /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DejalActivityView.h; sourceTree = "<group>"; };
+		8D4850211C68B00000A07CF0 /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
+		8D77CA061C688B9E00DA2C26 /* ResponseWrapperModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResponseWrapperModel.h; path = Data/ResponseWrapperModel.h; sourceTree = "<group>"; };
+		8D77CA071C688B9E00DA2C26 /* ResponseWrapperModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResponseWrapperModel.m; path = Data/ResponseWrapperModel.m; sourceTree = "<group>"; };
+		8D77CA091C6896CD00DA2C26 /* ProductCharacteristicGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductCharacteristicGroupModel.h; path = Data/Models/ProductCharacteristicGroupModel.h; sourceTree = "<group>"; };
+		8D77CA0A1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCharacteristicGroupModel.m; path = Data/Models/ProductCharacteristicGroupModel.m; sourceTree = "<group>"; };
+		8D77CA0C1C68971100DA2C26 /* ProductCharacteristicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductCharacteristicModel.h; path = Data/Models/ProductCharacteristicModel.h; sourceTree = "<group>"; };
+		8D77CA0D1C68971100DA2C26 /* ProductCharacteristicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCharacteristicModel.m; path = Data/Models/ProductCharacteristicModel.m; sourceTree = "<group>"; };
 		8D879ABB1C6491D100D802F4 /* CitiesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CitiesTableViewController.h; path = View/Catalog/CitiesTableViewController.h; sourceTree = "<group>"; };
 		8D879ABC1C6491D100D802F4 /* CitiesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CitiesTableViewController.m; path = View/Catalog/CitiesTableViewController.m; sourceTree = "<group>"; };
 		8D879ABE1C6491FD00D802F4 /* CatalogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatalogTableViewController.h; path = View/Catalog/CatalogTableViewController.h; sourceTree = "<group>"; };
@@ -93,6 +113,8 @@
 		8DB0787C1C6876A700C07F69 /* ExtraMenuItemTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtraMenuItemTableViewCell.h; path = View/Extra/Cell/ExtraMenuItemTableViewCell.h; sourceTree = "<group>"; };
 		8DB0787D1C6876A700C07F69 /* ExtraMenuItemTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtraMenuItemTableViewCell.m; path = View/Extra/Cell/ExtraMenuItemTableViewCell.m; sourceTree = "<group>"; };
 		8DB0787E1C6876A700C07F69 /* ExtraMenuItemTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ExtraMenuItemTableViewCell.xib; path = View/Extra/Cell/ExtraMenuItemTableViewCell.xib; sourceTree = "<group>"; };
+		99497EC30B72DFC69B7460C0 /* libPods-MechtaApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MechtaApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CC70FC5DCE47CE5C61F142BA /* Pods-MechtaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MechtaApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MechtaApp/Pods-MechtaApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -100,17 +122,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				93B00D9D4268ECF79206F6F9 /* libPods-MechtaApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		52D91E1C9F9B92403F3F6EF3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				CC70FC5DCE47CE5C61F142BA /* Pods-MechtaApp.debug.xcconfig */,
+				7955F51A2DFAD56D3D447CA9 /* Pods-MechtaApp.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6AE92DEF0B57CD3FA2C06DF0 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				99497EC30B72DFC69B7460C0 /* libPods-MechtaApp.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		8D16EE2F1C6480130009FD47 = {
 			isa = PBXGroup;
 			children = (
 				8D16EE3A1C6480130009FD47 /* MechtaApp */,
 				8D16EE391C6480130009FD47 /* Products */,
+				52D91E1C9F9B92403F3F6EF3 /* Pods */,
+				6AE92DEF0B57CD3FA2C06DF0 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -168,6 +210,10 @@
 			children = (
 				8D29C3D11C649EF900E7EFCD /* Constants.h */,
 				8D29C3D21C649EF900E7EFCD /* Constants.m */,
+				8D4850181C689F0400A07CF0 /* UrlHelper.h */,
+				8D4850191C689F0400A07CF0 /* UrlHelper.m */,
+				8D48501B1C68A20C00A07CF0 /* DataModelHelper.h */,
+				8D48501C1C68A20C00A07CF0 /* DataModelHelper.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";
@@ -176,6 +222,8 @@
 			isa = PBXGroup;
 			children = (
 				8D29C3E31C64B2E100E7EFCD /* Models */,
+				8D77CA061C688B9E00DA2C26 /* ResponseWrapperModel.h */,
+				8D77CA071C688B9E00DA2C26 /* ResponseWrapperModel.m */,
 			);
 			name = Data;
 			sourceTree = "<group>";
@@ -191,15 +239,38 @@
 				8D29C3EB1C64BF3100E7EFCD /* ProductModel.m */,
 				8D29C3F01C64C10400E7EFCD /* ProductAvailableInShopModel.h */,
 				8D29C3F11C64C10400E7EFCD /* ProductAvailableInShopModel.m */,
+				8D77CA091C6896CD00DA2C26 /* ProductCharacteristicGroupModel.h */,
+				8D77CA0A1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m */,
+				8D77CA0C1C68971100DA2C26 /* ProductCharacteristicModel.h */,
+				8D77CA0D1C68971100DA2C26 /* ProductCharacteristicModel.m */,
 				8D29C3ED1C64C01700E7EFCD /* ShopModel.h */,
 				8D29C3EE1C64C01700E7EFCD /* ShopModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
 		};
+		8D48501E1C68AFF000A07CF0 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				8D48501F1C68B00000A07CF0 /* DejalActivityView */,
+			);
+			name = Components;
+			sourceTree = "<group>";
+		};
+		8D48501F1C68B00000A07CF0 /* DejalActivityView */ = {
+			isa = PBXGroup;
+			children = (
+				8D4850201C68B00000A07CF0 /* DejalActivityView.h */,
+				8D4850211C68B00000A07CF0 /* DejalActivityView.m */,
+			);
+			name = DejalActivityView;
+			path = ThirdParty/DejalActivityView;
+			sourceTree = "<group>";
+		};
 		8D879AB91C64916F00D802F4 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				8D48501E1C68AFF000A07CF0 /* Components */,
 				8DB078721C6874E900C07F69 /* Extra */,
 				8DB078711C6874E400C07F69 /* Profile */,
 				8DB078701C6874DA00C07F69 /* Basket */,
@@ -284,9 +355,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 8D16EE4F1C6480130009FD47 /* Build configuration list for PBXNativeTarget "MechtaApp" */;
 			buildPhases = (
+				EA12A78CFC428BD78A0C94C7 /* Check Pods Manifest.lock */,
 				8D16EE341C6480130009FD47 /* Sources */,
 				8D16EE351C6480130009FD47 /* Frameworks */,
 				8D16EE361C6480130009FD47 /* Resources */,
+				440F02060D8769A1265639A8 /* Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -347,25 +420,64 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		440F02060D8769A1265639A8 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-MechtaApp/Pods-MechtaApp-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EA12A78CFC428BD78A0C94C7 /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8D16EE341C6480130009FD47 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D48501D1C68A20C00A07CF0 /* DataModelHelper.m in Sources */,
 				8DB0787A1C68761000C07F69 /* ExtraHeaderTableViewCell.m in Sources */,
 				8D29C3EF1C64C01700E7EFCD /* ShopModel.m in Sources */,
 				8D16EE431C6480130009FD47 /* ViewController.m in Sources */,
 				8D29C3E61C64BA2600E7EFCD /* CategoryModel.m in Sources */,
+				8D77CA0B1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m in Sources */,
+				8D4850221C68B00000A07CF0 /* DejalActivityView.m in Sources */,
 				8D29C4001C64CD4100E7EFCD /* ProductDetailTableViewController.m in Sources */,
 				8D16EE401C6480130009FD47 /* AppDelegate.m in Sources */,
 				8D29C3D71C64A6B800E7EFCD /* CityTableViewCell.m in Sources */,
 				8D29C3D31C649EF900E7EFCD /* Constants.m in Sources */,
+				8D48501A1C689F0400A07CF0 /* UrlHelper.m in Sources */,
+				8D77CA081C688B9E00DA2C26 /* ResponseWrapperModel.m in Sources */,
 				8D879ABD1C6491D100D802F4 /* CitiesTableViewController.m in Sources */,
 				8D29C3E21C64B2DC00E7EFCD /* CityModel.m in Sources */,
 				8D29C3E91C64BEE000E7EFCD /* ProductsTableViewController.m in Sources */,
 				8D29C3DB1C64A84400E7EFCD /* CityService.m in Sources */,
 				8D29C3CA1C6494A400E7EFCD /* CatalogTableViewCell.m in Sources */,
 				8DB078751C68751C00C07F69 /* ExtraTableViewController.m in Sources */,
+				8D77CA0E1C68971100DA2C26 /* ProductCharacteristicModel.m in Sources */,
 				8D16EE3D1C6480130009FD47 /* main.m in Sources */,
 				8D29C3F21C64C10400E7EFCD /* ProductAvailableInShopModel.m in Sources */,
 				8D29C3F51C64C1DE00E7EFCD /* ProductService.m in Sources */,
@@ -481,6 +593,7 @@
 		};
 		8D16EE501C6480130009FD47 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = CC70FC5DCE47CE5C61F142BA /* Pods-MechtaApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MechtaApp/Info.plist;
@@ -492,6 +605,7 @@
 		};
 		8D16EE511C6480130009FD47 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7955F51A2DFAD56D3D447CA9 /* Pods-MechtaApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				INFOPLIST_FILE = MechtaApp/Info.plist;
