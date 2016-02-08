@@ -13,6 +13,7 @@ import org.jsoup.select.Elements;
 import kz.mechta.models.AvailabilityProductModel;
 import kz.mechta.models.CharacteristicsProductsModel;
 import kz.mechta.models.ImageModel;
+import kz.mechta.models.KeyValueCharacteristicsProductsModel;
 import kz.mechta.models.ProductModel;
 import kz.mechta.models.ResponseWrapper;
 import kz.mechta.models.StoreWrapper;
@@ -371,22 +372,70 @@ public class ParseService {
 			 * Описание товара
 			 */
 			String description = null;
-			if (cost != null)
-				description= doc.select("div.detailtext").first().text();
+			if (cost != null) {
+				if (doc.select("div.detailtext").size() != 0)
+					description= doc.select("div.detailtext").first().text();
+			}
 
 			/*
 			 * Блок отвечающий парсингу характеристик товара
 			 */
 			ArrayList<CharacteristicsProductsModel> characteristics = new ArrayList<CharacteristicsProductsModel> ();
 			ArrayList<ImageModel> images = new ArrayList<ImageModel>();
-			Elements characteristicsDoc = doc.select("div.m4_pgdiv");
+
 			if (cost != null) {
-				for (int i = 0; i < doc.select("div.m4_pgdiv").size(); i = i + 2) {
-				CharacteristicsProductsModel mod =  CharacteristicsProductsModel.buildModel(
-						characteristicsDoc.get(i).text(), characteristicsDoc.get(i+1).text());
-				characteristics.add(mod);
-			}
-				//System.out.println (doc.select("div.more_photo").size());
+				Elements resultLinks = doc.select("div.catalog-element > div.m4_pred > div");
+				System.out.println("Size: " + resultLinks.size());
+				
+				String nameGroup = null;
+				CharacteristicsProductsModel charact = new CharacteristicsProductsModel();
+				ArrayList<KeyValueCharacteristicsProductsModel> array = new ArrayList<KeyValueCharacteristicsProductsModel>();
+				array = null;
+
+				Integer sizeOfBlock = resultLinks.size();
+				Integer count = 0;
+				for (Element el: resultLinks) {
+					count++;
+					//System.out.println(el.className());
+					if (el.className().equals("m4_pgdiv1 m4_font110 aclear")) {
+						KeyValueCharacteristicsProductsModel key = KeyValueCharacteristicsProductsModel.
+								buildModel(el.select("div.m4_pgdiv").get(0).text(), el.select("div.m4_pgdiv").get(1).text());
+						array.add(key);
+						if (count == sizeOfBlock) {
+							charact = CharacteristicsProductsModel.buildModel(nameGroup, 
+									array);
+							characteristics.add(charact);
+						}
+					}
+					
+					if (el.className().equals("m4_pgdiv0 m4_font110 aclear")) {
+						KeyValueCharacteristicsProductsModel key = KeyValueCharacteristicsProductsModel.
+								buildModel(el.select("div.m4_pgdiv").get(0).text(), el.select("div.m4_pgdiv").get(1).text());
+						array.add(key);
+						
+						if (count == sizeOfBlock) {
+							charact = CharacteristicsProductsModel.buildModel(nameGroup, 
+									array);
+							characteristics.add(charact);
+						}
+					}
+					
+					else if (el.className().equals("m4_pgtitle m4_font110")) {
+						if (array != null) {
+							charact = CharacteristicsProductsModel.buildModel(nameGroup, 
+									array);
+							characteristics.add(charact);
+						}
+						nameGroup = el.text();
+						charact = new CharacteristicsProductsModel();
+						array = new ArrayList<KeyValueCharacteristicsProductsModel>();
+						
+					}
+					
+					
+				}
+				
+
 				for (int i=0; i<doc.select("div.more_photo").size(); i++) {
 					ImageModel model = new ImageModel();
 					model.setImage(doc.select("div.more_photo").get(i).select("[src]").get(0).attr("abs:src"));
@@ -395,8 +444,6 @@ public class ParseService {
 					
 				
 			}
-			
-			
 			
 			ProductModel model = ProductModel.buildModel(numberOnSite, nameOfProduct, url, description, cost, 
 					modelsAvailabilityProduct, characteristics, numberOnSiteCategory, previousCost, images);
