@@ -12,7 +12,10 @@ public class CategoryModel {
 	
 	private boolean parent;
 	
-	private boolean children;
+	private boolean hasChildren;
+	
+	private String imageUrl;
+	
 	
 	public static CategoryModel buildModel (Category category, boolean children) {
 		CategoryModel model = new CategoryModel();
@@ -24,7 +27,9 @@ public class CategoryModel {
 		else
 			model.parent = false;
 		
-		model.children = children;
+		if (category.getImage() != null)
+			model.imageUrl = category.getImage();
+		model.hasChildren = children;
 		return model;
 	}
 	

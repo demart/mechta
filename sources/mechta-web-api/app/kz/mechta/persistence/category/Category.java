@@ -66,6 +66,10 @@ public class Category extends PersistentObject {
 		this.imageUrl = imageUrl;
 	}
 	
+	public String getImage () {
+		return imageUrl;
+	}
+	
 	public String getName () {
 		return name;
 	}
