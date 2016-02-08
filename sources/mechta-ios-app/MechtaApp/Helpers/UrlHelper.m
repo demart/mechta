@@ -39,7 +39,11 @@
 
 
 +(NSString*) categoriesUrlWithParentId:(long) parentId {
-    return [[NSString alloc] initWithFormat:@"%@/categories?parentId=%li", UrlHelper.baseUrl, parentId];
+    if (parentId < 1) {
+        return [[NSString alloc] initWithFormat:@"%@/categories", UrlHelper.baseUrl];
+    } else {
+        return [[NSString alloc] initWithFormat:@"%@/categories?parentId=%li", UrlHelper.baseUrl, parentId];
+    }
 }
 
 

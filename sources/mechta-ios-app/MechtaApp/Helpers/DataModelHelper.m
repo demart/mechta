@@ -51,7 +51,7 @@
                                                     @"id": @"id",
                                                     @"name": @"name",
                                                     @"order": @"order",
-                                                    @"hasChildren": @"children",
+                                                    @"children": @"hasChildren",
                                                     }];
     
     RKObjectMapping* wrapperMapping = [DataModelHelper getObjectMappingForResponseWrapperModelWithDataMapping:categoryModel];

@@ -15,8 +15,6 @@
 
 @interface CitiesTableViewController ()
 
-@property long parentCategoryId;
-
 @end
 
 @implementation CitiesTableViewController

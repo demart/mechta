@@ -10,7 +10,25 @@
 
 @implementation CatalogService
 
+static NSMutableDictionary *categories = nil;
+
++ (NSMutableDictionary*) getCategoriesDictionary {
+    if (categories == nil)
+        categories = [[NSMutableDictionary alloc] init];
+    return categories;
+}
+
++ (NSMutableArray*) getCategoriesByParentId:(long) parentId {
+    NSMutableArray *categories = [[CatalogService getCategoriesDictionary] valueForKey:[[NSString alloc] initWithFormat:@"C_%li", parentId]];
+    return categories;
+}
+
++ (void) addCategories:(NSMutableArray*)categories withParentId:(long) parentId {
+    [[CatalogService getCategoriesDictionary] setValue:categories forKey:[[NSString alloc] initWithFormat:@"C_%li", parentId]];
+}
+
 + (NSMutableArray*) getCategoriesWithParent:(NSString*) parentName {
+    
     NSMutableArray *catalog = [[NSMutableArray alloc] init];
     
     if (parentName == nil) {
@@ -90,6 +108,10 @@
         NSLog(@"Count: %i", response.count);
         NSLog(@"CountOfPages: %i", response.countOfPages);
         NSLog(@"CountOfProducts: %i", response.countOfProducts);
+        
+        if (response.success){
+            [CatalogService addCategories:(NSMutableArray*)response.data withParentId:parentId];
+        }
         
         success(response);
         

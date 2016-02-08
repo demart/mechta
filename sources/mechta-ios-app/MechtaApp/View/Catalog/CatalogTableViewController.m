@@ -16,11 +16,12 @@
 #import "CatalogService.h"
 
 #import "ProductsTableViewController.h"
+#import "DejalActivityView.h"
 
 @interface CatalogTableViewController ()
 
-@property NSString *selectedCatalog;
-@property NSMutableArray *catalogItems;
+@property long parentCategoryId;
+@property NSMutableArray *categories;
 
 @end
 
@@ -34,22 +35,70 @@
     
     // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
     // self.navigationItem.rightBarButtonItem = self.editButtonItem;
-    self.catalogItems = [CatalogService getCategoriesWithParent:self.selectedCatalog];
+    //self.catalogItems = [CatalogService getCategoriesWithParent:self.selectedCatalog];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
+    
+    // Загружаем выбранный город
     CityModel *cityModel = [CityService getSelectedCityModel];
     if (cityModel == nil) {
         [self.cityChoiceButton setTitle:@"Выберите город"];
     } else {
         [self.cityChoiceButton setTitle:cityModel.name];
     }
+    
+    
+    // Загружаем категории
+    [self loadCategories];
+    
 }
 
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Loading data
+
+-(void) loadCategories {
+    NSMutableArray *categories = [CatalogService getCategoriesByParentId:self.parentCategoryId];
+    if (categories != nil) {
+        self.categories = categories;
+        [self.tableView reloadData];
+    } else {
+        
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Подождите\nИдет загрузка..."];
+        [CatalogService retrieveCategoriesWithParentId:self.parentCategoryId onSuccess:^(ResponseWrapperModel *response) {
+            if (response.success) {
+                self.categories = [CatalogService getCategoriesByParentId:self.parentCategoryId];
+                [self.tableView reloadData];
+                [DejalBezelActivityView removeViewAnimated:YES];
+            } else {
+                [DejalBezelActivityView removeViewAnimated:NO];
+                // SHOW ERROR
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Ошибка"
+                                                                               message:@"Не удалось загрузить категории."
+                                                                        preferredStyle:UIAlertControllerStyleAlert];
+                UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                      handler:^(UIAlertAction * action) {}];
+                [alert addAction:defaultAction];
+                [self presentViewController:alert animated:YES completion:nil];
+            }
+        } onFailure:^(NSError *error) {
+            [DejalBezelActivityView removeViewAnimated:NO];
+            // SHOW ERROR
+            UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Ошибка"
+                                                                           message:@"Не удалось загрузить категории."
+                                                                    preferredStyle:UIAlertControllerStyleAlert];
+            UIAlertAction* defaultAction = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault
+                                                                  handler:^(UIAlertAction * action) {}];
+            [alert addAction:defaultAction];
+            [self presentViewController:alert animated:YES completion:nil];
+        }];
+        
+    }
+}
+
 
 #pragma mark - Table view data source
 
@@ -58,7 +107,9 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return [self.catalogItems count];
+    if (self.categories != nil)
+        return [self.categories count];
+    return 0;
 }
 
 
@@ -69,7 +120,7 @@
         cell = [tableView dequeueReusableCellWithIdentifier:@"CatalogCell"];
     }
     
-    CategoryModel *model = self.catalogItems[indexPath.row];
+    CategoryModel *model = self.categories[indexPath.row];
     [cell.catalogNameField setText:model.name];
     
     return cell;
@@ -77,16 +128,9 @@
 
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    CategoryModel *model = self.catalogItems[indexPath.row];
-    
+    CategoryModel *model = self.categories[indexPath.row];
     if (model.hasChildren == YES) {
-        
         [self performSegueWithIdentifier:@"showCategorySergue" sender:self];
-        
-        //CatalogTableViewController *subCatalog = [[CatalogTableViewController alloc] init];
-        //[subCatalog setSelectedCatalog: model.name];
-        //[self.navigationController pushViewController:subCatalog animated:YES];
-        
     } else {
         [self performSegueWithIdentifier:@"showProductsSergue" sender:self];
     }
@@ -138,10 +182,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // IF CITY -> SHOW SELECTED CITY
     if ([segue.destinationViewController isKindOfClass:[CitiesTableViewController class]]) {
-        //CitiesTableViewController *viewController = (CitiesTableViewController*)segue.destinationViewController;
-        
-       // NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
-        NSLog(@"Cities was selected...");
+        // TODO
     }
     
     if ([segue.destinationViewController isKindOfClass:[ProductsTableViewController class]]) {
@@ -153,9 +194,9 @@
     if ([segue.destinationViewController isKindOfClass:[CatalogTableViewController class]]) {
         CatalogTableViewController *viewController = (CatalogTableViewController*)segue.destinationViewController;
         NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
-        CategoryModel *model = self.catalogItems[indexPath.row];
-        viewController.selectedCatalog = model.name;
-        NSLog(@"Products was selected...");
+        CategoryModel *model = self.categories[indexPath.row];
+        viewController.parentCategoryId = model.id;
+        NSLog(@"Show children of the selected category...");
     }
     
     

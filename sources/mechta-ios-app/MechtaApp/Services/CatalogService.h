@@ -16,6 +16,8 @@
 
 + (NSMutableArray*) getCategoriesWithParent:(NSString*) parentName;
 
+// Возвращает загруженные категории по родителю
++ (NSMutableArray*) getCategoriesByParentId:(long) parentId;
 
 // Загрузить категории
 + (void) retrieveCategoriesWithParentId:(long)parentId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure;
