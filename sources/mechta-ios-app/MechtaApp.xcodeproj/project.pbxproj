@@ -36,6 +36,8 @@
 		8D77CA081C688B9E00DA2C26 /* ResponseWrapperModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D77CA071C688B9E00DA2C26 /* ResponseWrapperModel.m */; };
 		8D77CA0B1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D77CA0A1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m */; };
 		8D77CA0E1C68971100DA2C26 /* ProductCharacteristicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D77CA0D1C68971100DA2C26 /* ProductCharacteristicModel.m */; };
+		8D7F3FB21C69DA6A008E00D4 /* ProductSwitcherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7F3FB01C69DA6A008E00D4 /* ProductSwitcherTableViewCell.m */; };
+		8D7F3FB31C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D7F3FB11C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib */; };
 		8D879ABD1C6491D100D802F4 /* CitiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D879ABC1C6491D100D802F4 /* CitiesTableViewController.m */; };
 		8D879AC01C6491FD00D802F4 /* CatalogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D879ABF1C6491FD00D802F4 /* CatalogTableViewController.m */; };
 		8DB078751C68751C00C07F69 /* ExtraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB078741C68751C00C07F69 /* ExtraTableViewController.m */; };
@@ -106,6 +108,9 @@
 		8D77CA0A1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCharacteristicGroupModel.m; path = Data/Models/ProductCharacteristicGroupModel.m; sourceTree = "<group>"; };
 		8D77CA0C1C68971100DA2C26 /* ProductCharacteristicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductCharacteristicModel.h; path = Data/Models/ProductCharacteristicModel.h; sourceTree = "<group>"; };
 		8D77CA0D1C68971100DA2C26 /* ProductCharacteristicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCharacteristicModel.m; path = Data/Models/ProductCharacteristicModel.m; sourceTree = "<group>"; };
+		8D7F3FAF1C69DA6A008E00D4 /* ProductSwitcherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductSwitcherTableViewCell.h; path = View/Catalog/Cell/ProductSwitcherTableViewCell.h; sourceTree = "<group>"; };
+		8D7F3FB01C69DA6A008E00D4 /* ProductSwitcherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductSwitcherTableViewCell.m; path = View/Catalog/Cell/ProductSwitcherTableViewCell.m; sourceTree = "<group>"; };
+		8D7F3FB11C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductSwitcherTableViewCell.xib; path = View/Catalog/Cell/ProductSwitcherTableViewCell.xib; sourceTree = "<group>"; };
 		8D879ABB1C6491D100D802F4 /* CitiesTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CitiesTableViewController.h; path = View/Catalog/CitiesTableViewController.h; sourceTree = "<group>"; };
 		8D879ABC1C6491D100D802F4 /* CitiesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CitiesTableViewController.m; path = View/Catalog/CitiesTableViewController.m; sourceTree = "<group>"; };
 		8D879ABE1C6491FD00D802F4 /* CatalogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatalogTableViewController.h; path = View/Catalog/CatalogTableViewController.h; sourceTree = "<group>"; };
@@ -328,6 +333,9 @@
 				8DC7E2001C692FE800E6E416 /* ProductImageTableViewCell.h */,
 				8DC7E2011C692FE800E6E416 /* ProductImageTableViewCell.m */,
 				8DC7E2021C692FE800E6E416 /* ProductImageTableViewCell.xib */,
+				8D7F3FAF1C69DA6A008E00D4 /* ProductSwitcherTableViewCell.h */,
+				8D7F3FB01C69DA6A008E00D4 /* ProductSwitcherTableViewCell.m */,
+				8D7F3FB11C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -435,6 +443,7 @@
 				8DB078801C6876A700C07F69 /* ExtraMenuItemTableViewCell.xib in Resources */,
 				8D29C3FD1C64C4ED00E7EFCD /* ProductTableViewCell.xib in Resources */,
 				8D16EE4B1C6480130009FD47 /* LaunchScreen.storyboard in Resources */,
+				8D7F3FB31C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib in Resources */,
 				8D16EE481C6480130009FD47 /* Assets.xcassets in Resources */,
 				8D16EE461C6480130009FD47 /* Main.storyboard in Resources */,
 				8D29C3CB1C6494A400E7EFCD /* CatalogTableViewCell.xib in Resources */,
@@ -487,6 +496,7 @@
 				8D16EE431C6480130009FD47 /* ViewController.m in Sources */,
 				8D29C3E61C64BA2600E7EFCD /* CategoryModel.m in Sources */,
 				8D77CA0B1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m in Sources */,
+				8D7F3FB21C69DA6A008E00D4 /* ProductSwitcherTableViewCell.m in Sources */,
 				8DC7E1F91C68D4CA00E6E416 /* LocalStorageService.m in Sources */,
 				8D4850221C68B00000A07CF0 /* DejalActivityView.m in Sources */,
 				8D29C4001C64CD4100E7EFCD /* ProductDetailTableViewController.m in Sources */,

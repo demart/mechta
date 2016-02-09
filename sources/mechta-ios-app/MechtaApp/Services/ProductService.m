@@ -37,4 +37,33 @@
 
 }
 
+
++ (void) retrieveProductDetailWithId:(long)productId inCategory:(long)categoryId inCityId:(long)cityId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure {
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[UrlHelper productDetailUrlWithId:productId withCategoryId:categoryId inCityId:cityId]] ];
+    
+    RKResponseDescriptor *responseWrapperDescriptor = [DataModelHelper buildResponseDescriptorForProductDetail];
+    
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseWrapperDescriptor ]];
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        ResponseWrapperModel *response = (ResponseWrapperModel*)[mappingResult.array objectAtIndex:0];
+        
+        NSLog(@"Success: %i", response.success);
+        NSLog(@"Data: %@", response.data);
+        NSLog(@"Count: %i", response.count);
+        NSLog(@"CountOfPages: %i", response.countOfPages);
+        NSLog(@"CountOfProducts: %i", response.countOfProducts);
+        
+        success(response);
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Operation failed with error: %@", error);
+        failure(error);
+    }];
+    
+    [objectRequestOperation start];
+    
+}
+
+
 @end

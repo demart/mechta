@@ -51,5 +51,9 @@
 }
 
 
++ (NSString*) productDetailUrlWithId:(long)productId withCategoryId:(long)categoryId inCityId:(long)cityId {
+    return [[NSString alloc] initWithFormat:@"%@/product/information?numberOnSiteCategory=%li&cityId=%li&numberOnSite=%li", UrlHelper.baseUrl, categoryId, cityId, productId];
+}
+
 
 @end

@@ -31,5 +31,6 @@
 
 + (RKResponseDescriptor*) buildResponseDescriptorForProducts;
 
++ (RKResponseDescriptor*) buildResponseDescriptorForProductDetail;
 
 @end

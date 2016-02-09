@@ -20,4 +20,6 @@
 
 + (NSString*) productsUrlWithCategoryId:(long) parentId withPage:(long)page inCityId:(long) cityId;
 
++ (NSString*) productDetailUrlWithId:(long)productId withCategoryId:(long)categoryId inCityId:(long)cityId;
+
 @end

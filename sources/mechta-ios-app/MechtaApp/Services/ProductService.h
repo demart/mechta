@@ -16,5 +16,6 @@
 
 + (void) retrieveProductsWithCategoryId:(long)parentId withPage:(long)page inCityId:(long)cityId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure;
 
++ (void) retrieveProductDetailWithId:(long)productId inCategory:(long)categoryId inCityId:(long)cityId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure;
 
 @end

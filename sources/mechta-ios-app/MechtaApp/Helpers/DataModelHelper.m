@@ -41,7 +41,7 @@
     [productCharacteristicGroupMapping addAttributeMappingsFromDictionary:@{
                                                                         @"name": @"name",
                                                                         }];
-    [productCharacteristicGroupMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"keyValue" toKeyPath:@"keyValue"  withMapping:productCharacteristicMapping]];
+    [productCharacteristicGroupMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"keyValue" toKeyPath:@"characteristics"  withMapping:productCharacteristicMapping]];
     
     RKObjectMapping* productAvailableInShopMapping = [RKObjectMapping mappingForClass:[ProductAvailableInShopModel class]];
     [productAvailableInShopMapping addAttributeMappingsFromDictionary:@{
@@ -106,6 +106,16 @@
 
 
 + (RKResponseDescriptor*) buildResponseDescriptorForProducts {
+    RKObjectMapping* productMapping = [DataModelHelper getObjectMappingForProduct];
+    
+    RKObjectMapping* wrapperMapping = [DataModelHelper getObjectMappingForResponseWrapperModelWithDataMapping:productMapping];
+    
+    RKResponseDescriptor *responseWrapperDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:wrapperMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful) ];
+    
+    return responseWrapperDescriptor;
+}
+
++ (RKResponseDescriptor*) buildResponseDescriptorForProductDetail {
     RKObjectMapping* productMapping = [DataModelHelper getObjectMappingForProduct];
     
     RKObjectMapping* wrapperMapping = [DataModelHelper getObjectMappingForResponseWrapperModelWithDataMapping:productMapping];

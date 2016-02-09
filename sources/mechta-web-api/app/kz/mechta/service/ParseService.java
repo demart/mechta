@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import org.apache.commons.lang.StringUtils;
+import org.jsoup.Connection;
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,7 +30,9 @@ public class ParseService {
 	 * @throws IOException
 	 */
 		public static void parseMainCategories () throws IOException {
-			Document doc = Jsoup.connect("http://www.mechta.kz/").get();
+			Connection connection1 = Jsoup.connect("http://www.mechta.kz/");
+			connection1.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+			Document doc = connection1.get();
 			/*
 			 * Берем все меню, которое находится в шапке сайта, а именно оно состоит
 			 * из элементов div class = parent1.
@@ -38,7 +41,9 @@ public class ParseService {
 
 
 			for (Element element : elements) {
-				Document doc2 = Jsoup.connect("http://www.mechta.kz/catalog/" + Long.parseLong(element.select("a[href]").first().attr("abs:href").substring(29, element.select("a[href]").first().attr("abs:href").length()-1)) + "/").get();
+				Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + Long.parseLong(element.select("a[href]").first().attr("abs:href").substring(29, element.select("a[href]").first().attr("abs:href").length()-1)) + "/");
+				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+				Document doc2 = connection.get();
 				Elements imagesCategory = doc2.select("div.section_div");
 				
 				/*
@@ -170,11 +175,15 @@ public class ParseService {
 			//System.out.println ("Answer: " + StringUtils.isEmpty(nameOnSiteCity));
 			City city = City.findById(cityId);
 			OrderProduct orderProduct = OrderProduct.findById(typeOrder);
-			if (StringUtils.isEmpty(city.getNameOnSite()))
-				doc = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()).get();
-
-			else
-				doc = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()).get();
+			if (StringUtils.isEmpty(city.getNameOnSite())) {
+				Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
+				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+				doc = connection.get();
+			} else {
+				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
+				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+				doc = connection.get();
+			}
 			/*
 			for (int j=0; j<10; j++)
 				System.out.println ("");
@@ -183,11 +192,18 @@ public class ParseService {
 			 * Количество страниц, на которыхх размещается товар категории второго уровню
 			 */
 			Document doc2 = null;
-			if (StringUtils.isNotEmpty(city.getNameOnSite()))
-				doc2 = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory + "/"  + "?sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()).get();
-			else
-				doc2 = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/"  + "?sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()).get();
+			if (StringUtils.isNotEmpty(city.getNameOnSite())) {
+				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory + "/"  + "?sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
+				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+				doc2 = connection.get();
+			} else {
+				Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/"  + "?sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
+				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+				doc2 = connection.get();
+			}
+			
 			Elements pages = doc2.select("div.modern-page-navigation");
+			
 			
 			/*
 			 * Берем все товары с одной страницы, без картинки, так как картинка заключена
@@ -315,12 +331,15 @@ public class ParseService {
 			 */
 			Document doc = null;
 			City city = City.findById(cityId);
-			if (StringUtils.isEmpty(city.getNameOnSite()))
-				doc = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/" + numberOnSite + "/").get();
-
-			else
-				doc = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/" + numberOnSite + "/").get();
-			
+			if (StringUtils.isEmpty(city.getNameOnSite())) {
+				Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/" + numberOnSite + "/");
+				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+				doc = connection.get();
+			} else {
+				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/" + numberOnSite + "/");
+				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+				doc = connection.get();
+			}
 
 			/*
 			 * название товара
