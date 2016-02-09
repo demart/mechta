@@ -20,6 +20,9 @@ public class City extends PersistentObject {
 	@Column(name="name_on_site", length=100)
 	private String nameOnSite;
 	
+	@Column(name="published", nullable=false, columnDefinition = "boolean default true")
+	private boolean published;
+	
 	public String getNameOnSite () {
 		return nameOnSite;
 	}
