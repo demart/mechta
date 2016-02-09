@@ -31,6 +31,11 @@
 
 
 + (RKObjectMapping*) getObjectMappingForProduct {
+    RKObjectMapping* productImageMapping = [RKObjectMapping mappingForClass:[ProductImageModel class]];
+    [productImageMapping addAttributeMappingsFromDictionary:@{
+                                                                       @"url": @"url",
+                                                                       }];
+    
     RKObjectMapping* productCharacteristicMapping = [RKObjectMapping mappingForClass:[ProductCharacteristicModel class]];
     [productCharacteristicMapping addAttributeMappingsFromDictionary:@{
                                                                             @"key": @"key",
@@ -64,6 +69,8 @@
     [productMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"productAvailability" toKeyPath:@"productAvailability"  withMapping:productAvailableInShopMapping]];
     
     [productMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"characteristics" toKeyPath:@"characteristics"  withMapping:productCharacteristicGroupMapping]];
+    
+    [productMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"images" toKeyPath:@"images"  withMapping:productImageMapping]];
     
     return productMapping;
 }

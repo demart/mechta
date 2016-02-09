@@ -8,6 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ProductImageTableViewCell : UITableViewCell
+@interface ProductImageTableViewCell : UITableViewCell<UIScrollViewDelegate>
+
+@property (weak, nonatomic) IBOutlet UIScrollView *productImagesScrollView;
+@property (weak, nonatomic) IBOutlet UIPageControl *productImagesPageControl;
+
+-(void) loadPhoto:(NSString*) imageUrl position:(NSInteger) offset withFrame:(CGRect) frame withOperations:(NSMutableDictionary*)loadImageOperations withOperationQueue:(NSOperationQueue*)loadImageOperationQueue;
 
 @end

@@ -114,6 +114,7 @@
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     [CityService selectCityModel:[CityService getCities][indexPath.row]];
     [self.tableView reloadData];
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 

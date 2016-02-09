@@ -57,13 +57,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MechtaApp/View/Catalog/ProductsTableViewController.m"
-            timestampString = "476654991.18827"
+            filePath = "MechtaApp/Data/Models/ProductModel.m"
+            timestampString = "476714752.671997"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "-loadProducts"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "-getCharacteristicsList"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MechtaApp/View/Catalog/Cell/ProductImageTableViewCell.m"
+            timestampString = "476740491.572835"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "53"
+            endingLineNumber = "53"
+            landmarkName = "-buildImageFrame:position:withFrame:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

@@ -1,14 +1,14 @@
 //
-//  ProductSwitcherTableViewCell.m
+//  ProductDescriptionTableViewCell.m
 //  MechtaApp
 //
 //  Created by Artem Demidovich on 2/9/16.
 //  Copyright © 2016 Aphion Software. All rights reserved.
 //
 
-#import "ProductSwitcherTableViewCell.h"
+#import "ProductDescriptionTableViewCell.h"
 
-@implementation ProductSwitcherTableViewCell
+@implementation ProductDescriptionTableViewCell
 
 - (void)awakeFromNib {
 }
@@ -17,7 +17,4 @@
     [super setSelected:selected animated:animated];
 }
 
-- (IBAction)switcherModeChanged:(id)sender {
-    [self.parentController performSelector:@selector(modeWasChanged:) withObject:sender];
-}
 @end

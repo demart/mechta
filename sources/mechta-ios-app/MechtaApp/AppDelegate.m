@@ -53,10 +53,13 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor], [UIFont fontWithName:@"Gill Sans" size:8.0]: NSFontAttributeName }
                                              forState:UIControlStateSelected];
     
-    
-    
     //[[UISearchBar appearance] setBarTintColor: [Constants SYSTEM_COLOR_PURPLE]];
     //[[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor whiteColor]];
+    
+    
+    [UISegmentedControl appearance].tintColor = [Constants SYSTEM_COLOR_PURPLE];
+    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor darkGrayColor]} forState:UIControlStateNormal];
+    [[UISegmentedControl appearance] setTitleTextAttributes:@{NSForegroundColorAttributeName:[UIColor whiteColor]} forState:UIControlStateSelected];
     
 }
 

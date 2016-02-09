@@ -18,4 +18,6 @@
 
 + (void) retrieveProductDetailWithId:(long)productId inCategory:(long)categoryId inCityId:(long)cityId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure;
 
++ (ProductModel*) mockProduct;
+
 @end

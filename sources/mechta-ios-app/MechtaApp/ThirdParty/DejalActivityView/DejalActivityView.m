@@ -491,7 +491,7 @@ static DejalActivityView *dejalActivityView = nil;
     [super setupBackground];
     
     // Artem's override
-    self.backgroundColor = [UIColor colorWithRed:235.0/255.0f green:0.0/255.0f blue:148.0/255.0f alpha:0.1f];
+    self.backgroundColor = [UIColor colorWithRed:235.0/255.0f green:0.0/255.0f blue:148.0/255.0f alpha:0.05f];
     
     // self.backgroundColor = [[UIColor blackColor] colorWithAlphaComponent:0.35];
 }

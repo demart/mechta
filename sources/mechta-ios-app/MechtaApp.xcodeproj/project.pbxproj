@@ -33,6 +33,17 @@
 		8D48501A1C689F0400A07CF0 /* UrlHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4850191C689F0400A07CF0 /* UrlHelper.m */; };
 		8D48501D1C68A20C00A07CF0 /* DataModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D48501C1C68A20C00A07CF0 /* DataModelHelper.m */; };
 		8D4850221C68B00000A07CF0 /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4850211C68B00000A07CF0 /* DejalActivityView.m */; };
+		8D4DBA151C6A0B91002E26B4 /* ProductAvailableTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DBA131C6A0B91002E26B4 /* ProductAvailableTableViewCell.m */; };
+		8D4DBA161C6A0B91002E26B4 /* ProductAvailableTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D4DBA141C6A0B91002E26B4 /* ProductAvailableTableViewCell.xib */; };
+		8D4DBA1A1C6A1212002E26B4 /* ProductDescriptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DBA181C6A1212002E26B4 /* ProductDescriptionTableViewCell.m */; };
+		8D4DBA1B1C6A1212002E26B4 /* ProductDescriptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D4DBA191C6A1212002E26B4 /* ProductDescriptionTableViewCell.xib */; };
+		8D4DBA1F1C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DBA1D1C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.m */; };
+		8D4DBA201C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D4DBA1E1C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.xib */; };
+		8D4DBA241C6A1473002E26B4 /* ProductCharacteristicTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DBA221C6A1473002E26B4 /* ProductCharacteristicTableViewCell.m */; };
+		8D4DBA251C6A1473002E26B4 /* ProductCharacteristicTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D4DBA231C6A1473002E26B4 /* ProductCharacteristicTableViewCell.xib */; };
+		8D4DBA291C6A4BE7002E26B4 /* ProductBasketTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DBA271C6A4BE7002E26B4 /* ProductBasketTableViewCell.m */; };
+		8D4DBA2A1C6A4BE7002E26B4 /* ProductBasketTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D4DBA281C6A4BE7002E26B4 /* ProductBasketTableViewCell.xib */; };
+		8D4DBA301C6A6B1E002E26B4 /* ProductImageModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4DBA2F1C6A6B1E002E26B4 /* ProductImageModel.m */; };
 		8D77CA081C688B9E00DA2C26 /* ResponseWrapperModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D77CA071C688B9E00DA2C26 /* ResponseWrapperModel.m */; };
 		8D77CA0B1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D77CA0A1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m */; };
 		8D77CA0E1C68971100DA2C26 /* ProductCharacteristicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D77CA0D1C68971100DA2C26 /* ProductCharacteristicModel.m */; };
@@ -102,6 +113,23 @@
 		8D48501C1C68A20C00A07CF0 /* DataModelHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = DataModelHelper.m; path = Helpers/DataModelHelper.m; sourceTree = "<group>"; };
 		8D4850201C68B00000A07CF0 /* DejalActivityView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DejalActivityView.h; sourceTree = "<group>"; };
 		8D4850211C68B00000A07CF0 /* DejalActivityView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DejalActivityView.m; sourceTree = "<group>"; };
+		8D4DBA121C6A0B91002E26B4 /* ProductAvailableTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductAvailableTableViewCell.h; path = View/Catalog/Cell/ProductAvailableTableViewCell.h; sourceTree = "<group>"; };
+		8D4DBA131C6A0B91002E26B4 /* ProductAvailableTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductAvailableTableViewCell.m; path = View/Catalog/Cell/ProductAvailableTableViewCell.m; sourceTree = "<group>"; };
+		8D4DBA141C6A0B91002E26B4 /* ProductAvailableTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductAvailableTableViewCell.xib; path = View/Catalog/Cell/ProductAvailableTableViewCell.xib; sourceTree = "<group>"; };
+		8D4DBA171C6A1212002E26B4 /* ProductDescriptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDescriptionTableViewCell.h; path = View/Catalog/Cell/ProductDescriptionTableViewCell.h; sourceTree = "<group>"; };
+		8D4DBA181C6A1212002E26B4 /* ProductDescriptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDescriptionTableViewCell.m; path = View/Catalog/Cell/ProductDescriptionTableViewCell.m; sourceTree = "<group>"; };
+		8D4DBA191C6A1212002E26B4 /* ProductDescriptionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductDescriptionTableViewCell.xib; path = View/Catalog/Cell/ProductDescriptionTableViewCell.xib; sourceTree = "<group>"; };
+		8D4DBA1C1C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductCharacteristicGroupTableViewCell.h; path = View/Catalog/Cell/ProductCharacteristicGroupTableViewCell.h; sourceTree = "<group>"; };
+		8D4DBA1D1C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCharacteristicGroupTableViewCell.m; path = View/Catalog/Cell/ProductCharacteristicGroupTableViewCell.m; sourceTree = "<group>"; };
+		8D4DBA1E1C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductCharacteristicGroupTableViewCell.xib; path = View/Catalog/Cell/ProductCharacteristicGroupTableViewCell.xib; sourceTree = "<group>"; };
+		8D4DBA211C6A1473002E26B4 /* ProductCharacteristicTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductCharacteristicTableViewCell.h; path = View/Catalog/Cell/ProductCharacteristicTableViewCell.h; sourceTree = "<group>"; };
+		8D4DBA221C6A1473002E26B4 /* ProductCharacteristicTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCharacteristicTableViewCell.m; path = View/Catalog/Cell/ProductCharacteristicTableViewCell.m; sourceTree = "<group>"; };
+		8D4DBA231C6A1473002E26B4 /* ProductCharacteristicTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductCharacteristicTableViewCell.xib; path = View/Catalog/Cell/ProductCharacteristicTableViewCell.xib; sourceTree = "<group>"; };
+		8D4DBA261C6A4BE7002E26B4 /* ProductBasketTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductBasketTableViewCell.h; path = View/Catalog/Cell/ProductBasketTableViewCell.h; sourceTree = "<group>"; };
+		8D4DBA271C6A4BE7002E26B4 /* ProductBasketTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductBasketTableViewCell.m; path = View/Catalog/Cell/ProductBasketTableViewCell.m; sourceTree = "<group>"; };
+		8D4DBA281C6A4BE7002E26B4 /* ProductBasketTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductBasketTableViewCell.xib; path = View/Catalog/Cell/ProductBasketTableViewCell.xib; sourceTree = "<group>"; };
+		8D4DBA2E1C6A6B1E002E26B4 /* ProductImageModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductImageModel.h; path = Data/Models/ProductImageModel.h; sourceTree = "<group>"; };
+		8D4DBA2F1C6A6B1E002E26B4 /* ProductImageModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductImageModel.m; path = Data/Models/ProductImageModel.m; sourceTree = "<group>"; };
 		8D77CA061C688B9E00DA2C26 /* ResponseWrapperModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ResponseWrapperModel.h; path = Data/ResponseWrapperModel.h; sourceTree = "<group>"; };
 		8D77CA071C688B9E00DA2C26 /* ResponseWrapperModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ResponseWrapperModel.m; path = Data/ResponseWrapperModel.m; sourceTree = "<group>"; };
 		8D77CA091C6896CD00DA2C26 /* ProductCharacteristicGroupModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductCharacteristicGroupModel.h; path = Data/Models/ProductCharacteristicGroupModel.h; sourceTree = "<group>"; };
@@ -265,6 +293,8 @@
 				8D77CA0D1C68971100DA2C26 /* ProductCharacteristicModel.m */,
 				8D29C3ED1C64C01700E7EFCD /* ShopModel.h */,
 				8D29C3EE1C64C01700E7EFCD /* ShopModel.m */,
+				8D4DBA2E1C6A6B1E002E26B4 /* ProductImageModel.h */,
+				8D4DBA2F1C6A6B1E002E26B4 /* ProductImageModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -285,6 +315,34 @@
 			);
 			name = DejalActivityView;
 			path = ThirdParty/DejalActivityView;
+			sourceTree = "<group>";
+		};
+		8D4DBA111C69EBDD002E26B4 /* ProductDetail */ = {
+			isa = PBXGroup;
+			children = (
+				8DC7E2001C692FE800E6E416 /* ProductImageTableViewCell.h */,
+				8DC7E2011C692FE800E6E416 /* ProductImageTableViewCell.m */,
+				8DC7E2021C692FE800E6E416 /* ProductImageTableViewCell.xib */,
+				8D7F3FAF1C69DA6A008E00D4 /* ProductSwitcherTableViewCell.h */,
+				8D7F3FB01C69DA6A008E00D4 /* ProductSwitcherTableViewCell.m */,
+				8D7F3FB11C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib */,
+				8D4DBA121C6A0B91002E26B4 /* ProductAvailableTableViewCell.h */,
+				8D4DBA131C6A0B91002E26B4 /* ProductAvailableTableViewCell.m */,
+				8D4DBA141C6A0B91002E26B4 /* ProductAvailableTableViewCell.xib */,
+				8D4DBA171C6A1212002E26B4 /* ProductDescriptionTableViewCell.h */,
+				8D4DBA181C6A1212002E26B4 /* ProductDescriptionTableViewCell.m */,
+				8D4DBA191C6A1212002E26B4 /* ProductDescriptionTableViewCell.xib */,
+				8D4DBA1C1C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.h */,
+				8D4DBA1D1C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.m */,
+				8D4DBA1E1C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.xib */,
+				8D4DBA211C6A1473002E26B4 /* ProductCharacteristicTableViewCell.h */,
+				8D4DBA221C6A1473002E26B4 /* ProductCharacteristicTableViewCell.m */,
+				8D4DBA231C6A1473002E26B4 /* ProductCharacteristicTableViewCell.xib */,
+				8D4DBA261C6A4BE7002E26B4 /* ProductBasketTableViewCell.h */,
+				8D4DBA271C6A4BE7002E26B4 /* ProductBasketTableViewCell.m */,
+				8D4DBA281C6A4BE7002E26B4 /* ProductBasketTableViewCell.xib */,
+			);
+			name = ProductDetail;
 			sourceTree = "<group>";
 		};
 		8D879AB91C64916F00D802F4 /* View */ = {
@@ -318,6 +376,7 @@
 		8D879AC11C64942500D802F4 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				8D4DBA111C69EBDD002E26B4 /* ProductDetail */,
 				8D29C3C71C6494A400E7EFCD /* CatalogTableViewCell.h */,
 				8D29C3C81C6494A400E7EFCD /* CatalogTableViewCell.m */,
 				8D29C3C91C6494A400E7EFCD /* CatalogTableViewCell.xib */,
@@ -330,12 +389,6 @@
 				8DC7E1FB1C69194F00E6E416 /* LoadMoreTableViewCell.h */,
 				8DC7E1FC1C69194F00E6E416 /* LoadMoreTableViewCell.m */,
 				8DC7E1FD1C69194F00E6E416 /* LoadMoreTableViewCell.xib */,
-				8DC7E2001C692FE800E6E416 /* ProductImageTableViewCell.h */,
-				8DC7E2011C692FE800E6E416 /* ProductImageTableViewCell.m */,
-				8DC7E2021C692FE800E6E416 /* ProductImageTableViewCell.xib */,
-				8D7F3FAF1C69DA6A008E00D4 /* ProductSwitcherTableViewCell.h */,
-				8D7F3FB01C69DA6A008E00D4 /* ProductSwitcherTableViewCell.m */,
-				8D7F3FB11C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -440,11 +493,16 @@
 				8DB0787B1C68761000C07F69 /* ExtraHeaderTableViewCell.xib in Resources */,
 				8D29C3D81C64A6B800E7EFCD /* CityTableViewCell.xib in Resources */,
 				8DC7E2041C692FE800E6E416 /* ProductImageTableViewCell.xib in Resources */,
+				8D4DBA251C6A1473002E26B4 /* ProductCharacteristicTableViewCell.xib in Resources */,
 				8DB078801C6876A700C07F69 /* ExtraMenuItemTableViewCell.xib in Resources */,
+				8D4DBA1B1C6A1212002E26B4 /* ProductDescriptionTableViewCell.xib in Resources */,
+				8D4DBA161C6A0B91002E26B4 /* ProductAvailableTableViewCell.xib in Resources */,
 				8D29C3FD1C64C4ED00E7EFCD /* ProductTableViewCell.xib in Resources */,
+				8D4DBA201C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.xib in Resources */,
 				8D16EE4B1C6480130009FD47 /* LaunchScreen.storyboard in Resources */,
 				8D7F3FB31C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib in Resources */,
 				8D16EE481C6480130009FD47 /* Assets.xcassets in Resources */,
+				8D4DBA2A1C6A4BE7002E26B4 /* ProductBasketTableViewCell.xib in Resources */,
 				8D16EE461C6480130009FD47 /* Main.storyboard in Resources */,
 				8D29C3CB1C6494A400E7EFCD /* CatalogTableViewCell.xib in Resources */,
 			);
@@ -494,6 +552,7 @@
 				8DB0787A1C68761000C07F69 /* ExtraHeaderTableViewCell.m in Sources */,
 				8D29C3EF1C64C01700E7EFCD /* ShopModel.m in Sources */,
 				8D16EE431C6480130009FD47 /* ViewController.m in Sources */,
+				8D4DBA1F1C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.m in Sources */,
 				8D29C3E61C64BA2600E7EFCD /* CategoryModel.m in Sources */,
 				8D77CA0B1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m in Sources */,
 				8D7F3FB21C69DA6A008E00D4 /* ProductSwitcherTableViewCell.m in Sources */,
@@ -506,18 +565,23 @@
 				8D48501A1C689F0400A07CF0 /* UrlHelper.m in Sources */,
 				8D77CA081C688B9E00DA2C26 /* ResponseWrapperModel.m in Sources */,
 				8D879ABD1C6491D100D802F4 /* CitiesTableViewController.m in Sources */,
+				8D4DBA301C6A6B1E002E26B4 /* ProductImageModel.m in Sources */,
 				8D29C3E21C64B2DC00E7EFCD /* CityModel.m in Sources */,
 				8DC7E1FE1C69194F00E6E416 /* LoadMoreTableViewCell.m in Sources */,
 				8D29C3E91C64BEE000E7EFCD /* ProductsTableViewController.m in Sources */,
 				8D29C3DB1C64A84400E7EFCD /* CityService.m in Sources */,
+				8D4DBA1A1C6A1212002E26B4 /* ProductDescriptionTableViewCell.m in Sources */,
 				8D29C3CA1C6494A400E7EFCD /* CatalogTableViewCell.m in Sources */,
 				8DB078751C68751C00C07F69 /* ExtraTableViewController.m in Sources */,
+				8D4DBA241C6A1473002E26B4 /* ProductCharacteristicTableViewCell.m in Sources */,
 				8D77CA0E1C68971100DA2C26 /* ProductCharacteristicModel.m in Sources */,
 				8D16EE3D1C6480130009FD47 /* main.m in Sources */,
 				8D29C3F21C64C10400E7EFCD /* ProductAvailableInShopModel.m in Sources */,
+				8D4DBA151C6A0B91002E26B4 /* ProductAvailableTableViewCell.m in Sources */,
 				8D29C3F51C64C1DE00E7EFCD /* ProductService.m in Sources */,
 				8DC7E2031C692FE800E6E416 /* ProductImageTableViewCell.m in Sources */,
 				8D879AC01C6491FD00D802F4 /* CatalogTableViewController.m in Sources */,
+				8D4DBA291C6A4BE7002E26B4 /* ProductBasketTableViewCell.m in Sources */,
 				8DB0787F1C6876A700C07F69 /* ExtraMenuItemTableViewCell.m in Sources */,
 				8D29C3FC1C64C4ED00E7EFCD /* ProductTableViewCell.m in Sources */,
 				8D29C3DE1C64AD2B00E7EFCD /* CatalogService.m in Sources */,
