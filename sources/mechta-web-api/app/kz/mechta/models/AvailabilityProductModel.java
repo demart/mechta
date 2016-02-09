@@ -17,9 +17,10 @@ public class AvailabilityProductModel {
 		return model;
 	}
 	
-	public static AvailabilityProductModel buildModelWithStore (StoreModel store, String count) {
+	public static AvailabilityProductModel buildModelWithStore (StoreModel store, String count, String name) {
 		AvailabilityProductModel model = new AvailabilityProductModel();
 		model.count = count;
+		model.name = name;
 		model.store = store;
 		return model;
 	}

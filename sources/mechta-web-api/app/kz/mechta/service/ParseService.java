@@ -253,12 +253,19 @@ public class ParseService {
 				for (int i = 0; i < counts.size(); i++) {
 					//System.out.println("Place: " + places.select("a[href]").get(i).text());
 					List<Store> stores = ParseService.searchStore(places.select("a[href]").get(i).text());
-					for (Store store : stores) {
-						StoreModel modStore = StoreModel.buildModel(store.getId(), store.getName(), 
-								store.getLatitude(), store.getLongitude(), store.getSchedule(), 
-									store.getTelephones());
-						AvailabilityProductModel model = AvailabilityProductModel.buildModelWithStore(modStore, counts.get(i).text());
+					if (stores.size() == 0) {
+						AvailabilityProductModel model = AvailabilityProductModel.buildModelWithStore(null, counts.get(i).text(), places.select("a[href]").get(i).text());
 						modelsAvailabilityProduct.add(model);
+					}
+					
+					else {
+						for (Store store : stores) {
+							StoreModel modStore = StoreModel.buildModel(store.getId(), store.getName(), 
+									store.getLatitude(), store.getLongitude(), store.getSchedule(), 
+										store.getTelephones());
+							AvailabilityProductModel model = AvailabilityProductModel.buildModelWithStore(modStore, counts.get(i).text(), null);
+							modelsAvailabilityProduct.add(model);
+						}
 					}
 					//AvailabilityProductModel model = AvailabilityProductModel.buildModel(places.select("a[href]").get(i).text(), 
 						//	counts.get(i).text());
@@ -393,13 +400,19 @@ public class ParseService {
 			if (cost != null) {
 				for (int i = 0; i < counts.size(); i++) {
 					List<Store> stores = ParseService.searchStore(places.select("a[href]").get(i).text());
-					for (Store store : stores) {
-						StoreModel modStore = StoreModel.buildModel(store.getId(), store.getName(), 
-								store.getLatitude(), store.getLongitude(), store.getSchedule(), 
-									store.getTelephones());
-					//	System.out.println("Place: " + places.select("a[href]").get(i).text() + " count: " + counts.get(i).text());
-					AvailabilityProductModel model = AvailabilityProductModel.buildModelWithStore(modStore, counts.get(i).text());
-					modelsAvailabilityProduct.add(model);
+					if (stores.size() == 0) {
+						AvailabilityProductModel model = AvailabilityProductModel.buildModelWithStore(null, counts.get(i).text(), places.select("a[href]").get(i).text());
+						modelsAvailabilityProduct.add(model);
+					}
+					else {
+						for (Store store : stores) {
+							StoreModel modStore = StoreModel.buildModel(store.getId(), store.getName(), 
+									store.getLatitude(), store.getLongitude(), store.getSchedule(), 
+										store.getTelephones());
+						//	System.out.println("Place: " + places.select("a[href]").get(i).text() + " count: " + counts.get(i).text());
+						AvailabilityProductModel model = AvailabilityProductModel.buildModelWithStore(modStore, counts.get(i).text(), null);
+						modelsAvailabilityProduct.add(model);
+						}
 					}
 				}
 			}
@@ -471,13 +484,16 @@ public class ParseService {
 					
 				}
 				
-
-				for (int i=0; i<doc.select("div.more_photo").size(); i++) {
-					ImageModel model = new ImageModel();
-					model.setImage(doc.select("div.more_photo").get(i).select("[src]").get(0).attr("abs:src"));
-					images.add(model);
+				if (doc.select("div.more_photo").size() < 2) {
+					images = null;
 				}
-					
+				else {
+					for (int i=1; i<doc.select("div.more_photo").size(); i++) {
+						ImageModel model = new ImageModel();
+						model.setImage(doc.select("div.more_photo").get(i).select("[src]").get(0).attr("abs:src"));
+						images.add(model);
+					}
+				}
 				
 			}
 			
@@ -497,6 +513,7 @@ public class ParseService {
 			Elements allProducts = doc.select("div.goodsparam");
 			for (Element prod: allProducts) {
 				System.out.println ("Text: " + StringUtils.isNotEmpty(prod.ownText()));
+				prod.ownText().length()
 			}
 		}
 		*/
