@@ -9,6 +9,7 @@ public class ResponseWrapper {
 		public Integer countOfProducts;
 		public Integer currentPage;
 		public Integer count;
+		public Object filters;
 		
 	
 

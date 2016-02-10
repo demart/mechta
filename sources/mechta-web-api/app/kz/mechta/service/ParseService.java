@@ -4,7 +4,9 @@ import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.net.URLDecoder;
 
+import org.apache.commons.codec.net.URLCodec;
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.Connection;
 import org.jsoup.Jsoup;
@@ -14,8 +16,11 @@ import org.jsoup.select.Elements;
 
 import kz.mechta.models.AvailabilityProductModel;
 import kz.mechta.models.CharacteristicsProductsModel;
+import kz.mechta.models.FilterModel;
 import kz.mechta.models.ImageModel;
 import kz.mechta.models.KeyValueCharacteristicsProductsModel;
+import kz.mechta.models.KeyValueFilterModel;
+import kz.mechta.models.ManyFiltersModel;
 import kz.mechta.models.ProductModel;
 import kz.mechta.models.ResponseWrapper;
 import kz.mechta.models.StoreModel;
@@ -97,7 +102,7 @@ public class ParseService {
 					ind++;
 					
 					secondCategory.save();
-					
+
 					/*
 					 * Берем все категории третьего уровня, которые лежат в данной категории
 					 * второго уровня
@@ -168,25 +173,45 @@ public class ParseService {
 		 * @param codeCity
 		 * @throws IOException
 		 */
-		public static StoreWrapper parseProducts (Long numberOnSiteCategory, Long cityId, Integer page, Long typeOrder) throws IOException {
+		public static StoreWrapper parseProducts (Long numberOnSiteCategory, Long cityId, Integer page, Long typeOrder, String filter) throws IOException {
 			/*
 			 * Просмотр каталога для Астаны идет по ссылке mechta.kz, для этого реализован цикл IF
 			 * Для других городов mechta.kz/nameOnSiteCity/catalog/numberOnSiteCategory/?PAGEN_1=page
 			 */
+
 			Document doc = null;
 			//System.out.println ("Answer: " + StringUtils.isNotEmpty(nameOnSiteCity));
 			//System.out.println ("Answer: " + StringUtils.isEmpty(nameOnSiteCity));
 			City city = City.findById(cityId);
 			OrderProduct orderProduct = OrderProduct.findById(typeOrder);
 			if (StringUtils.isEmpty(city.getNameOnSite())) {
-				Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
-				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
-				doc = connection.get();
+				if (filter != null) {
+					Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
+					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=&arrFilter_cf[2][RIGHT]=&arrFilter_pf[ARFP]=" + filter + "&set_filter=Фильтр&set_filter=Y");
+					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+					doc = connection.get();		
+				}
+				else {
+					Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
+					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+					doc = connection.get();
+				}
 			} else {
-				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
-				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
-				doc = connection.get();
+				if (filter != null) {
+					filter = filter.replaceAll(" && ", "+%26%26+");
+					Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
+					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=&arrFilter_cf[2][RIGHT]=&arrFilter_pf[ARFP]=" + filter + "&set_filter=Фильтр&set_filter=Y");
+					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+					doc = connection.get();
+				}
+				else {
+					Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
+					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+					doc = connection.get();
+				}
 			}
+			
+			FilterModel filters = ParseService.parseFilte(doc);
 			/*
 			for (int j=0; j<10; j++)
 				System.out.println ("");
@@ -196,13 +221,31 @@ public class ParseService {
 			 */
 			Document doc2 = null;
 			if (StringUtils.isNotEmpty(city.getNameOnSite())) {
-				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory + "/"  + "?sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
+				if (filter != null) {
+					filter = filter.replaceAll(" && ", "+%26%26+");
+					Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
+					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=&arrFilter_cf[2][RIGHT]=&arrFilter_pf[ARFP]=" + filter + "&set_filter=Фильтр&set_filter=Y");
+					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+					doc2 = connection.get();
+				}
+				else {
+				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory + "/"  + "?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
 				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 				doc2 = connection.get();
+				}
 			} else {
-				Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/"  + "?sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
+				if (filter != null) {
+					filter = filter.replaceAll(" && ", "+%26%26+");
+					Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
+					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=&arrFilter_cf[2][RIGHT]=&arrFilter_pf[ARFP]=" + filter + "&set_filter=Фильтр&set_filter=Y");
+					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+					doc2 = connection.get();		
+				}
+				else {
+				Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/"  + "?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
 				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 				doc2 = connection.get();
+				}
 			}
 			
 			Elements pages = doc2.select("div.modern-page-navigation");
@@ -330,7 +373,7 @@ public class ParseService {
 			*/
 			StoreWrapper store = StoreWrapper.buildModel(page,
 					countOfPages,
-					allProducts.size(), models);
+					allProducts.size(), models, filters);
 			
 			return store;
 		}
@@ -505,6 +548,65 @@ public class ParseService {
 		public static List<Store> searchStore (String text) {
 			return JPA.em().createQuery("from Store where lower(name) like lower(:text)").
 					setParameter("text", "%" + text + "%").getResultList();
+		}
+		
+		public static FilterModel parseFilte (Document doc) throws IOException {
+			
+			System.out.println ("Size: "  + doc.select("span.h3title").size());
+			
+			Elements titles = doc.select("span.h3title");
+			Elements propertyFilters = doc.select("ul.property_filter");
+		//	Elements brandTitles = propertyFilters.select("li.brandtitle_new");
+			
+			System.out.println ("Size of titles: " + titles.size());
+			System.out.println ("Size of property filters: " + propertyFilters.size());
+			//System.out.println ("Size of brand titles: " + brandTitles.size());
+			
+			Integer count = 0;
+			ArrayList<ManyFiltersModel> models = new ArrayList<ManyFiltersModel> ();
+			for (int i = 0 ; i < titles.size(); i++) {
+				if (titles.get(i).text().equals("Категории цен (розн.)")) {count++;}
+				else if (titles.get(i).text().equals("Группы")) {count++;}
+				
+				else {
+					System.out.println ("Name of filter: " + titles.get(i).text());
+					System.out.println ("Size of brand titles: " + propertyFilters.get(i-count).select("li.brandtitle_new").size());
+					Elements brands = propertyFilters.get(i-count).select("li.brandtitle_new");
+					String url = "http://www.mechta.kz/catalog/5100/";
+					ArrayList<KeyValueFilterModel> keyValue = new ArrayList<KeyValueFilterModel> ();
+					for (Element element: brands) {
+						System.out.println ("Key: " + element.select("a[href]").get(0).attr("abs:name").substring(url.length()) + "Value: " + element.select("a[href]").get(0).text());
+						KeyValueFilterModel mod = KeyValueFilterModel.buildModel(element.select("a[href]").get(0).attr("abs:name").substring(url.length()),
+								element.select("a[href]").get(0).text());
+						keyValue.add(mod);
+					}
+					ManyFiltersModel oneModel = ManyFiltersModel.buildModel(titles.get(i).text(),
+							keyValue);
+					models.add(oneModel);
+				//	for (int j = 0; j < propertyFilters.get(i).sele)
+				}
+				
+			}
+			
+			FilterModel finishModel = FilterModel.buildModel(doc.getElementsByClass("hid_price1").val(), doc.getElementsByClass("hid_price2").val(), models);
+			return finishModel;
+			
+			
+			/*
+			for (int i = 1; i < titles.size(); i++) {
+				System.out.println ("Element: -----  " + titles.get(i).text());
+				System.out.println ("Size (li class): " + titles.get(i).select("ul.property_filter").size());
+				
+				for (int j = 0; j < titles.get(i).select("li.brandtitle_new").size(); j++) {
+					System.out.println ("Key: " + titles.get(i).select("li.brandtitle_new").get(j).select("a[href]").get(0).attr("abs:src") + " value: " + titles.get(i).select("li.brandtitle_new").get(j).select("a[href]").get(0).text());
+					
+				}
+				*/
+				/*
+				for (int i = 0; i < element.select("a[href]").size(); i++)
+					System.out.println ("Key: " + element.select("a[href]").get(i).attr("abs:src") + " value: " + element.select("a[href]").get(i).text());
+			*/
+			//}
 		}
 		
 		/*
