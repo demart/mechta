@@ -16,7 +16,6 @@ import kz.mechta.service.ParseService;
 public class Application extends Controller {
 
     public static void index() throws IOException {
-    	//ParseService.parseProductInformation(860l, 3l, 39992l);
     	render();
     }
     

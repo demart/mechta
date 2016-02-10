@@ -20,6 +20,12 @@ public class City extends PersistentObject {
 	@Column(name="name_on_site", length=100)
 	private String nameOnSite;
 	
+	@Column(name="latitude")
+	private Float latitude;
+	
+	@Column(name="longitude")
+	private Float longitude;
+	
 	@Column(name="published", nullable=false, columnDefinition = "boolean default true")
 	private boolean published;
 	
@@ -29,5 +35,13 @@ public class City extends PersistentObject {
 	
 	public String getName () {
 		return name;
+	}
+	
+	public Float getLatitude () {
+		return latitude;
+	}
+	
+	public Float getLongitude() {
+		return longitude;
 	}
 }
