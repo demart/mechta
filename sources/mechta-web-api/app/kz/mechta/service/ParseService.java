@@ -3,6 +3,7 @@ package kz.mechta.service;
 import java.io.File;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.List;
 
 import org.apache.commons.lang.StringUtils;
 import org.jsoup.Connection;
@@ -17,7 +18,9 @@ import kz.mechta.models.ImageModel;
 import kz.mechta.models.KeyValueCharacteristicsProductsModel;
 import kz.mechta.models.ProductModel;
 import kz.mechta.models.ResponseWrapper;
+import kz.mechta.models.StoreModel;
 import kz.mechta.models.StoreWrapper;
+import kz.mechta.persistence.store.Store;
 import kz.mechta.persistence.category.Category;
 import kz.mechta.persistence.city.City;
 import kz.mechta.persistence.product.OrderProduct;
@@ -249,11 +252,19 @@ public class ParseService {
 				ArrayList<AvailabilityProductModel> modelsAvailabilityProduct = new ArrayList<AvailabilityProductModel>();
 				for (int i = 0; i < counts.size(); i++) {
 					//System.out.println("Place: " + places.select("a[href]").get(i).text());
-					AvailabilityProductModel model = AvailabilityProductModel.buildModel(places.select("a[href]").get(i).text(), 
-							counts.get(i).text());
+					List<Store> stores = ParseService.searchStore(places.select("a[href]").get(i).text());
+					for (Store store : stores) {
+						StoreModel modStore = StoreModel.buildModel(store.getId(), store.getName(), 
+								store.getLatitude(), store.getLongitude(), store.getSchedule(), 
+									store.getTelephones());
+						AvailabilityProductModel model = AvailabilityProductModel.buildModelWithStore(modStore, counts.get(i).text());
+						modelsAvailabilityProduct.add(model);
+					}
+					//AvailabilityProductModel model = AvailabilityProductModel.buildModel(places.select("a[href]").get(i).text(), 
+						//	counts.get(i).text());
 
 					//System.out.println (model);
-					modelsAvailabilityProduct.add(model);
+
 				}
 				
 				/*
@@ -287,7 +298,7 @@ public class ParseService {
 						Long.parseLong(product.select("a[href]").first().attr("abs:href").substring(url.length(), product.select("a[href]").first().attr("abs:href").length() - 1)),
 						product.select("a[href]").first().text(),
 						allImagesOfProducts.get(index).select("[src]").get(0).attr("abs:src"),
-						product.select("div.m4_font110").first().text(), 
+						product.select("div.m4_font110").first().html(), 
 						Integer.parseInt(product.select("div.m4_fleft").first().text().substring(0, product.select("div.m4_fleft").first().text().length() - 6).replaceAll(" ", "").substring(product.select("div.m4_fleft").first().text().substring(0, product.select("div.m4_fleft").first().text().length() - 6).replaceAll(" ", "").lastIndexOf(".") + 1)),
 						modelsAvailabilityProduct, null, numberOnSiteCategory, previousCost, null);
 						models.add(productModel);
@@ -350,6 +361,7 @@ public class ParseService {
 			 * Цена товара
 			 */
 			Integer cost = null;
+			System.out.println(doc.getElementsByClass("span.m4_prs30").size());
 			if (StringUtils.isNotEmpty(doc.select("span.m4_prs30").first().text()))
 				cost = Integer.parseInt(doc.select("span.m4_prs30").first().text().substring(0, doc.select("span.m4_prs30").first().text().length()).replaceAll(" ", ""));
 					/*
@@ -380,10 +392,15 @@ public class ParseService {
 			ArrayList<AvailabilityProductModel> modelsAvailabilityProduct = new ArrayList<AvailabilityProductModel>();
 			if (cost != null) {
 				for (int i = 0; i < counts.size(); i++) {
-				//	System.out.println("Place: " + places.select("a[href]").get(i).text() + " count: " + counts.get(i).text());
-					AvailabilityProductModel model = AvailabilityProductModel.buildModel(places.select("a[href]").get(i).text(), 
-							counts.get(i).text());
+					List<Store> stores = ParseService.searchStore(places.select("a[href]").get(i).text());
+					for (Store store : stores) {
+						StoreModel modStore = StoreModel.buildModel(store.getId(), store.getName(), 
+								store.getLatitude(), store.getLongitude(), store.getSchedule(), 
+									store.getTelephones());
+					//	System.out.println("Place: " + places.select("a[href]").get(i).text() + " count: " + counts.get(i).text());
+					AvailabilityProductModel model = AvailabilityProductModel.buildModelWithStore(modStore, counts.get(i).text());
 					modelsAvailabilityProduct.add(model);
+					}
 				}
 			}
 			
@@ -393,7 +410,7 @@ public class ParseService {
 			String description = null;
 			if (cost != null) {
 				if (doc.select("div.detailtext").size() != 0)
-					description= doc.select("div.detailtext").first().text();
+					description= doc.select("div.detailtext").first().html();
 			}
 
 			/*
@@ -467,6 +484,11 @@ public class ParseService {
 			ProductModel model = ProductModel.buildModel(numberOnSite, nameOfProduct, url, description, cost, 
 					modelsAvailabilityProduct, characteristics, numberOnSiteCategory, previousCost, images);
 			return model;
+		}
+		
+		public static List<Store> searchStore (String text) {
+			return JPA.em().createQuery("from Store where lower(name) like lower(:text)").
+					setParameter("text", "%" + text + "%").getResultList();
 		}
 		
 		/*

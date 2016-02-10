@@ -13,7 +13,6 @@ GET		/rest/categories						ParseController.readCategories
 GET		/parse/categories/all					ParseController.parseCategories
 GET		/rest/product/information				ParseController.parseProduct
 GET		/rest/orders							ParseController.readOrders
-GET		/rest/stores							ParseController.readStores
 
 # Ignore favicon requests
 GET     /favicon.ico                            404
