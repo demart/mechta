@@ -3,6 +3,7 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
         <!--Tab Bar Controller-->
@@ -135,6 +136,9 @@
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="vMO-d0-MvR" kind="show" identifier="showShopDetailSergue" id="mQj-Qj-NPl"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="diz-30-YYZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -305,10 +309,90 @@
                         </connections>
                     </tableView>
                     <navigationItem key="navigationItem" title="Информация" id="SGZ-Vo-Z01"/>
+                    <connections>
+                        <segue destination="wzv-cW-wYk" kind="show" identifier="showShopsSergue" id="AiU-6r-VYR"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gmd-y9-kA4" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1531" y="2455"/>
+        </scene>
+        <!--Магазины-->
+        <scene sceneID="He1-qW-NAZ">
+            <objects>
+                <viewController id="wzv-cW-wYk" customClass="ShopsViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="4TE-Fn-nfz"/>
+                        <viewControllerLayoutGuide type="bottom" id="kWe-UQ-Pc4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="Gj0-yB-2Fe">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="j35-ay-z9t">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                            </mapView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="j35-ay-z9t" firstAttribute="leading" secondItem="Gj0-yB-2Fe" secondAttribute="leadingMargin" constant="-20" id="1b2-yK-f1Q"/>
+                            <constraint firstItem="j35-ay-z9t" firstAttribute="top" secondItem="4TE-Fn-nfz" secondAttribute="bottom" id="2Rk-aI-BTW"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="j35-ay-z9t" secondAttribute="trailing" constant="-20" id="efx-Po-IgX"/>
+                            <constraint firstItem="kWe-UQ-Pc4" firstAttribute="top" secondItem="j35-ay-z9t" secondAttribute="bottom" id="iYY-Uk-qcq"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Магазины" id="zhb-eN-bJA">
+                        <barButtonItem key="rightBarButtonItem" title="Список" id="ljZ-DM-6oe">
+                            <connections>
+                                <action selector="changeMavViewAction:" destination="wzv-cW-wYk" id="gQW-I6-A23"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="changeMapViewItem" destination="ljZ-DM-6oe" id="tSO-Ck-IFe"/>
+                        <outlet property="mapView" destination="j35-ay-z9t" id="fAa-Rx-r3e"/>
+                        <outlet property="menuTableView" destination="uIt-1e-ySD" id="iHC-jU-JdE"/>
+                        <outlet property="topCityTitleNavigationItem" destination="zhb-eN-bJA" id="Vb5-7P-zo1"/>
+                        <segue destination="vMO-d0-MvR" kind="show" identifier="showShopDetailSergue" id="evK-cP-1Yj"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="h8H-K4-jo2" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="uIt-1e-ySD">
+                    <rect key="frame" x="0.0" y="0.0" width="240" height="128"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                </tableView>
+            </objects>
+            <point key="canvasLocation" x="2480" y="2455"/>
+        </scene>
+        <!--Магазин-->
+        <scene sceneID="ra3-oh-E5d">
+            <objects>
+                <tableViewController id="vMO-d0-MvR" customClass="ShopDetailTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="ivz-65-rqk">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="jvM-cj-7ur">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="jvM-cj-7ur" id="t9O-li-fs2">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="vMO-d0-MvR" id="Fdx-N2-7K3"/>
+                            <outlet property="delegate" destination="vMO-d0-MvR" id="JGj-n7-6pl"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Магазин" id="Jwp-O6-00m"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="DPV-yq-zTv" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3257" y="2455"/>
         </scene>
         <!--Еще-->
         <scene sceneID="Q9e-5a-jOP">
@@ -337,5 +421,6 @@
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="BWu-Sk-4dS"/>
+        <segue reference="evK-cP-1Yj"/>
     </inferredMetricsTieBreakers>
 </document>

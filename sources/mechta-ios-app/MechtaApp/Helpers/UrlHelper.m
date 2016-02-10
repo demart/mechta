@@ -37,6 +37,10 @@
     return [[NSString alloc] initWithFormat:@"%@/cities", UrlHelper.baseUrl];
 }
 
++ (NSString*) cityShopsUrl {
+    return [[NSString alloc] initWithFormat:@"%@/stores", UrlHelper.baseUrl];
+}
+
 
 +(NSString*) categoriesUrlWithParentId:(long) parentId {
     if (parentId < 1) {

@@ -13,13 +13,15 @@
 
 @property int id;
 
-@property NSString* address;
+@property NSString* name;
 
 @property NSString* workhours;
 
 @property float latitude;
 
 @property float longitude;
+
+@property NSString* telephones;
 
 @property CityModel *city;
 

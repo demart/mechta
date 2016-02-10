@@ -9,6 +9,7 @@
 #import "ProductDetailTableViewController.h"
 #import "ProductImageTableViewCell.h"
 
+#import "Constants.h"
 #import "ProductService.h"
 #import "DejalActivityView.h"
 
@@ -21,6 +22,8 @@
 #import "ProductCharacteristicGroupTableViewCell.h"
 #import "ProductCharacteristicTableViewCell.h"
 #import "ProductBasketTableViewCell.h"
+
+#import "ShopDetailTableViewController.h"
 
 
 /* Режим просмотра доступен где-то */
@@ -120,47 +123,6 @@ static int STATIC_ROW_COUNT = 3;
     self.product = model;
 }
 
-/*
-- (void) loadProductImageInCell:(ProductImageTableViewCell*) cell onIndexPath:(NSIndexPath*)indexPath withImageUrl:(NSString*)imageUrl {
-    UIImage *loadedImage =(UIImage *)[LocalStorageService  loadImageFromLocalCache:imageUrl];
-    
-    if (loadedImage != nil) {
-        cell.productImageView.image = loadedImage;
-    } else {
-        NSBlockOperation *loadImageOperation = [[NSBlockOperation alloc] init];
-        __weak NSBlockOperation *weakOperation = loadImageOperation;
-        
-        [loadImageOperation addExecutionBlock:^(void){
-            UIImage *image = [UIImage imageWithData:[NSData dataWithContentsOfURL:[NSURL URLWithString:
-                                                                                   imageUrl
-                                                                                   ]]];
-            [[NSOperationQueue mainQueue] addOperationWithBlock:^(void) {
-                if (! weakOperation.isCancelled) {
-                    ProductImageTableViewCell *updateCell = (ProductImageTableViewCell*)[self.tableView cellForRowAtIndexPath:indexPath];
-                    if (updateCell != nil && image != nil) {
-                        updateCell.productImageView.image = image;
-                    }
-                    
-                    
-                    if (image != nil) {
-                        [LocalStorageService  saveImageToLocalCache:imageUrl withData:image];
-                    } else {
-                        cell.productImageView.image = [UIImage imageNamed:@"no_photo_icon"];
-                    }
-                    [self.loadImageOperations removeObjectForKey:indexPath];
-                }
-            }];
-        }];
-        
-        [_loadImageOperations setObject: loadImageOperation forKey:indexPath];
-        if (loadImageOperation) {
-            [_loadImageOperationQueue addOperation:loadImageOperation];
-        }
-    }
-}
- */
-
-
 #pragma mark - Table view data source
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
@@ -218,9 +180,21 @@ static int STATIC_ROW_COUNT = 3;
             [tableView registerNib:[UINib nibWithNibName:@"ProductBasketTableViewCell" bundle:nil]forCellReuseIdentifier:@"ProductBasketCell"];
             cell = [tableView dequeueReusableCellWithIdentifier:@"ProductBasketCell"];
         }
-        
         [cell.productNameField setText:self.product.name];
-        [cell.productPriceField setText:[[NSString alloc] initWithFormat:@"%li тг.", self.product.cost]];
+        
+        if (self.product.productAvailability != nil && [self.product.productAvailability count] > 0) {
+            [cell.productPriceField setTextColor:[Constants SYSTEM_COLOR_PURPLE]];
+            [cell.productPriceField setText:[[NSString alloc] initWithFormat:@"%@ тг.", [self.product formattedCost]]];
+            
+            [cell.addProductButton setEnabled:YES];
+            [cell.addProductButton setBackgroundColor:[Constants SYSTEM_COLOR_PURPLE]];
+        } else {
+            [cell.productPriceField setTextColor:[UIColor grayColor]];
+            [cell.productPriceField setText:@"Нет в наличии"];
+            
+            [cell.addProductButton setEnabled:NO];
+            [cell.addProductButton setBackgroundColor:[UIColor grayColor]];
+        }
         
         return cell;
     }
@@ -248,9 +222,15 @@ static int STATIC_ROW_COUNT = 3;
             cell = [tableView dequeueReusableCellWithIdentifier:@"ProductAvailableCell"];
         }
         
-        [cell.shopNameField setText:availableInShop.name];
+        if (availableInShop.shop != nil) {
+            [cell.shopNameField setText:availableInShop.shop.name];
+            cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
+        } else {
+            [cell.shopNameField setText:availableInShop.name];
+            cell.accessoryType = UITableViewCellAccessoryNone;
+        }
         [cell.shopAmountField setText:availableInShop.amount];
-        
+
         
         return cell;
     }
@@ -264,7 +244,20 @@ static int STATIC_ROW_COUNT = 3;
             cell = [tableView dequeueReusableCellWithIdentifier:@"ProductDescriptionCell"];
         }
         
-        [cell.productDescriptionField setText:self.product.content];
+        if (self.product.content != nil) {
+            UIFont *font = [UIFont  systemFontOfSize:13.0];
+            NSString* content = [NSString stringWithFormat:@"<html><style>body{font-family: '%@'; font-size:%fpx;}</style><body>%@</body></html>",
+                                 [font fontName],
+                                 13.0,
+                                 self.product.content];
+            
+            NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+            [cell.productDescriptionField setAttributedText:attrStr];
+        } else {
+            [cell.productDescriptionField setText:@""];
+        }
+        
+        
         
         return cell;
         
@@ -311,6 +304,20 @@ static int STATIC_ROW_COUNT = 3;
     return nil;
 }
 
+-(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.mode == MODE_AVAILABILITY && indexPath.row >= STATIC_ROW_COUNT) {
+        if (self.product.productAvailability == nil || [self.product.productAvailability count] < 1)
+            return;
+        
+        ProductAvailableInShopModel *model = self.product.productAvailability[indexPath.row - STATIC_ROW_COUNT];
+        if (model != nil && model.shop != nil) {
+            [self performSegueWithIdentifier:@"showShopDetailSergue" sender:self];
+        } else {
+            // SHOW SORRY MESSAGE
+        }
+    }
+}
+
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     // Photo
     if (indexPath.row == 0) {
@@ -328,12 +335,20 @@ static int STATIC_ROW_COUNT = 3;
     }
     
     if (self.mode == MODE_DESCRIPTION) {
-        CGSize maximumSize = CGSizeMake(self.tableView.frame.size.width-28, 10000);
-        CGSize labelHeighSizeKey = [self.product.content sizeWithFont: [UIFont fontWithName:@"Helvetica" size:14.0f]
-                                                                         constrainedToSize:maximumSize
-                                                                             lineBreakMode:UILineBreakModeWordWrap];
+        UIFont *font = [UIFont  systemFontOfSize:14.0];
+        NSString* content = [NSString stringWithFormat:@"<html><style>body{font-family: '%@'; font-size:%fpx;}</style><body>%@</body></html>",
+                             [font fontName],
+                             14.0,
+                             self.product.content];
         
-        return labelHeighSizeKey.height+12;
+        NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+        
+        CGFloat width = self.tableView.frame.size.width - 24; // whatever your desired width is
+        CGRect rect = [attrStr boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+        
+        CGSize labelHeighSizeKey = rect.size;
+        
+        return labelHeighSizeKey.height;
     }
     
     if (self.mode == MODE_AVAILABILITY) {
@@ -366,14 +381,17 @@ static int STATIC_ROW_COUNT = 3;
 }
 
 
-/*
+
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.destinationViewController isKindOfClass:[ShopDetailTableViewController class]]) {
+        ShopDetailTableViewController *viewController = (ShopDetailTableViewController*)segue.destinationViewController;
+        NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
+        ProductAvailableInShopModel *model = self.product.productAvailability[indexPath.row - STATIC_ROW_COUNT];
+        [viewController setSelectedShopModel:model.shop];
+    }
 }
-*/
 
 @end

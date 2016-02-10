@@ -15,8 +15,8 @@
                 <rect key="frame" x="0.0" y="0.0" width="320" height="109.5"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="1 000 000 тг." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ea2-0s-1hg">
-                        <rect key="frame" x="20" y="68" width="141.5" height="30"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1 000 000 тг." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="ea2-0s-1hg">
+                        <rect key="frame" x="20" y="70" width="141.5" height="30"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="141" id="0Z8-77-ymM"/>
                             <constraint firstAttribute="height" constant="30" id="8cJ-Lr-C6v"/>
@@ -25,9 +25,12 @@
                         <color key="textColor" red="0.92156862750000001" green="0.0" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Холодильник PD 9123 РА Холодильник PD 9123 РА Холодильник PD 9123 РА" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="8" translatesAutoresizingMaskIntoConstraints="NO" id="fMP-Tm-I1p">
-                        <rect key="frame" x="20" y="8" width="280" height="48"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Холодильник PD 9123 РА Холодильник PD 9123 РА Холодильник PD 9123 РА" textAlignment="justified" lineBreakMode="wordWrap" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="fMP-Tm-I1p">
+                        <rect key="frame" x="20" y="8" width="280" height="52"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="52" id="HiP-rK-R7E"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
@@ -46,22 +49,15 @@
                 </subviews>
                 <constraints>
                     <constraint firstItem="fMP-Tm-I1p" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="2BM-Io-7rG"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="ea2-0s-1hg" secondAttribute="bottom" constant="7.5" id="E0A-cp-Q93"/>
                     <constraint firstAttribute="trailingMargin" secondItem="fMP-Tm-I1p" secondAttribute="trailing" constant="12" id="Em0-gZ-1wE"/>
-                    <constraint firstAttribute="bottomMargin" secondItem="phn-mM-hLl" secondAttribute="bottom" constant="7.5" id="IWG-hf-jbR"/>
-                    <constraint firstItem="ea2-0s-1hg" firstAttribute="top" secondItem="fMP-Tm-I1p" secondAttribute="bottom" constant="12" id="JFc-i7-XVp"/>
                     <constraint firstAttribute="trailingMargin" secondItem="phn-mM-hLl" secondAttribute="trailing" constant="12" id="LBf-1a-xnH"/>
-                    <constraint firstItem="phn-mM-hLl" firstAttribute="top" secondItem="fMP-Tm-I1p" secondAttribute="bottom" constant="12" id="U4W-Bk-8gJ"/>
+                    <constraint firstItem="phn-mM-hLl" firstAttribute="top" secondItem="fMP-Tm-I1p" secondAttribute="bottom" constant="8" id="dY4-yC-itY"/>
                     <constraint firstItem="phn-mM-hLl" firstAttribute="leading" secondItem="ea2-0s-1hg" secondAttribute="trailing" constant="22" id="jv3-6n-Toj"/>
                     <constraint firstItem="ea2-0s-1hg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="l5H-8X-BUh"/>
                     <constraint firstItem="fMP-Tm-I1p" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="12" id="onN-4h-3zt"/>
-                    <constraint firstAttribute="trailingMargin" secondItem="phn-mM-hLl" secondAttribute="trailing" constant="12" id="zeA-bJ-5Go"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="phn-mM-hLl" secondAttribute="bottom" constant="3.5" id="pY4-6z-pOE"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="ea2-0s-1hg" secondAttribute="bottom" constant="1.5" id="ywa-Pa-va9"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="zeA-bJ-5Go"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="addProductButton" destination="phn-mM-hLl" id="I7A-Rp-w1h"/>

@@ -21,7 +21,7 @@
                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="catalog_cell_default_icon" translatesAutoresizingMaskIntoConstraints="NO" id="UIs-Pz-PbQ">
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="UIs-Pz-PbQ">
                         <rect key="frame" x="8" y="10" width="40" height="40"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="40" id="JZK-qj-HsQ"/>
@@ -51,7 +51,4 @@
             <point key="canvasLocation" x="245" y="363"/>
         </tableViewCell>
     </objects>
-    <resources>
-        <image name="catalog_cell_default_icon" width="300" height="300"/>
-    </resources>
 </document>

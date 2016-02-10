@@ -156,6 +156,10 @@
 }
 
 
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [self performSegueWithIdentifier:@"showShopsSergue" sender:self];
+}
+
 
 /*
 // Override to support conditional editing of the table view.

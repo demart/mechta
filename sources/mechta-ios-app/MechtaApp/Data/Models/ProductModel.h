@@ -45,4 +45,6 @@
 // Возвращает уникальные ссылки на картинки
 - (NSMutableArray*) distinctImageUrls;
 
+- (NSString*) formattedCost;
+
 @end

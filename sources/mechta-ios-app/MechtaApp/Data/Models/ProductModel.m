@@ -61,4 +61,24 @@
     return self.distinctImageUrlList;
 }
 
+
+- (NSString*) formattedCost {
+    NSString* cost = [[NSString alloc] initWithFormat:@"%li", self.cost];
+    NSString* formatterCost = @"";
+    if ([cost length] > 3) {
+        int z = 0;
+        for (long i = [cost length] -1; i >= 0; i--) {
+            z+=1;
+            formatterCost = [[NSString alloc] initWithFormat:@"%@%@", [cost substringWithRange:NSMakeRange(i,1)],formatterCost];
+            if (z == 3) {
+                formatterCost = [[NSString alloc] initWithFormat:@" %@", formatterCost];
+                z = 0;
+            }
+        }
+    } else {
+        formatterCost = cost;
+    }
+    return formatterCost;
+}
+
 @end

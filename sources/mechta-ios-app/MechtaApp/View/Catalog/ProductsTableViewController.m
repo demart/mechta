@@ -187,11 +187,27 @@ static long PAGE_LIMIT = 10;
         if (model.productAvailability == nil || [model.productAvailability count] < 1) {
             [cell setUnavailable];
         } else {
-            [cell setPrice:model.cost];
+            [cell setFormattedPrice:[model formattedCost]];
+            
+            //[cell setPrice:model.cost];
             //[cell.productPriceField setText:[[NSString alloc] initWithFormat:@"%li тг.", model.cost]];
         }
         
-        [cell.productDescriptionField setText:model.content];
+        if (model.content != nil) {
+            UIFont *font = [UIFont  systemFontOfSize:12.0];
+            NSString* content = [NSString stringWithFormat:@"<html><style>body{font-family: '%@'; font-size:%fpx;}</style><body>%@</body></html>",
+                                 [font fontName],
+                                 12.0,
+                                 model.content];
+            
+            NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+            
+            [cell.productDescriptionField setAttributedText:attrStr];
+        } else {
+            [cell.productDescriptionField setText:@""];
+        }
+        
+
         
         [self loadProductImageInCell:cell onIndexPath:indexPath withImageUrl:model.imageUrl];
         
@@ -202,7 +218,7 @@ static long PAGE_LIMIT = 10;
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.products != nil && indexPath.row > [self.products count] - 1)
         return 40;
-    return 110;
+    return 150;
 }
 
 

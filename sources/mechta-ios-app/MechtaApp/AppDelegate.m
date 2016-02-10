@@ -37,20 +37,20 @@
     [[UINavigationBar appearance] setTitleTextAttributes:
      [NSDictionary dictionaryWithObjectsAndKeys:
       [Constants SYSTEM_COLOR_WHITE], NSForegroundColorAttributeName,
-      //[UIFont fontWithName:@"Gill Sans" size:17.0], NSFontAttributeName,
+      [UIFont systemFontOfSize:17.0f], NSFontAttributeName,
       nil]];
     
     [[UIBarButtonItem appearanceWhenContainedIn:[UINavigationBar class], nil] setTitleTextAttributes:
      @{NSForegroundColorAttributeName:[Constants SYSTEM_COLOR_WHITE],
-       //NSFontAttributeName: [UIFont fontWithName:@"Gill Sans" size:17.0]
+       NSFontAttributeName: [UIFont systemFontOfSize:15.0f]
        } forState:UIControlStateNormal];
     
     
     [UITabBar appearance].barTintColor = [Constants SYSTEM_COLOR_PURPLE];
     [UITabBar appearance].tintColor = [UIColor   whiteColor];
     [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor],
-        [UIFont fontWithName:@"Gill Sans" size:8.0]: NSFontAttributeName } forState:UIControlStateNormal];
-    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor], [UIFont fontWithName:@"Gill Sans" size:8.0]: NSFontAttributeName }
+        [UIFont systemFontOfSize:12.0f]: NSFontAttributeName } forState:UIControlStateNormal];
+    [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor], [UIFont systemFontOfSize:12.0f]: NSFontAttributeName }
                                              forState:UIControlStateSelected];
     
     //[[UISearchBar appearance] setBarTintColor: [Constants SYSTEM_COLOR_PURPLE]];
