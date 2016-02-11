@@ -9,13 +9,16 @@
 #import <UIKit/UIKit.h>
 #import <MapKit/MapKit.h>
 #import "LMDropdownView.h"
+#import <CoreLocation/CoreLocation.h>
 
-@interface ShopsViewController : UIViewController<MKMapViewDelegate,LMDropdownViewDelegate,UITableViewDelegate, UITableViewDataSource>
+@interface ShopsViewController : UIViewController<MKMapViewDelegate,LMDropdownViewDelegate,UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 // Выпадающий список типов подразделений
 @property (strong, nonatomic) IBOutlet UITableView *menuTableView;
+
+@property (weak, nonatomic) IBOutlet UITableView *shopTableView;
 
 @property (strong, nonatomic) LMDropdownView *dropdownView;
 

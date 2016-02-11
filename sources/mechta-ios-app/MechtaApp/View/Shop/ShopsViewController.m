@@ -13,6 +13,10 @@
 #import "CityService.h"
 #import "DejalActivityView.h"
 #import "ShopCityTableViewCell.h"
+#import "ShopDetailMiniTableViewCell.h"
+
+static int VIEW_MODE_MAP = 0;
+static int VIEW_MODE_LIST = 1;
 
 @interface ShopsViewController ()
 
@@ -21,78 +25,115 @@
 
 @property MapLocationModel *selectedLocation;
 
+@property int viewMode;
+
+/* Последняя зафиксированная геолокация */
+@property CLLocation *location;
+
 @end
 
 @implementation ShopsViewController
+
+/* Менеджер получения геолокации */
+CLLocationManager *locationManager;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     
     self.mapView.delegate = self;
+    self.mapView.mapType = MKMapTypeStandard;
+    
     self.menuTableView.delegate = self;
     self.menuTableView.dataSource = self;
     
-    self.mapView.mapType = MKMapTypeStandard;
+    self.shopTableView.delegate = self;
+    self.shopTableView.dataSource = self;
+    self.shopTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    //self.shopTableView.separatorColor = [UIColor clearColor];
     
-    /*
-    self.latitude = @"51.149013355686";
-    self.longitude = @"71.445580959844";
+    self.viewMode = VIEW_MODE_MAP;
     
-    self.mapView.mapType = MKMapTypeStandard;
-    double lat = [self.latitude doubleValue];
-    double lon = [self.longitude doubleValue];
-    CLLocationCoordinate2D coord = {
-        .latitude = lat,
-        .longitude =  lon};
-    MKCoordinateSpan span = {.latitudeDelta =  0.15, .longitudeDelta = 0.15};
-    MKCoordinateRegion region = {coord, span};
-    [self.mapView setRegion:region animated:YES];
-    */
-    /*
-     
-    CLLocationCoordinate2D coord1;
-    coord1.latitude = 51.149013355686f;
-    coord1.longitude = 71.445580959844f;
-    MapLocationModel *model = [[MapLocationModel alloc] initWithName:@"Магазин «Мечта»" address:@"Астана, ул. Амман, 14" coordinate:coord1];
-    [self.mapView addAnnotation:model];
-    
-    CLLocationCoordinate2D coord2;
-    coord2.latitude = 51.176400372519f;
-    coord2.longitude = 71.414299965036f;
-    MapLocationModel *model2 = [[MapLocationModel alloc] initWithName:@"Магазин «Мечта»" address:@"Астана, пр. Богенбая, 39" coordinate:coord2];
-    [self.mapView addAnnotation:model2];
-   
-    CLLocationCoordinate2D coord3;
-    coord3.latitude = 51.147115409405f;
-    coord3.longitude = 71.471057653689f;
-    MapLocationModel *model3 = [[MapLocationModel alloc] initWithName:@"Магазин «Мечта»" address:@"Астана, ул. Мирзояна, 13" coordinate:coord3];
-    [self.mapView addAnnotation:model3];
-    
-    CLLocationCoordinate2D coord4;
-    coord4.latitude = 51.175092113314f;
-    coord4.longitude = 71.423861503536f;
-    MapLocationModel *model4 = [[MapLocationModel alloc] initWithName:@"Магазин «Мечта»" address:@"Астана, пр. Республики, 45" coordinate:coord4];
-    [self.mapView addAnnotation:model4];
-    
-    CLLocationCoordinate2D coord5;
-    coord5.latitude = 51.153091657027f;
-    coord5.longitude = 71.487380504477f;
-    MapLocationModel *model5 = [[MapLocationModel alloc] initWithName:@"Магазин «Мечта»" address:@"Астана, ул. Куйши Дина, д. 31, ЖК «Мирас», район «Встречи»" coordinate:coord5];
-    [self.mapView addAnnotation:model5];
-    
-    CLLocationCoordinate2D coord6;
-    coord6.latitude = 51.149013355686f;
-    coord6.longitude = 71.445580959844f;
-    MapLocationModel *model6 = [[MapLocationModel alloc] initWithName:@"Магазин «Мечта»" address:@"Астана, Интернет-магазин" coordinate:coord6];
-    [self.mapView addAnnotation:model6];
-     
-     */
+    locationManager = [[CLLocationManager alloc] init];
+    locationManager.delegate = self;
+    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    locationManager.distanceFilter = kCLDistanceFilterNone;
 }
 
 
--(void) viewWillAppear:(BOOL)animated {
+- (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
     [self loadCityShops];
+    [self.shopTableView reloadData];
+    
+    // enable location service
+    if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 &&
+        [CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedWhenInUse) {
+        [locationManager requestWhenInUseAuthorization];
+    } else {
+        [locationManager startUpdatingLocation];
+    }
+}
+
+- (void)locationManager:(CLLocationManager*)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status {
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined: {
+            NSLog(@"User still thinking..");
+        } break;
+        case kCLAuthorizationStatusDenied: {
+            NSLog(@"User hates you");
+        } break;
+        case kCLAuthorizationStatusAuthorizedWhenInUse:
+        case kCLAuthorizationStatusAuthorizedAlways: {
+            [locationManager startUpdatingLocation];
+        } break;
+        default:
+            break;
+    }
+}
+
+- (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
+    NSLog(@"Location error");
+}
+
+- (void) locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray<CLLocation *> *)locations {
+    CLLocation *lastLocation = [locations lastObject];
+    NSLog(@"didUpdateToLocations: %@", lastLocation);
+    self.location = lastLocation;
+    [locationManager stopUpdatingLocation];
+}
+
+- (void) setNavigationBarTitle:(NSString*) cityName {
+    CGSize titleSize = [cityName sizeWithAttributes:@{NSFontAttributeName:[UIFont systemFontOfSize:15.0]}];
+    UIImage *image = [UIImage imageNamed:@"map_city_filter_arrow_icon"];
+    CGRect frame = CGRectMake(0, 0, titleSize.width + (5 + image.size.width)*2, self.navigationController.navigationBar.frame.size.height);
+    UIView *myView = [[UIView alloc] initWithFrame: frame];
+    [myView setBackgroundColor:[UIColor  clearColor]];
+    UIButton *btn = [[UIButton alloc] initWithFrame:frame];
+    CGRect titleFrame = CGRectMake(0, 1, titleSize.width, self.navigationController.navigationBar.frame.size.height);
+    UILabel *title = [[UILabel alloc] initWithFrame:titleFrame];
+    title.text = cityName;
+    [title setTextColor:[UIColor whiteColor]];
+    [title setFont:[UIFont systemFontOfSize:15.0]];
+    [title setBackgroundColor:[UIColor clearColor]];
+    [title setTextAlignment:NSTextAlignmentLeft];
+    [btn addSubview:title];
+    UIImageView *myImageView = [[UIImageView alloc] initWithImage:image];
+    CGRect arrowFrame = CGRectMake(titleSize.width + 5, self.navigationController.navigationBar.frame.size.height/2, image.size.width, image.size.height);
+    myImageView.frame = arrowFrame;
+    [btn addSubview:myImageView];
+    [myView addSubview:btn];
+    
+    [btn addTarget:self action:@selector(showOrHideCityMenu) forControlEvents:UIControlEventTouchDown];
+    
+    self.navigationItem.titleView = myView;
+}
+
+- (void) showOrHideCityMenu {
+    if (self.dropdownView.isOpen) {
+        [self.dropdownView hide];
+    } else {
+        [self showDropDownView];
+    }
 }
 
 - (void) loadCityShops {
@@ -133,43 +174,58 @@
 
 - (void) fillPointsOnTheMap {
     CityModel *cityModel = [CityService getSelectedCityModel];
+    [self.mapView removeAnnotations:self.mapView.annotations];
     
     // TODO CENTER MAP TO ANOTHER CITY CETNER
     if (cityModel == nil) {
-        // 1. SHOW BIT MAP
-        // 2. SHOW ALL SHOPS
-        // 3. SET TITLE "CHOOSE CITY"
-        [self.topCityTitleNavigationItem setTitle:@"Укажите город"];
+        [self setNavigationBarTitle:@"Укажите город"];
         
-    } else {
+        // CENTER OF KAZAKHSTAN
+        self.latitude = @"48";
+        self.longitude = @"68";
         
-        [self.topCityTitleNavigationItem setTitle:cityModel.name];
-        
-        self.latitude = @"51.149013355686";
-        self.longitude = @"71.445580959844";
-
         double lat = [self.latitude doubleValue];
         double lon = [self.longitude doubleValue];
         CLLocationCoordinate2D coord = {
             .latitude = lat,
             .longitude =  lon};
-        MKCoordinateSpan span = {.latitudeDelta =  0.15, .longitudeDelta = 0.15};
+        MKCoordinateSpan span = {.latitudeDelta =  40, .longitudeDelta = 40};
         MKCoordinateRegion region = {coord, span};
         [self.mapView setRegion:region animated:YES];
         
+        for (CityModel *city in [CityService getCities]) {
+            if (city.shops != nil || [city.shops count] < 1) {
+                for (ShopModel *shopModel in city.shops) {
+                    [self addShopOnTheMap:shopModel withCity:city];
+                }
+            }
+        }
+        
+    } else {
+        
+        [self setNavigationBarTitle:cityModel.name];
+        
+        double lat = cityModel.latitude;
+        double lon = cityModel.longitude;
+        CLLocationCoordinate2D coord = {
+            .latitude = lat,
+            .longitude =  lon};
+        MKCoordinateSpan span = {.latitudeDelta =  0.13, .longitudeDelta = 0.13};
+        MKCoordinateRegion region = {coord, span};
+        [self.mapView setRegion:region animated:YES];
+        
+        if (cityModel == nil) {
+            // SHOP MESSAGE "PLESAE CHOOSE CITY" or set default
+            return;
+        }
+        if (cityModel.shops != nil || [cityModel.shops count] < 1) {
+            for (ShopModel *shopModel in cityModel.shops) {
+                [self addShopOnTheMap:shopModel withCity:cityModel];
+            }
+        }
+        
     }
     
-    [self.mapView removeAnnotations:self.mapView.annotations];
-    CityModel *city = [CityService getSelectedCityModel];
-    if (city == nil) {
-        // SHOP MESSAGE "PLESAE CHOOSE CITY" or set default
-        return;
-    }
-    if (city.shops != nil || [city.shops count] < 1) {
-        for (ShopModel *shopModel in city.shops) {
-            [self addShopOnTheMap:shopModel withCity:city];
-        }
-    }
     [DejalBezelActivityView removeViewAnimated:YES];
 }
 
@@ -182,6 +238,7 @@
     coord.longitude = shopModel.longitude;
     NSString* address = [[NSString alloc] initWithFormat:@"%@, %@", cityModel.name, shopModel.name];
     MapLocationModel *model = [[MapLocationModel alloc] initWithName:@"Магазин «Мечта»" address:address coordinate:coord];
+    model.shop = shopModel;
     [self.mapView addAnnotation:model];
 }
 
@@ -225,14 +282,6 @@
         self.dropdownView = [LMDropdownView dropdownView];
         self.dropdownView.delegate = self;
         
-        // Customize Dropdown style
-        /*
-        self.dropdownView.closedScale = 0.95;
-        self.dropdownView.blurRadius = 5;
-        self.dropdownView.blackMaskAlpha = 0.5;
-        self.dropdownView.animationDuration = 0.5;
-        self.dropdownView.animationBounceHeight = 10;
-         */
         self.dropdownView.closedScale = 1;
         self.dropdownView.blurRadius = 10;
         self.dropdownView.blackMaskAlpha = 0.2;
@@ -277,32 +326,84 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    if (self.shopTableView == tableView) {
+        CityModel *model = [CityService getSelectedCityModel];
+        if (model != nil && model.shops != nil) {
+            return [model.shops count];
+        }
+        return 0;
+    }
+    
     return [[CityService getCities] count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    ShopCityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShopCityCell"];
-    if (!cell) {
-        [tableView registerNib:[UINib nibWithNibName:@"ShopCityTableViewCell" bundle:nil]forCellReuseIdentifier:@"ShopCityCell"];
-        cell = [tableView dequeueReusableCellWithIdentifier:@"ShopCityCell"];
+    if (self.menuTableView == tableView) {
+        ShopCityTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShopCityCell"];
+        if (!cell) {
+            [tableView registerNib:[UINib nibWithNibName:@"ShopCityTableViewCell" bundle:nil]forCellReuseIdentifier:@"ShopCityCell"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"ShopCityCell"];
+        }
+        
+        CityModel *cityModel = [CityService getCities][indexPath.row];
+        [cell.cityNameField setText:cityModel.name];
+        return cell;
+    } else {
+        
+        ShopDetailMiniTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShopDetailMiniCell"];
+        if (!cell) {
+            [tableView registerNib:[UINib nibWithNibName:@"ShopDetailMiniTableViewCell" bundle:nil]forCellReuseIdentifier:@"ShopDetailMiniCell"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"ShopDetailMiniCell"];
+        }
+        
+        CityModel *model = [CityService getSelectedCityModel];
+        ShopModel *shopModel = model.shops[indexPath.row];
+        [cell.shopAddress setText:[[NSString alloc] initWithFormat:@"%@, %@", model.name, shopModel.name]];
+        [cell.shopWorkhours setText:[[NSString alloc] initWithFormat:@"Режим работы: %@", shopModel.workhours]];
+
+        if (self.location != nil && shopModel.distance == 0) {
+            CLLocation *current = [[CLLocation alloc] initWithLatitude:shopModel.latitude longitude:shopModel.longitude];
+            CLLocationDistance distance = [self.location distanceFromLocation:current];
+            shopModel.distance = distance;
+        }
+
+        if (shopModel.distance != 0) {
+            MKDistanceFormatter *df = [[MKDistanceFormatter alloc]init];
+            df.unitStyle = MKDistanceFormatterUnitStyleAbbreviated;
+            df.units = MKDistanceFormatterUnitsMetric;
+            NSString *prettyString = [df stringFromDistance:shopModel.distance];
+            [cell.shopDistanceField setText:prettyString];
+        } else {
+            [cell.shopDistanceField setText:@""];
+        }
+       
+        return cell;
+        
     }
-    
-    CityModel *cityModel = [CityService getCities][indexPath.row];
-    [cell.cityNameField setText:cityModel.name];
-    
-    return cell;
 }
 
 -(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.menuTableView == tableView) {
+        [CityService selectCityModel:[CityService getCities][indexPath.row]];
+        [self.dropdownView hide];
+        [self.shopTableView reloadData];
+        [DejalBezelActivityView activityViewForView:self.view withLabel:@"Подождите\nИдет загрузка..."];
+        [self fillPointsOnTheMap];
+    } else {
+        [self performSegueWithIdentifier:@"showShopDetailSergue" sender:self];
+    }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
-    
-    [CityService selectCityModel:[CityService getCities][indexPath.row]];
-    [self.dropdownView hide];
-    [DejalBezelActivityView activityViewForView:self.view withLabel:@"Подождите\nИдет загрузка..."];
-    [self fillPointsOnTheMap];
 }
 
 - (CGFloat)tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
+    if (self.menuTableView == tableView) {
+        return 40;
+    }
+    
+    if (self.shopTableView == tableView) {
+        return 70;
+    }
+    
     return 40;
 }
 
@@ -311,12 +412,44 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     if ([segue.destinationViewController isKindOfClass:[ShopDetailTableViewController class]]) {
         ShopDetailTableViewController *viewController = (ShopDetailTableViewController*)segue.destinationViewController;
-        [viewController setSelectedShopModel:self.selectedLocation.shop];
+        
+        if (self.viewMode == VIEW_MODE_MAP) {
+            [viewController setSelectedShopModel:self.selectedLocation.shop];
+        } else {
+            NSIndexPath *indexPath = [self.shopTableView indexPathForSelectedRow];
+            ShopModel *model = [CityService getSelectedCityModel].shops[indexPath.row];
+            [viewController setSelectedShopModel:model];
+        }
     }
-
 }
 
 - (IBAction)changeMavViewAction:(UIBarButtonItem *)sender {
-    [self showDropDownView];
+    if (self.viewMode == VIEW_MODE_MAP) {
+        self.viewMode = VIEW_MODE_LIST;
+        [self.changeMapViewItem setTitle:@"Карта"];
+
+        [UIView transitionWithView:self.view
+                          duration:0.6
+                           options:UIViewAnimationOptionTransitionFlipFromLeft
+                        animations:^{
+                            self.mapView.hidden = YES;
+                            self.shopTableView.hidden = NO;
+                        } completion:^(BOOL finished) {
+                            [self.shopTableView reloadData];
+                        }];
+        
+    } else {
+        self.viewMode = VIEW_MODE_MAP;
+        [self.changeMapViewItem setTitle:@"Список"];
+        
+        [UIView transitionWithView:self.view
+                          duration:0.6
+                           options:UIViewAnimationOptionTransitionFlipFromRight
+                        animations:^{
+                            self.mapView.hidden = NO;
+                            self.shopTableView.hidden = YES;
+                        } completion:^(BOOL finished) {
+                        }];
+    }
 }
 @end

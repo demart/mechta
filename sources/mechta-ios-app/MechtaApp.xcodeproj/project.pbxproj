@@ -66,6 +66,11 @@
 		8DD5AC791C6B65310021AFDA /* ShopDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD5AC781C6B65310021AFDA /* ShopDetailTableViewController.m */; };
 		8DD5AC811C6B873A0021AFDA /* ShopCityTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD5AC7F1C6B873A0021AFDA /* ShopCityTableViewCell.m */; };
 		8DD5AC821C6B873A0021AFDA /* ShopCityTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD5AC801C6B873A0021AFDA /* ShopCityTableViewCell.xib */; };
+		8DD5AC861C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD5AC841C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.m */; };
+		8DD5AC871C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD5AC851C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.xib */; };
+		8DD5AC8B1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD5AC891C6CB9570021AFDA /* ShopDetailMiniTableViewCell.m */; };
+		8DD5AC8C1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD5AC8A1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.xib */; };
+		8DD5AC8E1C6D018F0021AFDA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD5AC8D1C6D018F0021AFDA /* MapKit.framework */; };
 		93B00D9D4268ECF79206F6F9 /* libPods-MechtaApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99497EC30B72DFC69B7460C0 /* libPods-MechtaApp.a */; };
 /* End PBXBuildFile section */
 
@@ -173,6 +178,13 @@
 		8DD5AC7E1C6B873A0021AFDA /* ShopCityTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShopCityTableViewCell.h; path = View/Shop/Cell/ShopCityTableViewCell.h; sourceTree = "<group>"; };
 		8DD5AC7F1C6B873A0021AFDA /* ShopCityTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShopCityTableViewCell.m; path = View/Shop/Cell/ShopCityTableViewCell.m; sourceTree = "<group>"; };
 		8DD5AC801C6B873A0021AFDA /* ShopCityTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShopCityTableViewCell.xib; path = View/Shop/Cell/ShopCityTableViewCell.xib; sourceTree = "<group>"; };
+		8DD5AC831C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShopDetailMapViewTableViewCell.h; path = View/Shop/Cell/ShopDetailMapViewTableViewCell.h; sourceTree = "<group>"; };
+		8DD5AC841C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShopDetailMapViewTableViewCell.m; path = View/Shop/Cell/ShopDetailMapViewTableViewCell.m; sourceTree = "<group>"; };
+		8DD5AC851C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShopDetailMapViewTableViewCell.xib; path = View/Shop/Cell/ShopDetailMapViewTableViewCell.xib; sourceTree = "<group>"; };
+		8DD5AC881C6CB9570021AFDA /* ShopDetailMiniTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ShopDetailMiniTableViewCell.h; path = View/Shop/Cell/ShopDetailMiniTableViewCell.h; sourceTree = "<group>"; };
+		8DD5AC891C6CB9570021AFDA /* ShopDetailMiniTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShopDetailMiniTableViewCell.m; path = View/Shop/Cell/ShopDetailMiniTableViewCell.m; sourceTree = "<group>"; };
+		8DD5AC8A1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShopDetailMiniTableViewCell.xib; path = View/Shop/Cell/ShopDetailMiniTableViewCell.xib; sourceTree = "<group>"; };
+		8DD5AC8D1C6D018F0021AFDA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
 		99497EC30B72DFC69B7460C0 /* libPods-MechtaApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MechtaApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC70FC5DCE47CE5C61F142BA /* Pods-MechtaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MechtaApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MechtaApp/Pods-MechtaApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -182,6 +194,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8DD5AC8E1C6D018F0021AFDA /* MapKit.framework in Frameworks */,
 				93B00D9D4268ECF79206F6F9 /* libPods-MechtaApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -201,6 +214,7 @@
 		6AE92DEF0B57CD3FA2C06DF0 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				8DD5AC8D1C6D018F0021AFDA /* MapKit.framework */,
 				99497EC30B72DFC69B7460C0 /* libPods-MechtaApp.a */,
 			);
 			name = Frameworks;
@@ -465,6 +479,12 @@
 				8DD5AC7E1C6B873A0021AFDA /* ShopCityTableViewCell.h */,
 				8DD5AC7F1C6B873A0021AFDA /* ShopCityTableViewCell.m */,
 				8DD5AC801C6B873A0021AFDA /* ShopCityTableViewCell.xib */,
+				8DD5AC831C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.h */,
+				8DD5AC841C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.m */,
+				8DD5AC851C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.xib */,
+				8DD5AC881C6CB9570021AFDA /* ShopDetailMiniTableViewCell.h */,
+				8DD5AC891C6CB9570021AFDA /* ShopDetailMiniTableViewCell.m */,
+				8DD5AC8A1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -502,6 +522,18 @@
 				TargetAttributes = {
 					8D16EE371C6480130009FD47 = {
 						CreatedOnToolsVersion = 7.2.1;
+						DevelopmentTeam = 4W3DP52J38;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+							com.apple.Push = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -534,6 +566,7 @@
 				8DC7E2041C692FE800E6E416 /* ProductImageTableViewCell.xib in Resources */,
 				8D4DBA251C6A1473002E26B4 /* ProductCharacteristicTableViewCell.xib in Resources */,
 				8DB078801C6876A700C07F69 /* ExtraMenuItemTableViewCell.xib in Resources */,
+				8DD5AC8C1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.xib in Resources */,
 				8D4DBA1B1C6A1212002E26B4 /* ProductDescriptionTableViewCell.xib in Resources */,
 				8D4DBA161C6A0B91002E26B4 /* ProductAvailableTableViewCell.xib in Resources */,
 				8D29C3FD1C64C4ED00E7EFCD /* ProductTableViewCell.xib in Resources */,
@@ -544,6 +577,7 @@
 				8DD5AC821C6B873A0021AFDA /* ShopCityTableViewCell.xib in Resources */,
 				8D4DBA2A1C6A4BE7002E26B4 /* ProductBasketTableViewCell.xib in Resources */,
 				8D16EE461C6480130009FD47 /* Main.storyboard in Resources */,
+				8DD5AC871C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.xib in Resources */,
 				8D29C3CB1C6494A400E7EFCD /* CatalogTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -613,6 +647,7 @@
 				8DC7E1FE1C69194F00E6E416 /* LoadMoreTableViewCell.m in Sources */,
 				8D29C3E91C64BEE000E7EFCD /* ProductsTableViewController.m in Sources */,
 				8D29C3DB1C64A84400E7EFCD /* CityService.m in Sources */,
+				8DD5AC8B1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.m in Sources */,
 				8D4DBA1A1C6A1212002E26B4 /* ProductDescriptionTableViewCell.m in Sources */,
 				8D29C3CA1C6494A400E7EFCD /* CatalogTableViewCell.m in Sources */,
 				8DB078751C68751C00C07F69 /* ExtraTableViewController.m in Sources */,
@@ -628,6 +663,7 @@
 				8DB0787F1C6876A700C07F69 /* ExtraMenuItemTableViewCell.m in Sources */,
 				8D29C3FC1C64C4ED00E7EFCD /* ProductTableViewCell.m in Sources */,
 				8DD5AC761C6B5A4C0021AFDA /* MapLocationModel.m in Sources */,
+				8DD5AC861C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.m in Sources */,
 				8D29C3DE1C64AD2B00E7EFCD /* CatalogService.m in Sources */,
 				8D29C3EC1C64BF3100E7EFCD /* ProductModel.m in Sources */,
 			);
@@ -740,10 +776,13 @@
 			baseConfigurationReference = CC70FC5DCE47CE5C61F142BA /* Pods-MechtaApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MechtaApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kz.aphion.mechta.MechtaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Debug;
 		};
@@ -752,10 +791,13 @@
 			baseConfigurationReference = 7955F51A2DFAD56D3D447CA9 /* Pods-MechtaApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = MechtaApp/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = kz.aphion.mechta.MechtaApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 			};
 			name = Release;
 		};

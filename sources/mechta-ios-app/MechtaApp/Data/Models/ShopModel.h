@@ -17,9 +17,12 @@
 
 @property NSString* workhours;
 
-@property float latitude;
+@property double latitude;
 
-@property float longitude;
+@property double longitude;
+
+/* Вычисляемое на основе месположения пользователя */
+@property double distance;
 
 @property NSString* telephones;
 

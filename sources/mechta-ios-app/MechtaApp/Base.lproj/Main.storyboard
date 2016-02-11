@@ -329,6 +329,10 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="HWS-Lw-WT7">
+                                <rect key="frame" x="0.0" y="64" width="600" height="487"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
                             <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="j35-ay-z9t">
                                 <rect key="frame" x="0.0" y="64" width="600" height="487"/>
                             </mapView>
@@ -337,8 +341,12 @@
                         <constraints>
                             <constraint firstItem="j35-ay-z9t" firstAttribute="leading" secondItem="Gj0-yB-2Fe" secondAttribute="leadingMargin" constant="-20" id="1b2-yK-f1Q"/>
                             <constraint firstItem="j35-ay-z9t" firstAttribute="top" secondItem="4TE-Fn-nfz" secondAttribute="bottom" id="2Rk-aI-BTW"/>
+                            <constraint firstItem="HWS-Lw-WT7" firstAttribute="top" secondItem="4TE-Fn-nfz" secondAttribute="bottom" id="FKa-ho-WAW"/>
+                            <constraint firstItem="HWS-Lw-WT7" firstAttribute="leading" secondItem="Gj0-yB-2Fe" secondAttribute="leadingMargin" constant="-20" id="G8u-Gy-gwY"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="HWS-Lw-WT7" secondAttribute="trailing" constant="-20" id="b6y-kf-dDp"/>
                             <constraint firstAttribute="trailingMargin" secondItem="j35-ay-z9t" secondAttribute="trailing" constant="-20" id="efx-Po-IgX"/>
                             <constraint firstItem="kWe-UQ-Pc4" firstAttribute="top" secondItem="j35-ay-z9t" secondAttribute="bottom" id="iYY-Uk-qcq"/>
+                            <constraint firstItem="kWe-UQ-Pc4" firstAttribute="top" secondItem="HWS-Lw-WT7" secondAttribute="bottom" id="oG1-xd-4EO"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="Магазины" id="zhb-eN-bJA">
@@ -352,6 +360,7 @@
                         <outlet property="changeMapViewItem" destination="ljZ-DM-6oe" id="tSO-Ck-IFe"/>
                         <outlet property="mapView" destination="j35-ay-z9t" id="fAa-Rx-r3e"/>
                         <outlet property="menuTableView" destination="uIt-1e-ySD" id="iHC-jU-JdE"/>
+                        <outlet property="shopTableView" destination="HWS-Lw-WT7" id="yRt-TM-ZBP"/>
                         <outlet property="topCityTitleNavigationItem" destination="zhb-eN-bJA" id="Vb5-7P-zo1"/>
                         <segue destination="vMO-d0-MvR" kind="show" identifier="showShopDetailSergue" id="evK-cP-1Yj"/>
                     </connections>

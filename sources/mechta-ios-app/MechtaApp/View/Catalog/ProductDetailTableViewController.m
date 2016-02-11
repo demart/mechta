@@ -229,7 +229,7 @@ static int STATIC_ROW_COUNT = 3;
             [cell.shopNameField setText:availableInShop.name];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
-        [cell.shopAmountField setText:availableInShop.amount];
+        [cell.shopAmountField setText:availableInShop.amount ];
 
         
         return cell;

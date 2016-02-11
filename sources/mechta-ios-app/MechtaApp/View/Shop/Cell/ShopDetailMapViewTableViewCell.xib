@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ShopDetailMapViewCell" rowHeight="420" id="KGk-i7-Jjw" customClass="ShopDetailMapViewTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="439"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="438.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <mapView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" mapType="standard" rotateEnabled="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mzJ-2L-JDd">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="183.5"/>
+                    </mapView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_view_icon" translatesAutoresizingMaskIntoConstraints="NO" id="YGN-SQ-bG9">
+                        <rect key="frame" x="16" y="202" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="COJ-Ay-n4H"/>
+                            <constraint firstAttribute="height" constant="35" id="exK-He-5Jx"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="2300 km" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EkR-o2-Jeg">
+                        <rect key="frame" x="14" y="236" width="43" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="43" id="4qS-kn-KD6"/>
+                            <constraint firstAttribute="height" constant="21" id="f6p-pp-tz6"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Магазин Мечта" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qaf-cz-X2O">
+                        <rect key="frame" x="63" y="203" width="240" height="20"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="20" id="TlZ-JN-GEZ"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Магазин Мечта Магазин Мечта Магазин" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="nmq-Oj-66i">
+                        <rect key="frame" x="63" y="225" width="240" height="28"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="28" id="deg-IM-zBM"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_view_phone_icon" translatesAutoresizingMaskIntoConstraints="NO" id="6ao-Ap-GhF">
+                        <rect key="frame" x="23" y="277" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="QUG-dd-xnL"/>
+                            <constraint firstAttribute="height" constant="25" id="RFe-85-pBj"/>
+                        </constraints>
+                    </imageView>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_view_workhours_icon" translatesAutoresizingMaskIntoConstraints="NO" id="Uod-V5-IMf">
+                        <rect key="frame" x="23" y="317" width="25" height="25"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="25" id="Mqm-sH-omN"/>
+                            <constraint firstAttribute="height" constant="25" id="ba0-qk-Exq"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+7 (701)-551-51-01" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="BAE-w9-Rvb">
+                        <rect key="frame" x="63" y="274" width="240" height="32"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="32" id="npx-aK-T8i"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="с 10:00 до 22:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dTa-KW-5eW">
+                        <rect key="frame" x="63" y="314" width="240" height="30"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="30" id="olJ-oG-Hsa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PAa-VJ-WNX">
+                        <rect key="frame" x="90" y="374" width="140" height="36"/>
+                        <color key="backgroundColor" red="0.92156862750000001" green="0.0" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="36" id="61A-yQ-As9"/>
+                        </constraints>
+                        <state key="normal" title="Позвонить">
+                            <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        </state>
+                        <connections>
+                            <action selector="mapShopCallAction:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="OWf-70-5Pl"/>
+                        </connections>
+                    </button>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="6ao-Ap-GhF" firstAttribute="top" secondItem="EkR-o2-Jeg" secondAttribute="bottom" constant="20" id="2CD-Kx-sU2"/>
+                    <constraint firstItem="BAE-w9-Rvb" firstAttribute="leading" secondItem="6ao-Ap-GhF" secondAttribute="trailing" constant="15" id="6On-0S-zov"/>
+                    <constraint firstItem="dTa-KW-5eW" firstAttribute="top" secondItem="BAE-w9-Rvb" secondAttribute="bottom" constant="8" id="8rf-7s-5K8"/>
+                    <constraint firstItem="EkR-o2-Jeg" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="6" id="95m-S8-cfe"/>
+                    <constraint firstItem="nmq-Oj-66i" firstAttribute="top" secondItem="qaf-cz-X2O" secondAttribute="bottom" constant="2" id="Aaa-iW-jZE"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="nmq-Oj-66i" secondAttribute="trailing" constant="9" id="Abv-Q1-VZI"/>
+                    <constraint firstItem="6ao-Ap-GhF" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="F85-QQ-A1e"/>
+                    <constraint firstItem="mzJ-2L-JDd" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="-8" id="Fwp-Nr-nwC"/>
+                    <constraint firstItem="YGN-SQ-bG9" firstAttribute="top" secondItem="mzJ-2L-JDd" secondAttribute="bottom" constant="18" id="Hdw-MZ-q1C"/>
+                    <constraint firstItem="BAE-w9-Rvb" firstAttribute="top" secondItem="nmq-Oj-66i" secondAttribute="bottom" constant="21" id="JqT-ln-al5"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="dTa-KW-5eW" secondAttribute="trailing" constant="9" id="M3p-d4-poG"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="mzJ-2L-JDd" secondAttribute="trailing" constant="-8" id="PT1-dF-x8p"/>
+                    <constraint firstItem="mzJ-2L-JDd" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="RKy-Qd-nrW"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="PAa-VJ-WNX" secondAttribute="trailing" constant="82" id="RY2-sY-Nc2"/>
+                    <constraint firstItem="qaf-cz-X2O" firstAttribute="leading" secondItem="YGN-SQ-bG9" secondAttribute="trailing" constant="12" id="RjG-eb-oMh"/>
+                    <constraint firstItem="dTa-KW-5eW" firstAttribute="leading" secondItem="Uod-V5-IMf" secondAttribute="trailing" constant="15" id="Zyk-w5-G6A"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="PAa-VJ-WNX" secondAttribute="bottom" constant="20.5" id="cD3-0X-N50"/>
+                    <constraint firstItem="PAa-VJ-WNX" firstAttribute="top" secondItem="dTa-KW-5eW" secondAttribute="bottom" constant="30" id="cQY-VE-FQF"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="Uod-V5-IMf" secondAttribute="bottom" constant="88.5" id="exx-0b-XKX"/>
+                    <constraint firstItem="Uod-V5-IMf" firstAttribute="top" secondItem="6ao-Ap-GhF" secondAttribute="bottom" constant="15" id="f5e-FM-FRl"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="BAE-w9-Rvb" secondAttribute="trailing" constant="9" id="f6H-KC-0s4"/>
+                    <constraint firstItem="nmq-Oj-66i" firstAttribute="leading" secondItem="EkR-o2-Jeg" secondAttribute="trailing" constant="6" id="gWT-0S-Doz"/>
+                    <constraint firstItem="PAa-VJ-WNX" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="82" id="jfv-ad-ZX9"/>
+                    <constraint firstItem="Uod-V5-IMf" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="15" id="m0j-bY-wJN"/>
+                    <constraint firstItem="BAE-w9-Rvb" firstAttribute="leading" secondItem="6ao-Ap-GhF" secondAttribute="trailing" constant="15" id="qgP-sb-vFv"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="qaf-cz-X2O" secondAttribute="trailing" constant="9" id="rfT-wq-xvr"/>
+                    <constraint firstItem="6ao-Ap-GhF" firstAttribute="top" secondItem="YGN-SQ-bG9" secondAttribute="bottom" constant="40" id="w3a-fw-EAH"/>
+                    <constraint firstItem="YGN-SQ-bG9" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="z5P-yf-P3w"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="mapDistanceField" destination="EkR-o2-Jeg" id="7Y3-hN-zKV"/>
+                <outlet property="mapShopAddress" destination="nmq-Oj-66i" id="Vju-Qn-rEg"/>
+                <outlet property="mapShopCallButton" destination="PAa-VJ-WNX" id="dK1-U1-kuO"/>
+                <outlet property="mapShopNameField" destination="qaf-cz-X2O" id="1nd-nK-Elh"/>
+                <outlet property="mapShopPhoneField" destination="BAE-w9-Rvb" id="fE5-zb-67j"/>
+                <outlet property="mapShopWorkhoursField" destination="dTa-KW-5eW" id="Upd-mW-TOp"/>
+                <outlet property="mapView" destination="mzJ-2L-JDd" id="FoI-xD-uY3"/>
+            </connections>
+            <point key="canvasLocation" x="245" y="287.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="map_view_icon" width="100" height="100"/>
+        <image name="map_view_phone_icon" width="104" height="104"/>
+        <image name="map_view_workhours_icon" width="100" height="100"/>
+    </resources>
+</document>
