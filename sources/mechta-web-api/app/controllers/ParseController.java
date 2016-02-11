@@ -44,10 +44,10 @@ public class ParseController extends Controller {
 	 * @param page
 	 * @throws IOException
 	 */
-	public static void parseProducts(Long numberOnSiteCategory, Long cityId, Integer page, Long typeOrder, String filter, String costLeft, String costRight) throws IOException {
+	public static void parseProducts(Long numberOnSiteCategory, Long cityId, Integer page, Long typeOrder, String filter, String costLeft, String costRight, Integer countOfFilters) throws IOException {
     	
 		System.out.println("Filter: " + filter);
-		StoreWrapper model = ParseService.parseProducts(numberOnSiteCategory, cityId, page, typeOrder, filter, costLeft, costRight);
+		StoreWrapper model = ParseService.parseProducts(numberOnSiteCategory, cityId, page, typeOrder, filter, costLeft, costRight, countOfFilters);
     	ResponseWrapper wrapper = new ResponseWrapper();
     	wrapper.data = model.getProducts().toArray();
     	wrapper.countOfPages = model.getCountOfPages();
