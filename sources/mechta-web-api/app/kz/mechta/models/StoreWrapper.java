@@ -13,6 +13,7 @@ public class StoreWrapper {
 	private Integer currentPage;
 	
 	private FilterModel filters;
+
 	
 	public static StoreWrapper buildModel (Integer currentPage, Integer countOfPages, Integer countOdProductsOnPage, List<ProductModel> products, FilterModel filters) {
 		StoreWrapper model = new StoreWrapper();
@@ -28,16 +29,16 @@ public class StoreWrapper {
 		return countOfPages;
 	}
 	
+	public FilterModel getFilters () {
+		return filters;
+	}
+	
 	public Integer getCountOdProductsOnPage () {
 		return countOdProductsOnPage;
 	}
 	
 	public List<ProductModel> getProducts () {
 		return products;
-	}
-	
-	public FilterModel getFilters () {
-		return filters;
 	}
 	
 	public Integer getCurrentpage () {
