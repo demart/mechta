@@ -10,4 +10,7 @@
 
 @interface FilterGroupTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *filterGroupTitle;
+@property (weak, nonatomic) IBOutlet UIImageView *filterAppliedImageView;
+
 @end

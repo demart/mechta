@@ -99,12 +99,13 @@
                         <barButtonItem key="rightBarButtonItem" title="Фильтр" id="ReK-Es-jRB">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                             <connections>
-                                <segue destination="43k-yd-6sY" kind="presentation" identifier="showFiltersSergue" id="5NH-2C-Vi8"/>
+                                <action selector="showFilterAction:" destination="d6V-4g-ttS" id="GQo-9f-zof"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
                         <segue destination="pcF-DS-UmP" kind="show" identifier="showProductDetailSergue" id="8uZ-xv-cBK"/>
+                        <segue destination="43k-yd-6sY" kind="presentation" identifier="showFiltersSergue" id="0qO-Gd-jnT"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G5P-Xp-FGS" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -146,10 +147,48 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <connections>
+                        <segue destination="JbT-hd-Cof" kind="show" identifier="showFilterOptionsSegue" id="hYm-pi-y9f"/>
+                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="rjC-zG-Mjk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3939" y="-739"/>
+            <point key="canvasLocation" x="3973" y="-739"/>
+        </scene>
+        <!--Фильтр-->
+        <scene sceneID="iHY-Qg-fQP">
+            <objects>
+                <tableViewController id="JbT-hd-Cof" customClass="FilterOptionsTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="uQQ-os-xa9">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="t9f-p7-1ZR">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="t9f-p7-1ZR" id="l8c-aG-E75">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="JbT-hd-Cof" id="dgz-fB-bDW"/>
+                            <outlet property="delegate" destination="JbT-hd-Cof" id="OMx-h5-tLz"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Фильтр" id="79V-Pi-97h">
+                        <barButtonItem key="rightBarButtonItem" title="Готово" id="dWN-qN-ixd">
+                            <connections>
+                                <action selector="applyFilterOptions:" destination="JbT-hd-Cof" id="j1u-Gx-Y69"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5EB-04-3GZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="4752" y="-739"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Sd-OX-Foq">

@@ -14,6 +14,7 @@
 #import "DejalActivityView.h"
 #import "LocalStorageService.h"
 #import "ProductDetailTableViewController.h"
+#import "FilterTableViewController.h"
 
 @interface ProductsTableViewController ()
 
@@ -25,7 +26,7 @@
 @property NSMutableDictionary *loadImageOperations;
 @property NSOperationQueue *loadImageOperationQueue;
 
-@property NSMutableArray *appliedFilters;
+@property FiltersModel *filters;
 
 @end
 
@@ -66,6 +67,14 @@ static long PAGE_LIMIT = 10;
     self.page +=1;
 }
 
+- (IBAction)showFilterAction:(UIBarButtonItem *)sender {
+    if (self.filters != nil) {
+        [self performSegueWithIdentifier:@"showFiltersSergue" sender:self];
+    } else {
+        // TODO SHOW MESSAGE EMPTY FILTERS -> IMPOSSIBLE
+    }
+}
+
 -(void) loadProducts {
     CityModel *cityModel = [CityService getSelectedCityModel];
     
@@ -84,6 +93,12 @@ static long PAGE_LIMIT = 10;
                  self.hasMoreRecords = NO;
              }
          }
+         
+         // Если есть фильтры
+         if (response.filters != nil) {
+             self.filters = response.filters;
+         }
+         
          [self.tableView reloadData];
      }
      
@@ -244,6 +259,12 @@ static long PAGE_LIMIT = 10;
         NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
         ProductModel *model = self.products[indexPath.row];
         [viewController setProductModel:model];
+    }
+    
+    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navController = (UINavigationController*)segue.destinationViewController;
+        FilterTableViewController *viewController = (FilterTableViewController*)[navController topViewController];
+        [viewController setFilterParameters:self.filters forViewController:self];
     }
     
 }

@@ -10,4 +10,7 @@
 
 @interface FilterOptionTableViewCell : UITableViewCell
 
+@property (weak, nonatomic) IBOutlet UILabel *filterOptionLabel;
+@property (weak, nonatomic) IBOutlet UIImageView *filterMarkImageView;
+
 @end

@@ -11,5 +11,6 @@
 @interface ProductsTableViewController : UITableViewController
 
 - (void) setProductsCategory:(long)categoryId;
+- (IBAction)showFilterAction:(UIBarButtonItem *)sender;
 
 @end
