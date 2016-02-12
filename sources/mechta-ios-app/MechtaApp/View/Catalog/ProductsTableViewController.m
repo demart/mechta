@@ -25,6 +25,8 @@
 @property NSMutableDictionary *loadImageOperations;
 @property NSOperationQueue *loadImageOperationQueue;
 
+@property NSMutableArray *appliedFilters;
+
 @end
 
 @implementation ProductsTableViewController

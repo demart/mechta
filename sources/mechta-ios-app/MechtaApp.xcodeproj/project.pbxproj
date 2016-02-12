@@ -71,6 +71,16 @@
 		8DD5AC8B1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DD5AC891C6CB9570021AFDA /* ShopDetailMiniTableViewCell.m */; };
 		8DD5AC8C1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DD5AC8A1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.xib */; };
 		8DD5AC8E1C6D018F0021AFDA /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8DD5AC8D1C6D018F0021AFDA /* MapKit.framework */; };
+		8DF3C1AA1C6E1B1A00391E9F /* FilterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF3C1A91C6E1B1A00391E9F /* FilterTableViewController.m */; };
+		8DF3C1AD1C6E247000391E9F /* FiltersModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF3C1AC1C6E247000391E9F /* FiltersModel.m */; };
+		8DF3C1B01C6E250600391E9F /* FilterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF3C1AF1C6E250600391E9F /* FilterModel.m */; };
+		8DF3C1B31C6E254200391E9F /* FilterOptionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF3C1B21C6E254200391E9F /* FilterOptionModel.m */; };
+		8DF3C1BA1C6E4D2000391E9F /* FilterPriceTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF3C1B81C6E4D2000391E9F /* FilterPriceTableViewCell.m */; };
+		8DF3C1BB1C6E4D2000391E9F /* FilterPriceTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF3C1B91C6E4D2000391E9F /* FilterPriceTableViewCell.xib */; };
+		8DF3C1BF1C6E4F7C00391E9F /* FilterGroupTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF3C1BD1C6E4F7C00391E9F /* FilterGroupTableViewCell.m */; };
+		8DF3C1C01C6E4F7C00391E9F /* FilterGroupTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF3C1BE1C6E4F7C00391E9F /* FilterGroupTableViewCell.xib */; };
+		8DF3C1C41C6E504700391E9F /* FilterOptionTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DF3C1C21C6E504700391E9F /* FilterOptionTableViewCell.m */; };
+		8DF3C1C51C6E504700391E9F /* FilterOptionTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DF3C1C31C6E504700391E9F /* FilterOptionTableViewCell.xib */; };
 		93B00D9D4268ECF79206F6F9 /* libPods-MechtaApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 99497EC30B72DFC69B7460C0 /* libPods-MechtaApp.a */; };
 /* End PBXBuildFile section */
 
@@ -185,6 +195,23 @@
 		8DD5AC891C6CB9570021AFDA /* ShopDetailMiniTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ShopDetailMiniTableViewCell.m; path = View/Shop/Cell/ShopDetailMiniTableViewCell.m; sourceTree = "<group>"; };
 		8DD5AC8A1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ShopDetailMiniTableViewCell.xib; path = View/Shop/Cell/ShopDetailMiniTableViewCell.xib; sourceTree = "<group>"; };
 		8DD5AC8D1C6D018F0021AFDA /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		8DF3C1A81C6E1B1A00391E9F /* FilterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterTableViewController.h; path = View/Catalog/FilterTableViewController.h; sourceTree = "<group>"; };
+		8DF3C1A91C6E1B1A00391E9F /* FilterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterTableViewController.m; path = View/Catalog/FilterTableViewController.m; sourceTree = "<group>"; };
+		8DF3C1AB1C6E247000391E9F /* FiltersModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FiltersModel.h; path = Data/Models/FiltersModel.h; sourceTree = "<group>"; };
+		8DF3C1AC1C6E247000391E9F /* FiltersModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FiltersModel.m; path = Data/Models/FiltersModel.m; sourceTree = "<group>"; };
+		8DF3C1AE1C6E250600391E9F /* FilterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterModel.h; path = Data/Models/FilterModel.h; sourceTree = "<group>"; };
+		8DF3C1AF1C6E250600391E9F /* FilterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterModel.m; path = Data/Models/FilterModel.m; sourceTree = "<group>"; };
+		8DF3C1B11C6E254200391E9F /* FilterOptionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterOptionModel.h; path = Data/Models/FilterOptionModel.h; sourceTree = "<group>"; };
+		8DF3C1B21C6E254200391E9F /* FilterOptionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterOptionModel.m; path = Data/Models/FilterOptionModel.m; sourceTree = "<group>"; };
+		8DF3C1B71C6E4D2000391E9F /* FilterPriceTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterPriceTableViewCell.h; path = View/Catalog/Cell/FilterPriceTableViewCell.h; sourceTree = "<group>"; };
+		8DF3C1B81C6E4D2000391E9F /* FilterPriceTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterPriceTableViewCell.m; path = View/Catalog/Cell/FilterPriceTableViewCell.m; sourceTree = "<group>"; };
+		8DF3C1B91C6E4D2000391E9F /* FilterPriceTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterPriceTableViewCell.xib; path = View/Catalog/Cell/FilterPriceTableViewCell.xib; sourceTree = "<group>"; };
+		8DF3C1BC1C6E4F7C00391E9F /* FilterGroupTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterGroupTableViewCell.h; path = View/Catalog/Cell/FilterGroupTableViewCell.h; sourceTree = "<group>"; };
+		8DF3C1BD1C6E4F7C00391E9F /* FilterGroupTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterGroupTableViewCell.m; path = View/Catalog/Cell/FilterGroupTableViewCell.m; sourceTree = "<group>"; };
+		8DF3C1BE1C6E4F7C00391E9F /* FilterGroupTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterGroupTableViewCell.xib; path = View/Catalog/Cell/FilterGroupTableViewCell.xib; sourceTree = "<group>"; };
+		8DF3C1C11C6E504700391E9F /* FilterOptionTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterOptionTableViewCell.h; path = View/Catalog/Cell/FilterOptionTableViewCell.h; sourceTree = "<group>"; };
+		8DF3C1C21C6E504700391E9F /* FilterOptionTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterOptionTableViewCell.m; path = View/Catalog/Cell/FilterOptionTableViewCell.m; sourceTree = "<group>"; };
+		8DF3C1C31C6E504700391E9F /* FilterOptionTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterOptionTableViewCell.xib; path = View/Catalog/Cell/FilterOptionTableViewCell.xib; sourceTree = "<group>"; };
 		99497EC30B72DFC69B7460C0 /* libPods-MechtaApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-MechtaApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CC70FC5DCE47CE5C61F142BA /* Pods-MechtaApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MechtaApp.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MechtaApp/Pods-MechtaApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -307,6 +334,7 @@
 		8D29C3E31C64B2E100E7EFCD /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				8DF3C1B41C6E257D00391E9F /* Filters */,
 				8D29C3E01C64B2DC00E7EFCD /* CityModel.h */,
 				8D29C3E11C64B2DC00E7EFCD /* CityModel.m */,
 				8D29C3E41C64BA2600E7EFCD /* CategoryModel.h */,
@@ -376,12 +404,12 @@
 		8D879AB91C64916F00D802F4 /* View */ = {
 			isa = PBXGroup;
 			children = (
-				8DD5AC701C6B53C90021AFDA /* Shop */,
 				8D48501E1C68AFF000A07CF0 /* Components */,
 				8DB078721C6874E900C07F69 /* Extra */,
 				8DB078711C6874E400C07F69 /* Profile */,
 				8DB078701C6874DA00C07F69 /* Basket */,
 				8D879ABA1C64917A00D802F4 /* Catalog */,
+				8DD5AC701C6B53C90021AFDA /* Shop */,
 			);
 			name = View;
 			sourceTree = "<group>";
@@ -398,6 +426,8 @@
 				8D29C3E81C64BEE000E7EFCD /* ProductsTableViewController.m */,
 				8D29C3FE1C64CD4100E7EFCD /* ProductDetailTableViewController.h */,
 				8D29C3FF1C64CD4100E7EFCD /* ProductDetailTableViewController.m */,
+				8DF3C1A81C6E1B1A00391E9F /* FilterTableViewController.h */,
+				8DF3C1A91C6E1B1A00391E9F /* FilterTableViewController.m */,
 			);
 			name = Catalog;
 			sourceTree = "<group>";
@@ -405,19 +435,9 @@
 		8D879AC11C64942500D802F4 /* Cell */ = {
 			isa = PBXGroup;
 			children = (
+				8DF3C1B61C6E46DE00391E9F /* Catalog */,
+				8DF3C1B51C6E42EE00391E9F /* Filter */,
 				8D4DBA111C69EBDD002E26B4 /* ProductDetail */,
-				8D29C3C71C6494A400E7EFCD /* CatalogTableViewCell.h */,
-				8D29C3C81C6494A400E7EFCD /* CatalogTableViewCell.m */,
-				8D29C3C91C6494A400E7EFCD /* CatalogTableViewCell.xib */,
-				8D29C3D41C64A6B800E7EFCD /* CityTableViewCell.h */,
-				8D29C3D51C64A6B800E7EFCD /* CityTableViewCell.m */,
-				8D29C3D61C64A6B800E7EFCD /* CityTableViewCell.xib */,
-				8D29C3F91C64C4ED00E7EFCD /* ProductTableViewCell.h */,
-				8D29C3FA1C64C4ED00E7EFCD /* ProductTableViewCell.m */,
-				8D29C3FB1C64C4ED00E7EFCD /* ProductTableViewCell.xib */,
-				8DC7E1FB1C69194F00E6E416 /* LoadMoreTableViewCell.h */,
-				8DC7E1FC1C69194F00E6E416 /* LoadMoreTableViewCell.m */,
-				8DC7E1FD1C69194F00E6E416 /* LoadMoreTableViewCell.xib */,
 			);
 			name = Cell;
 			sourceTree = "<group>";
@@ -487,6 +507,54 @@
 				8DD5AC8A1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.xib */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		8DF3C1B41C6E257D00391E9F /* Filters */ = {
+			isa = PBXGroup;
+			children = (
+				8DF3C1AB1C6E247000391E9F /* FiltersModel.h */,
+				8DF3C1AC1C6E247000391E9F /* FiltersModel.m */,
+				8DF3C1AE1C6E250600391E9F /* FilterModel.h */,
+				8DF3C1AF1C6E250600391E9F /* FilterModel.m */,
+				8DF3C1B11C6E254200391E9F /* FilterOptionModel.h */,
+				8DF3C1B21C6E254200391E9F /* FilterOptionModel.m */,
+			);
+			name = Filters;
+			sourceTree = "<group>";
+		};
+		8DF3C1B51C6E42EE00391E9F /* Filter */ = {
+			isa = PBXGroup;
+			children = (
+				8DF3C1B71C6E4D2000391E9F /* FilterPriceTableViewCell.h */,
+				8DF3C1B81C6E4D2000391E9F /* FilterPriceTableViewCell.m */,
+				8DF3C1B91C6E4D2000391E9F /* FilterPriceTableViewCell.xib */,
+				8DF3C1BC1C6E4F7C00391E9F /* FilterGroupTableViewCell.h */,
+				8DF3C1BD1C6E4F7C00391E9F /* FilterGroupTableViewCell.m */,
+				8DF3C1BE1C6E4F7C00391E9F /* FilterGroupTableViewCell.xib */,
+				8DF3C1C11C6E504700391E9F /* FilterOptionTableViewCell.h */,
+				8DF3C1C21C6E504700391E9F /* FilterOptionTableViewCell.m */,
+				8DF3C1C31C6E504700391E9F /* FilterOptionTableViewCell.xib */,
+			);
+			name = Filter;
+			sourceTree = "<group>";
+		};
+		8DF3C1B61C6E46DE00391E9F /* Catalog */ = {
+			isa = PBXGroup;
+			children = (
+				8D29C3C71C6494A400E7EFCD /* CatalogTableViewCell.h */,
+				8D29C3C81C6494A400E7EFCD /* CatalogTableViewCell.m */,
+				8D29C3C91C6494A400E7EFCD /* CatalogTableViewCell.xib */,
+				8D29C3D41C64A6B800E7EFCD /* CityTableViewCell.h */,
+				8D29C3D51C64A6B800E7EFCD /* CityTableViewCell.m */,
+				8D29C3D61C64A6B800E7EFCD /* CityTableViewCell.xib */,
+				8D29C3F91C64C4ED00E7EFCD /* ProductTableViewCell.h */,
+				8D29C3FA1C64C4ED00E7EFCD /* ProductTableViewCell.m */,
+				8D29C3FB1C64C4ED00E7EFCD /* ProductTableViewCell.xib */,
+				8DC7E1FB1C69194F00E6E416 /* LoadMoreTableViewCell.h */,
+				8DC7E1FC1C69194F00E6E416 /* LoadMoreTableViewCell.m */,
+				8DC7E1FD1C69194F00E6E416 /* LoadMoreTableViewCell.xib */,
+			);
+			name = Catalog;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -563,13 +631,16 @@
 				8DC7E1FF1C69194F00E6E416 /* LoadMoreTableViewCell.xib in Resources */,
 				8DB0787B1C68761000C07F69 /* ExtraHeaderTableViewCell.xib in Resources */,
 				8D29C3D81C64A6B800E7EFCD /* CityTableViewCell.xib in Resources */,
+				8DF3C1C01C6E4F7C00391E9F /* FilterGroupTableViewCell.xib in Resources */,
 				8DC7E2041C692FE800E6E416 /* ProductImageTableViewCell.xib in Resources */,
 				8D4DBA251C6A1473002E26B4 /* ProductCharacteristicTableViewCell.xib in Resources */,
+				8DF3C1BB1C6E4D2000391E9F /* FilterPriceTableViewCell.xib in Resources */,
 				8DB078801C6876A700C07F69 /* ExtraMenuItemTableViewCell.xib in Resources */,
 				8DD5AC8C1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.xib in Resources */,
 				8D4DBA1B1C6A1212002E26B4 /* ProductDescriptionTableViewCell.xib in Resources */,
 				8D4DBA161C6A0B91002E26B4 /* ProductAvailableTableViewCell.xib in Resources */,
 				8D29C3FD1C64C4ED00E7EFCD /* ProductTableViewCell.xib in Resources */,
+				8DF3C1C51C6E504700391E9F /* FilterOptionTableViewCell.xib in Resources */,
 				8D4DBA201C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.xib in Resources */,
 				8D16EE4B1C6480130009FD47 /* LaunchScreen.storyboard in Resources */,
 				8D7F3FB31C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib in Resources */,
@@ -628,6 +699,7 @@
 				8D29C3EF1C64C01700E7EFCD /* ShopModel.m in Sources */,
 				8D16EE431C6480130009FD47 /* ViewController.m in Sources */,
 				8D4DBA1F1C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.m in Sources */,
+				8DF3C1AA1C6E1B1A00391E9F /* FilterTableViewController.m in Sources */,
 				8D29C3E61C64BA2600E7EFCD /* CategoryModel.m in Sources */,
 				8D77CA0B1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m in Sources */,
 				8D7F3FB21C69DA6A008E00D4 /* ProductSwitcherTableViewCell.m in Sources */,
@@ -635,7 +707,9 @@
 				8D4850221C68B00000A07CF0 /* DejalActivityView.m in Sources */,
 				8D29C4001C64CD4100E7EFCD /* ProductDetailTableViewController.m in Sources */,
 				8D16EE401C6480130009FD47 /* AppDelegate.m in Sources */,
+				8DF3C1B01C6E250600391E9F /* FilterModel.m in Sources */,
 				8D29C3D71C64A6B800E7EFCD /* CityTableViewCell.m in Sources */,
+				8DF3C1AD1C6E247000391E9F /* FiltersModel.m in Sources */,
 				8D29C3D31C649EF900E7EFCD /* Constants.m in Sources */,
 				8D48501A1C689F0400A07CF0 /* UrlHelper.m in Sources */,
 				8D77CA081C688B9E00DA2C26 /* ResponseWrapperModel.m in Sources */,
@@ -645,10 +719,13 @@
 				8DD5AC811C6B873A0021AFDA /* ShopCityTableViewCell.m in Sources */,
 				8D29C3E21C64B2DC00E7EFCD /* CityModel.m in Sources */,
 				8DC7E1FE1C69194F00E6E416 /* LoadMoreTableViewCell.m in Sources */,
+				8DF3C1BA1C6E4D2000391E9F /* FilterPriceTableViewCell.m in Sources */,
 				8D29C3E91C64BEE000E7EFCD /* ProductsTableViewController.m in Sources */,
 				8D29C3DB1C64A84400E7EFCD /* CityService.m in Sources */,
+				8DF3C1BF1C6E4F7C00391E9F /* FilterGroupTableViewCell.m in Sources */,
 				8DD5AC8B1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.m in Sources */,
 				8D4DBA1A1C6A1212002E26B4 /* ProductDescriptionTableViewCell.m in Sources */,
+				8DF3C1B31C6E254200391E9F /* FilterOptionModel.m in Sources */,
 				8D29C3CA1C6494A400E7EFCD /* CatalogTableViewCell.m in Sources */,
 				8DB078751C68751C00C07F69 /* ExtraTableViewController.m in Sources */,
 				8D4DBA241C6A1473002E26B4 /* ProductCharacteristicTableViewCell.m in Sources */,
@@ -657,6 +734,7 @@
 				8D29C3F21C64C10400E7EFCD /* ProductAvailableInShopModel.m in Sources */,
 				8D4DBA151C6A0B91002E26B4 /* ProductAvailableTableViewCell.m in Sources */,
 				8D29C3F51C64C1DE00E7EFCD /* ProductService.m in Sources */,
+				8DF3C1C41C6E504700391E9F /* FilterOptionTableViewCell.m in Sources */,
 				8DC7E2031C692FE800E6E416 /* ProductImageTableViewCell.m in Sources */,
 				8D879AC01C6491FD00D802F4 /* CatalogTableViewController.m in Sources */,
 				8D4DBA291C6A4BE7002E26B4 /* ProductBasketTableViewCell.m in Sources */,

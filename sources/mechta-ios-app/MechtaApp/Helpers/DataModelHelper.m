@@ -12,6 +12,34 @@
 
 
 + (RKObjectMapping*) getObjectMappingForResponseWrapperModelWithDataMapping:(RKObjectMapping*)dataModel {
+    RKObjectMapping* filterOptionModelMapping = [RKObjectMapping mappingForClass:[FilterOptionModel class]];
+    [filterOptionModelMapping addAttributeMappingsFromDictionary:@{
+                                                                   @"key": @"key",
+                                                                   @"value": @"value",
+                                                                   }];
+    
+    
+    RKObjectMapping* filterModelMapping = [RKObjectMapping mappingForClass:[FilterModel class]];
+    [filterModelMapping addAttributeMappingsFromDictionary:@{
+                                                             @"name": @"name",
+                                                             @"index": @"index",
+                                                             }];
+    
+    [filterModelMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"keyValue"
+                                                                                       toKeyPath:@"options"
+                                                                                     withMapping:filterOptionModelMapping]];
+    
+    RKObjectMapping* filtersModelMapping = [RKObjectMapping mappingForClass:[FiltersModel class]];
+    [filtersModelMapping addAttributeMappingsFromDictionary:@{
+                                                              @"costLeft": @"costLeft",
+                                                              @"costRight": @"costRight",
+                                                              }];
+    
+    [filtersModelMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"filters"
+                                                                                        toKeyPath:@"filters"
+                                                                                      withMapping:filterModelMapping]];
+    
+    
     RKObjectMapping* wrapperMapping = [RKObjectMapping mappingForClass:[ResponseWrapperModel class]];
     [wrapperMapping addAttributeMappingsFromDictionary:@{
                                                          @"success": @"success",
@@ -25,6 +53,12 @@
                                                                                   toKeyPath:@"data"
                                                                                 withMapping:dataModel]];
 
+    
+    [wrapperMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"filters"
+                                                                                   toKeyPath:@"filters"
+                                                                                 withMapping:filtersModelMapping]];
+    
+    
     return wrapperMapping;
 }
 

@@ -7,6 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "FiltersModel.h"
 
 @interface ResponseWrapperModel : NSObject
 
@@ -21,5 +22,8 @@
 @property int currentPage;
 
 @property int count;
+
+/* параметры фильтрации */
+@property FiltersModel *filters;
 
 @end

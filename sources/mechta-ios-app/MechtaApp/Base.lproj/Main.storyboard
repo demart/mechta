@@ -98,6 +98,9 @@
                     <navigationItem key="navigationItem" title="Товары" id="KXd-KT-Jvg">
                         <barButtonItem key="rightBarButtonItem" title="Фильтр" id="ReK-Es-jRB">
                             <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="43k-yd-6sY" kind="presentation" identifier="showFiltersSergue" id="5NH-2C-Vi8"/>
+                            </connections>
                         </barButtonItem>
                     </navigationItem>
                     <connections>
@@ -107,6 +110,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G5P-Xp-FGS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2377" y="47"/>
+        </scene>
+        <!--Фильтры-->
+        <scene sceneID="bli-2a-LPH">
+            <objects>
+                <tableViewController id="Wd3-9V-Vfb" customClass="FilterTableViewController" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7yl-qG-eFT">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Wkn-Yg-qfu">
+                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wkn-Yg-qfu" id="8d9-bo-nvx">
+                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Wd3-9V-Vfb" id="0uW-gF-KGa"/>
+                            <outlet property="delegate" destination="Wd3-9V-Vfb" id="nge-Ad-nCo"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" title="Фильтры" id="fja-JJ-XV6">
+                        <barButtonItem key="leftBarButtonItem" title="Отмена" id="TAs-zm-Xhl">
+                            <connections>
+                                <action selector="hideFiltersView:" destination="Wd3-9V-Vfb" id="rHc-Bq-uLi"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Готово" id="HVN-qR-4Mv">
+                            <connections>
+                                <action selector="applyFiltersAction:" destination="Wd3-9V-Vfb" id="Q6u-5v-kIM"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="rjC-zG-Mjk" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3939" y="-739"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="7Sd-OX-Foq">
+            <objects>
+                <navigationController id="43k-yd-6sY" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Itg-cG-wDr">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" red="0.92156862750000001" green="0.0" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Wd3-9V-Vfb" kind="relationship" relationship="rootViewController" id="uTP-yR-0ZW"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="W4j-T2-5aJ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3119" y="-739"/>
         </scene>
         <!--Товар-->
         <scene sceneID="TaX-e8-Ryo">
@@ -426,10 +486,10 @@
         <image name="mechta_draft_small_logo" width="32" height="32"/>
         <image name="mechta_extra_icon" width="32" height="32"/>
         <image name="mechta_profile_icon" width="32" height="32"/>
-        <image name="shopping_cart" width="25" height="25"/>
+        <image name="shopping_cart" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
         <segue reference="BWu-Sk-4dS"/>
-        <segue reference="evK-cP-1Yj"/>
+        <segue reference="mQj-Qj-NPl"/>
     </inferredMetricsTieBreakers>
 </document>
