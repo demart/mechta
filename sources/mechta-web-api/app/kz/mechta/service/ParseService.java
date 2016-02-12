@@ -173,12 +173,14 @@ public class ParseService {
 		 * @param codeCity
 		 * @throws IOException
 		 */
-		public static StoreWrapper parseProducts (Long numberOnSiteCategory, Long cityId, Integer page, Long typeOrder, String filter, String costLeft, String costRight) throws IOException {
+		public static StoreWrapper parseProducts (Long numberOnSiteCategory, Long cityId, Integer page, Long typeOrder, String filter, String costLeft, String costRight, Integer countOfFilters) throws IOException {
 			/*
 			 * Просмотр каталога для Астаны идет по ссылке mechta.kz, для этого реализован цикл IF
 			 * Для других городов mechta.kz/nameOnSiteCity/catalog/numberOnSiteCategory/?PAGEN_1=page
 			 */
-			
+			if (filter != null)
+				filter = ParseService.encodeString(filter, countOfFilters);
+			//System.out.println (filter);
 			Document doc = null;
 			//System.out.println ("Answer: " + StringUtils.isNotEmpty(nameOnSiteCity));
 			//System.out.println ("Answer: " + StringUtils.isEmpty(nameOnSiteCity));
@@ -189,8 +191,10 @@ public class ParseService {
 					if (filter == null) filter = "";
 					if (costLeft == null) costLeft = "";
 					if (costRight == null) costRight = "";
+					//System.out.println ("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
+					//+ "&arrFilter_pf%5BPROPERTIES%5D=&arrFilter_cf%5B2%5D%5BLEFT%5D=" + costLeft + "&arrFilter_cf%5B2%5D%5BRIGHT%5D=" + costRight +"&arrFilter_pf%5BARFP%5D=" + filter + "&set_filter=Фильтр&set_filter=Y");
 					Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
-					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight +"&arrFilter_pf[ARFP]=" + filter + "&set_filter=Фильтр&set_filter=Y");
+					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight +"&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y");
 					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 					doc = connection.get();		
 				}
@@ -205,7 +209,7 @@ public class ParseService {
 					if (costLeft == null) costLeft = "";
 					if (costRight == null) costRight = "";
 					Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
-					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight +"&arrFilter_pf[ARFP]=" + filter + "&set_filter=Фильтр&set_filter=Y");
+					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight +"&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y");
 					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 					doc = connection.get();
 				}
@@ -226,7 +230,7 @@ public class ParseService {
 					if (costLeft == null) costLeft = "";
 					if (costRight == null) costRight = "";
 					Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
-					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight + "&arrFilter_pf[ARFP]=" + filter + "&set_filter=Фильтр&set_filter=Y");
+					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight + "&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y");
 					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 					doc2 = connection.get();
 				}
@@ -241,7 +245,7 @@ public class ParseService {
 					if (costLeft == null) costLeft = "";
 					if (costRight == null) costRight = "";
 					Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
-					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight + "&arrFilter_pf[ARFP]=" + filter + "&set_filter=Фильтр&set_filter=Y");
+					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight + "&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y");
 					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 					doc2 = connection.get();		
 				}
@@ -549,13 +553,13 @@ public class ParseService {
 		public static FilterModel parseFilter (Document doc, String url) throws IOException {
 			
 			
-			System.out.println ("Size: "  + doc.select("span.h3title").size());
+			//System.out.println ("Size: "  + doc.select("span.h3title").size());
 			
 			Elements titles = doc.select("span.h3title");
 			Elements propertyFilters = doc.select("ul.property_filter");
 			
-			System.out.println ("Size of titles: " + titles.size());
-			System.out.println ("Size of property filters: " + propertyFilters.size());
+			//System.out.println ("Size of titles: " + titles.size());
+			//System.out.println ("Size of property filters: " + propertyFilters.size());
 			
 			Integer count = 0;
 			ArrayList<ManyFiltersModel> models = new ArrayList<ManyFiltersModel> ();
@@ -564,12 +568,12 @@ public class ParseService {
 				else if (titles.get(i).text().equals("Группы")) {count++;}
 				
 				else {
-					System.out.println ("Name of filter: " + titles.get(i).text());
-					System.out.println ("Size of brand titles: " + propertyFilters.get(i-count).select("li.brandtitle_new").size());
+				//	System.out.println ("Name of filter: " + titles.get(i).text());
+				//	System.out.println ("Size of brand titles: " + propertyFilters.get(i-count).select("li.brandtitle_new").size());
 					Elements brands = propertyFilters.get(i-count).select("li.brandtitle_new");
 					ArrayList<KeyValueFilterModel> keyValue = new ArrayList<KeyValueFilterModel> ();
 					for (Element element: brands) {
-						System.out.println ("Key: " + element.select("a[href]").get(0).attr("abs:rel").substring(url.length()) + " Value: " + element.select("a[href]").get(0).text());
+					//	System.out.println ("Key: " + element.select("a[href]").get(0).attr("abs:rel").substring(url.length()) + " Value: " + element.select("a[href]").get(0).text());
 						KeyValueFilterModel mod = KeyValueFilterModel.buildModel(element.select("a[href]").get(0).attr("abs:rel").substring(url.length()),
 								element.select("a[href]").get(0).text());
 						keyValue.add(mod);
@@ -579,6 +583,7 @@ public class ParseService {
 						ManyFiltersModel oneModel = ManyFiltersModel.buildModel(titles.get(i).text(), i-count,
 								keyValue);
 						models.add(oneModel);
+		
 					}
 				}
 				
@@ -587,6 +592,56 @@ public class ParseService {
 			FilterModel finishModel = FilterModel.buildModel(doc.getElementsByClass("hid_price1").val(), doc.getElementsByClass("hid_price2").val(), models);
 			return finishModel;
 
+		}
+		
+		public static String encodeString (String str, Integer countOfFilters) {
+			String finishString = "%28";
+			Integer startPosition = 0;
+			Integer lastPosition = 0;
+			Integer lastCheck = -1;
+			while (lastPosition <= str.length()) {
+				lastPosition = str.indexOf(";");
+				String tmp = str.substring (startPosition, lastPosition);
+				str = str.substring (lastPosition + 1, str.length());
+				//System.out.println (Integer.parseInt(tmp.substring(startPosition, tmp.indexOf(":"))));
+				Integer check = Integer.parseInt(tmp.substring(startPosition, tmp.indexOf(":")));
+				if (lastCheck == -1) {
+					//System.out.println ("Last check: -1; Check: " + check);
+					if (check > 0) {
+						for (int i = 0; i < check; i++) {
+							finishString = finishString +  "%29+%26%26+%28";
+							//System.out.println ("For i: " + i);
+						}
+						finishString = finishString + tmp.substring(tmp.indexOf(":") + 1, tmp.length());
+						lastCheck = check;
+					}
+					else {
+						finishString = finishString + tmp.substring(tmp.indexOf(":") + 1, tmp.length());
+						lastCheck = check;
+					}
+					
+				}
+				else {
+					if (lastCheck == check) {
+						finishString = finishString + "|" + tmp.substring(tmp.indexOf(":") + 1, tmp.length());
+					}
+					else {
+						for (int i = lastCheck + 1; i < check; i++)
+						finishString = finishString + "%29+%26%26+%28";
+						finishString = finishString + "%29+%26%26+%28" + tmp.substring(tmp.indexOf(":") + 1, tmp.length());
+						lastCheck=check;
+					}
+						
+				}
+			}
+						finishString = finishString + "%29";
+						
+						for (int i = lastCheck+1; i < countOfFilters; i++)
+							finishString = finishString + "%26%26+%28%29";
+						
+						//System.out.println (finishString);
+			
+			return finishString;
 		}
 		
 		/*
