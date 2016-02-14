@@ -101,7 +101,9 @@ public class ParseController extends Controller {
 		renderJSON(wrapper);
 	}
 	
-	
+	/**
+	 * получение всех сортировок
+	 */
 	public static void readOrders () {
     	ResponseWrapper wrapper = new ResponseWrapper();
     	List<OrderProduct> orders = CategoryService.getOrder();
@@ -113,6 +115,9 @@ public class ParseController extends Controller {
     	renderJSON(wrapper);
 	}
 	
+	/**
+	 * список всех магазинов
+	 */
 	public static void readStores () {
 		ResponseWrapper wrapper = new ResponseWrapper();
 		List<City> stores = CityService.getCities();
@@ -125,6 +130,13 @@ public class ParseController extends Controller {
     	renderJSON(wrapper);
 	}
 	
+	/**
+	 * поиск продукта
+	 * @param text
+	 * @param cityId
+	 * @param page
+	 * @throws IOException
+	 */
 	public static void searchProduct (String text, Long cityId, Integer page) throws IOException {
 		ResponseWrapper wrapper = new ResponseWrapper();
 		StoreWrapper model = ParseService.searchProduct(text, cityId, page);
@@ -136,6 +148,24 @@ public class ParseController extends Controller {
 			wrapper.data = model.getProducts().toArray();
 		renderJSON(wrapper);
 		
+	}
+	
+	/**
+	 * парсинг новостей
+	 * @param cityId
+	 * @param page
+	 * @throws IOException
+	 */
+	public static void parseNews (Long cityId, Integer page) throws IOException {
+		ResponseWrapper wrapper = new ResponseWrapper();
+		StoreWrapper model = ParseService.searchNews(cityId, page);
+		wrapper.success = true;
+		wrapper.countOfPages = model.getCountOfPages();
+		wrapper.countOfNews = model.getCountOdProductsOnPage();
+		wrapper.currentPage = model.getCurrentpage();
+		if (model.getNews() != null)
+			wrapper.data = model.getNews().toArray();
+		renderJSON(wrapper);
 	}
 	
 }

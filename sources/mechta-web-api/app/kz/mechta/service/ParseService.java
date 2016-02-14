@@ -21,6 +21,7 @@ import kz.mechta.models.ImageModel;
 import kz.mechta.models.KeyValueCharacteristicsProductsModel;
 import kz.mechta.models.KeyValueFilterModel;
 import kz.mechta.models.ManyFiltersModel;
+import kz.mechta.models.NewsModel;
 import kz.mechta.models.ProductModel;
 import kz.mechta.models.ResponseWrapper;
 import kz.mechta.models.StoreModel;
@@ -545,6 +546,13 @@ public class ParseService {
 					setParameter("text", "%" + text + "%").getResultList();
 		}
 		
+		/**
+		 * Парсинг фильтров каталога. Выполняется только один раз, при первой загрузке каталога.
+		 * @param doc
+		 * @param url
+		 * @return
+		 * @throws IOException
+		 */
 		public static FilterModel parseFilter (Document doc, String url) throws IOException {
 			
 			
@@ -589,6 +597,12 @@ public class ParseService {
 
 		}
 		
+		/**
+		 * Функция для кодирования url
+		 * @param str
+		 * @param countOfFilters
+		 * @return
+		 */
 		public static String encodeString (String str, Integer countOfFilters) {
 			String finishString = "%28";
 			Integer startPosition = 0;
@@ -639,6 +653,14 @@ public class ParseService {
 			return finishString;
 		}
 
+		/**
+		 * Поиск товара на сайте
+		 * @param text
+		 * @param cityId
+		 * @param page
+		 * @return
+		 * @throws IOException
+		 */
 		public static StoreWrapper searchProduct(String text, Long cityId, Integer page) throws IOException {
 			Document doc = null;
 			String url = null;
@@ -731,6 +753,86 @@ public class ParseService {
 					(doc.select("div.search-page").select("a[href]").size() - doc.select("div.search-page > div.modern-page-navigation").select("a[href]").size() - 
 							doc.select("div.search-page > div.m4_fleft").size() - 1 - count)
 					, models, null);
+			return model;
+		}
+
+		/**
+		 * Парсинг новостей на сайте
+		 * @param cityId
+		 * @param page
+		 * @return
+		 * @throws IOException
+		 */
+		public static StoreWrapper searchNews(Long cityId, Integer page) throws IOException {
+			Document doc = null;
+			City city = City.findById(cityId);
+			String url = null;
+			if (StringUtils.isEmpty(city.getNameOnSite())) {
+					url = "http://www.mechta.kz/company/news/";
+					Connection connection = Jsoup.connect("http://www.mechta.kz/company/news/?PAGEN_1=" + page);
+					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+					doc = connection.get();
+				}
+			
+			else {
+				url = "http://www.mechta.kz/" + city.getNameOnSite() + "/company/news/";
+				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/company/news/?PAGEN_1=" + page);
+				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+				doc = connection.get();
+			}
+			
+			Document doc2 = null;
+			if (StringUtils.isNotEmpty(city.getNameOnSite())) {
+				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/company/news/?PAGEN_1=1");
+				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+				doc2 = connection.get();
+				}
+			
+			else {
+				Connection connection = Jsoup.connect("http://www.mechta.kz/company/news/?PAGEN_1=1");
+				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+				doc2 = connection.get();
+			}
+			
+		//	System.out.println ("News List: " + doc2.select("div.news-list"));
+			
+			Elements pages = doc2.select("div.modern-page-navigation");
+			Integer countOfPages = null;
+			
+			if (pages.select("a[href]").size() == 0)
+				countOfPages = 1;
+			else if (pages.select("a[href]").size() > 1)
+				countOfPages = Integer.parseInt(pages.select("a[href]").get(pages.select("a[href]").size() - 3).text());
+
+			Elements news = doc.select("p.news-item");
+			
+			ArrayList<NewsModel> models = new ArrayList<NewsModel>();
+			
+			for (Element element : news) {
+				String name = null;
+				String imageUrl = null;
+				String description = null;
+				String date = null;
+				String number = null;
+				
+				date = element.select("span.news-date-all").first().text();
+				description = element.text().substring(date.length() + 1);
+				number = element.select("a[href]").first().attr("abs:href").substring(url.length(), 
+						element.select("a[href]").first().attr("abs:href").length() - 1);
+				if (element.select("img[src]").first() != null) {
+					imageUrl = element.select("img[src]").first().attr("abs:src");
+					name = element.select("a[href]").get(element.select("a[href]").size() - 1).text();
+				}
+				
+				else 
+					name = element.select("a[href]").get(0).text();
+				NewsModel mod = NewsModel.buildModel(Long.parseLong(number), name, imageUrl, date, description);
+				models.add(mod);
+			}
+			
+			StoreWrapper model = StoreWrapper.buildNewsModel(page, countOfPages, news.size(), models);
+			
+			
 			return model;
 		}
 		
