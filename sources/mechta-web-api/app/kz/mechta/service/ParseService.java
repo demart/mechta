@@ -763,33 +763,40 @@ public class ParseService {
 		 * @return
 		 * @throws IOException
 		 */
-		public static StoreWrapper searchNews(Long cityId, Integer page) throws IOException {
+		public static StoreWrapper searchNews(Long cityId, Integer page, Integer type) throws IOException {
 			Document doc = null;
 			City city = City.findById(cityId);
 			String url = null;
+			String typeName = null;
+			if (type == 1) 
+				typeName = "news";
+		
+			else 
+				typeName = "actions";
+			
 			if (StringUtils.isEmpty(city.getNameOnSite())) {
-					url = "http://www.mechta.kz/company/news/";
-					Connection connection = Jsoup.connect("http://www.mechta.kz/company/news/?PAGEN_1=" + page);
+					url = "http://www.mechta.kz/company/" + typeName + "/";
+					Connection connection = Jsoup.connect("http://www.mechta.kz/company/" + typeName + "/?PAGEN_1=" + page);
 					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 					doc = connection.get();
 				}
 			
 			else {
-				url = "http://www.mechta.kz/" + city.getNameOnSite() + "/company/news/";
-				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/company/news/?PAGEN_1=" + page);
+				url = "http://www.mechta.kz/" + city.getNameOnSite() + "/company/" + typeName + "/";
+				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/company/" + typeName + "/?PAGEN_1=" + page);
 				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 				doc = connection.get();
 			}
 			
 			Document doc2 = null;
 			if (StringUtils.isNotEmpty(city.getNameOnSite())) {
-				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/company/news/?PAGEN_1=1");
+				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/company/" + typeName + "/?PAGEN_1=1");
 				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 				doc2 = connection.get();
 				}
 			
 			else {
-				Connection connection = Jsoup.connect("http://www.mechta.kz/company/news/?PAGEN_1=1");
+				Connection connection = Jsoup.connect("http://www.mechta.kz/company/" + typeName + "/?PAGEN_1=1");
 				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 				doc2 = connection.get();
 			}
@@ -798,8 +805,8 @@ public class ParseService {
 			
 			Elements pages = doc2.select("div.modern-page-navigation");
 			Integer countOfPages = null;
-			
-			if (pages.select("a[href]").size() == 0)
+			//System.out.println(pages.select("a[href]"));
+			if (pages.select("a[href]").size() == 0 || pages.select("a[href]").size() == 1)
 				countOfPages = 1;
 			else if (pages.select("a[href]").size() > 1)
 				countOfPages = Integer.parseInt(pages.select("a[href]").get(pages.select("a[href]").size() - 3).text());
@@ -815,8 +822,14 @@ public class ParseService {
 				String date = null;
 				String number = null;
 				
-				date = element.select("span.news-date-all").first().text();
-				description = element.text().substring(date.length() + 1);
+				if (type == 1) {
+					date = element.select("span.news-date-all").first().text();
+					description = element.text().substring(date.length() + 1);
+				}
+				
+				else {
+					description = element.text();					
+				}
 				number = element.select("a[href]").first().attr("abs:href").substring(url.length(), 
 						element.select("a[href]").first().attr("abs:href").length() - 1);
 				if (element.select("img[src]").first() != null) {
@@ -826,7 +839,7 @@ public class ParseService {
 				
 				else 
 					name = element.select("a[href]").get(0).text();
-				NewsModel mod = NewsModel.buildModel(Long.parseLong(number), name, imageUrl, date, description);
+				NewsModel mod = NewsModel.buildModel(Long.parseLong(number), name, imageUrl, date, description, typeName);
 				models.add(mod);
 			}
 			

@@ -156,9 +156,9 @@ public class ParseController extends Controller {
 	 * @param page
 	 * @throws IOException
 	 */
-	public static void parseNews (Long cityId, Integer page) throws IOException {
+	public static void parseNews (Long cityId, Integer page, Integer type) throws IOException {
 		ResponseWrapper wrapper = new ResponseWrapper();
-		StoreWrapper model = ParseService.searchNews(cityId, page);
+		StoreWrapper model = ParseService.searchNews(cityId, page, type);
 		wrapper.success = true;
 		wrapper.countOfPages = model.getCountOfPages();
 		wrapper.countOfNews = model.getCountOdProductsOnPage();
