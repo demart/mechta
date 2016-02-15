@@ -16,6 +16,8 @@
 
 + (NSString*) citiesUrl;
 
++ (NSString*) cityShopsUrl;
+
 + (NSString*) categoriesUrlWithParentId:(long) parentId;
 
 + (NSString*) productsUrlWithCategoryId:(long) parentId withPage:(long)page inCityId:(long) cityId;

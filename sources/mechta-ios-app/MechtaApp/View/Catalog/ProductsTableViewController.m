@@ -14,6 +14,10 @@
 #import "DejalActivityView.h"
 #import "LocalStorageService.h"
 #import "ProductDetailTableViewController.h"
+#import "FilterTableViewController.h"
+#import "Constants.h"
+
+#import "UIBarButtonItem+Badge.h"
 
 @interface ProductsTableViewController ()
 
@@ -21,9 +25,13 @@
 @property NSMutableArray *products;
 @property int page;
 @property BOOL hasMoreRecords;
+@property BOOL firstTimeLoading;
 
 @property NSMutableDictionary *loadImageOperations;
 @property NSOperationQueue *loadImageOperationQueue;
+
+@property FiltersModel *filters;
+@property FiltersModel *appliedFilters;
 
 @end
 
@@ -34,7 +42,9 @@ static long PAGE_LIMIT = 10;
 - (void)viewDidLoad {
     [super viewDidLoad];
 
+    self.firstTimeLoading = YES;
     self.products = [[NSMutableArray alloc] init];
+    self.appliedFilters = [[FiltersModel alloc] init];
     
     self.loadImageOperationQueue = [[NSOperationQueue alloc] init];
     [self.loadImageOperationQueue setMaxConcurrentOperationCount:5];
@@ -64,13 +74,32 @@ static long PAGE_LIMIT = 10;
     self.page +=1;
 }
 
+- (IBAction)showFilterAction:(UIBarButtonItem *)sender {
+    if (self.filters != nil) {
+        [self performSegueWithIdentifier:@"showFiltersSergue" sender:self];
+    } else {
+        // TODO SHOW MESSAGE EMPTY FILTERS -> IMPOSSIBLE
+    }
+}
+
+// Устанавливает фильтры и выгружает данные
+- (void) applyFiltersWithLoadingProduct {
+    [DejalBezelActivityView activityViewForView:self.view withLabel:@"Подождите\nИдет загрузка..."];
+    [self.products removeAllObjects];
+    self.page = 1;
+    [self loadProducts];
+}
+
 -(void) loadProducts {
     CityModel *cityModel = [CityService getSelectedCityModel];
+
+    long filtersCount = 0;
+    if (self.filters.filters != nil)
+        filtersCount = [self.filters.filters count];
     
-    [ProductService retrieveProductsWithCategoryId:self.categoryId withPage:self.page inCityId:cityModel.id
- onSuccess:^(ResponseWrapperModel *response) {
+    [ProductService retrieveProductsWithCategoryId:self.categoryId withPage:self.page withFilter:self.appliedFilters  withFilterCount:filtersCount inCityId:cityModel.id onSuccess:^(ResponseWrapperModel *response) {
      if (response.success) {
-          NSMutableArray *products = (NSMutableArray*)response.data;
+         NSMutableArray *products = (NSMutableArray*)response.data;
          if (products == nil || [products count] < 1) {
              self.hasMoreRecords = NO;
          } else {
@@ -82,6 +111,24 @@ static long PAGE_LIMIT = 10;
                  self.hasMoreRecords = NO;
              }
          }
+         
+         if (self.firstTimeLoading == YES) {
+             self.filters = response.filters;
+             self.appliedFilters.costRight = self.filters.costRight;
+             self.appliedFilters.costLeft = self.filters.costLeft;
+             self.firstTimeLoading = NO;
+             
+             // ADD FILTER UITABBARITEM
+             UIBarButtonItem *navLeftButton = [[UIBarButtonItem alloc] initWithTitle:@"Фильтр" style:UIBarButtonItemStylePlain target:self action:@selector(showFilterAction:)];
+             self.navigationItem.rightBarButtonItem = navLeftButton;
+             //self.navigationItem.rightBarButtonItem.badgeBGColor = [UIColor colorWithRed:0.0/255 green:204.0/255 blue:255.0/255 alpha:1.0];
+             self.navigationItem.rightBarButtonItem.badgeBGColor = [UIColor colorWithRed:0.0/255 green:204.0/255 blue:51.0/255 alpha:1.0];
+             self.navigationItem.rightBarButtonItem.badgePadding = 3;
+             self.navigationItem.rightBarButtonItem.badgeMinSize = 5;
+             self.navigationItem.rightBarButtonItem.badgeTextColor = [UIColor whiteColor];
+             self.navigationItem.rightBarButtonItem.badgeFont = [UIFont systemFontOfSize:13];
+         }
+         
          [self.tableView reloadData];
      }
      
@@ -100,6 +147,19 @@ static long PAGE_LIMIT = 10;
     }];
 }
 
+- (void) showActiveFilterBadgeIcon {
+    self.navigationItem.rightBarButtonItem.badgeValue = @"✓";
+    self.navigationItem.rightBarButtonItem.badgeBGColor = [UIColor colorWithRed:0.0/255 green:204.0/255 blue:255.0/255 alpha:1.0];
+//    self.navigationItem.rightBarButtonItem.badgeBGColor = [UIColor colorWithRed:0.0/255 green:204.0/255 blue:51.0/255 alpha:1.0];
+    self.navigationItem.rightBarButtonItem.badgePadding = 3;
+    self.navigationItem.rightBarButtonItem.badgeMinSize = 5;
+    self.navigationItem.rightBarButtonItem.badgeTextColor = [UIColor whiteColor];
+    self.navigationItem.rightBarButtonItem.badgeFont = [UIFont systemFontOfSize:13];
+}
+
+- (void) showNoActiveFilterBadgeIcon {
+    self.navigationItem.rightBarButtonItem.badgeValue = nil;
+}
 
 - (void) loadProductImageInCell:(ProductTableViewCell*) cell onIndexPath:(NSIndexPath*)indexPath withImageUrl:(NSString*)imageUrl {
     UIImage *loadedImage =(UIImage *)[LocalStorageService  loadImageFromLocalCache:imageUrl];
@@ -187,11 +247,22 @@ static long PAGE_LIMIT = 10;
         if (model.productAvailability == nil || [model.productAvailability count] < 1) {
             [cell setUnavailable];
         } else {
-            [cell setPrice:model.cost];
-            //[cell.productPriceField setText:[[NSString alloc] initWithFormat:@"%li тг.", model.cost]];
+            [cell setFormattedPrice:[model formattedCost]];
         }
         
-        [cell.productDescriptionField setText:model.content];
+        if (model.content != nil) {
+            UIFont *font = [UIFont  systemFontOfSize:12.0];
+            NSString* content = [NSString stringWithFormat:@"<html><style>body{font-family: '%@'; font-size:%fpx;}</style><body>%@</body></html>",
+                                 [font fontName],
+                                 12.0,
+                                 model.content];
+            
+            NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+            
+            [cell.productDescriptionField setAttributedText:attrStr];
+        } else {
+            [cell.productDescriptionField setText:@""];
+        }
         
         [self loadProductImageInCell:cell onIndexPath:indexPath withImageUrl:model.imageUrl];
         
@@ -202,7 +273,7 @@ static long PAGE_LIMIT = 10;
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (self.products != nil && indexPath.row > [self.products count] - 1)
         return 40;
-    return 110;
+    return 150;
 }
 
 
@@ -226,6 +297,12 @@ static long PAGE_LIMIT = 10;
         NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
         ProductModel *model = self.products[indexPath.row];
         [viewController setProductModel:model];
+    }
+    
+    if ([segue.destinationViewController isKindOfClass:[UINavigationController class]]) {
+        UINavigationController *navController = (UINavigationController*)segue.destinationViewController;
+        FilterTableViewController *viewController = (FilterTableViewController*)[navController topViewController];
+        [viewController setFilterParameters:self.filters withAppliedFilters:self.appliedFilters forViewController:self];
     }
     
 }

@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *productPriceField;
 @property (weak, nonatomic) IBOutlet UILabel *productDescriptionField;
 
+-(void) setFormattedPrice:(NSString *)formattedPrice;
 -(void) setPrice:(long)productPrice;
 -(void) setUnavailable;
 

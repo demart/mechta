@@ -18,6 +18,11 @@
     [super setSelected:selected animated:animated];
 }
 
+-(void) setFormattedPrice:(NSString *)formattedPrice {
+    [self.productPriceField setText:[[NSString alloc] initWithFormat:@"%@ тг.", formattedPrice]];
+    [self.productPriceField setTextColor:[Constants SYSTEM_COLOR_PURPLE]];
+}
+
 -(void) setPrice:(long)productPrice {
     [self.productPriceField setText:[[NSString alloc] initWithFormat:@"%li тг.", productPrice]];
     [self.productPriceField setTextColor:[Constants SYSTEM_COLOR_PURPLE]];

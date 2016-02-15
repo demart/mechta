@@ -14,7 +14,7 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "EFD7074CE6C863AA279F8A14"
+               BlueprintIdentifier = "F0C141748107F40C4ACC0467"
                BuildableName = "libPods-MechtaApp.a"
                BlueprintName = "Pods-MechtaApp"
                ReferencedContainer = "container:Pods.xcodeproj">

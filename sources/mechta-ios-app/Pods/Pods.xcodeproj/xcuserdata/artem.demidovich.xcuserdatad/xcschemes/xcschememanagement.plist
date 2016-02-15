@@ -14,6 +14,11 @@
 			<key>isShown</key>
 			<false/>
 		</dict>
+		<key>LMDropdownView.xcscheme</key>
+		<dict>
+			<key>isShown</key>
+			<false/>
+		</dict>
 		<key>Pods-MechtaApp.xcscheme</key>
 		<dict>
 			<key>isShown</key>
@@ -47,17 +52,17 @@
 	</dict>
 	<key>SuppressBuildableAutocreation</key>
 	<dict>
+		<key>11CBC306694D5D564E3C81C2E3B098A1</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
 		<key>158117D77AED03B83733E51D2D22983B</key>
 		<dict>
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>1980E62999D481EB9AE8F161EE48B875</key>
-		<dict>
-			<key>primary</key>
-			<true/>
-		</dict>
-		<key>6462D8C58196F6013AEF6F2262DC7DA3</key>
+		<key>450DA06B978359C0E83B81A0BD75B386</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -67,7 +72,12 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>8D063D877AA17EF4B7B0D9745DF465A9</key>
+		<key>822A9217D890E4ED7C6E2F329C8BAC0C</key>
+		<dict>
+			<key>primary</key>
+			<true/>
+		</dict>
+		<key>8DF7AD9A34979E02451721581DC53688</key>
 		<dict>
 			<key>primary</key>
 			<true/>
@@ -77,7 +87,7 @@
 			<key>primary</key>
 			<true/>
 		</dict>
-		<key>C63BDF38DE452A26EC17448E29EAB50A</key>
+		<key>B243D4C33D91C7ED85E8FFC4AED7C2FA</key>
 		<dict>
 			<key>primary</key>
 			<true/>

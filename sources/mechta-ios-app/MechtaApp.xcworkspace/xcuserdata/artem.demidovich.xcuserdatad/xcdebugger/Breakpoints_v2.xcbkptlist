@@ -10,11 +10,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MechtaApp/View/Catalog/CatalogTableViewController.m"
-            timestampString = "476651387.994272"
+            timestampString = "477305091.421647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "73"
-            endingLineNumber = "73"
+            startingLineNumber = "74"
+            endingLineNumber = "74"
             landmarkName = "-loadCategories"
             landmarkType = "5">
          </BreakpointContent>
@@ -26,11 +26,11 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "MechtaApp/View/Catalog/CatalogTableViewController.m"
-            timestampString = "476651387.994272"
+            timestampString = "477305091.421647"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "187"
-            endingLineNumber = "187"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "5">
          </BreakpointContent>
@@ -41,13 +41,13 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MechtaApp/View/Catalog/ProductsTableViewController.m"
-            timestampString = "476654991.18827"
+            filePath = "MechtaApp/Data/Models/ProductModel.m"
+            timestampString = "476714752.671997"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "196"
-            endingLineNumber = "196"
-            landmarkName = "-tableView:cellForRowAtIndexPath:"
+            startingLineNumber = "15"
+            endingLineNumber = "15"
+            landmarkName = "-getCharacteristicsList"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>
@@ -57,13 +57,29 @@
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "MechtaApp/View/Catalog/ProductsTableViewController.m"
-            timestampString = "476654991.18827"
+            filePath = "MechtaApp/View/Catalog/ProductDetailTableViewController.m"
+            timestampString = "476801240.126994"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "85"
-            endingLineNumber = "85"
-            landmarkName = "-loadProducts"
+            startingLineNumber = "308"
+            endingLineNumber = "308"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
+            landmarkType = "5">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "MechtaApp/ThirdParty/NMRangeSlider/NMRangeSlider.m"
+            timestampString = "477306093.762489"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "237"
+            endingLineNumber = "237"
+            landmarkName = "-imageFromBundle:"
             landmarkType = "5">
          </BreakpointContent>
       </BreakpointProxy>

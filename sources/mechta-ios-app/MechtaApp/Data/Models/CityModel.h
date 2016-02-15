@@ -14,8 +14,10 @@
 
 @property NSString* name;
 
+@property double latitude;
 
-//@property int order;
+@property double longitude;
 
+@property NSMutableArray *shops;
 
 @end

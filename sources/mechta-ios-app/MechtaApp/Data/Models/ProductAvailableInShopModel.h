@@ -17,6 +17,7 @@
 
 @property NSString* amount;
 
+@property ShopModel *shop;
 
 //@property long id;
 

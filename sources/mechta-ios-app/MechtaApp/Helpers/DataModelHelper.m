@@ -12,6 +12,34 @@
 
 
 + (RKObjectMapping*) getObjectMappingForResponseWrapperModelWithDataMapping:(RKObjectMapping*)dataModel {
+    RKObjectMapping* filterOptionModelMapping = [RKObjectMapping mappingForClass:[FilterOptionModel class]];
+    [filterOptionModelMapping addAttributeMappingsFromDictionary:@{
+                                                                   @"key": @"key",
+                                                                   @"value": @"value",
+                                                                   }];
+    
+    
+    RKObjectMapping* filterModelMapping = [RKObjectMapping mappingForClass:[FilterModel class]];
+    [filterModelMapping addAttributeMappingsFromDictionary:@{
+                                                             @"name": @"name",
+                                                             @"index": @"index",
+                                                             }];
+    
+    [filterModelMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"keyValue"
+                                                                                       toKeyPath:@"options"
+                                                                                     withMapping:filterOptionModelMapping]];
+    
+    RKObjectMapping* filtersModelMapping = [RKObjectMapping mappingForClass:[FiltersModel class]];
+    [filtersModelMapping addAttributeMappingsFromDictionary:@{
+                                                              @"costLeft": @"costLeft",
+                                                              @"costRight": @"costRight",
+                                                              }];
+    
+    [filtersModelMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"filters"
+                                                                                        toKeyPath:@"filters"
+                                                                                      withMapping:filterModelMapping]];
+    
+    
     RKObjectMapping* wrapperMapping = [RKObjectMapping mappingForClass:[ResponseWrapperModel class]];
     [wrapperMapping addAttributeMappingsFromDictionary:@{
                                                          @"success": @"success",
@@ -25,12 +53,23 @@
                                                                                   toKeyPath:@"data"
                                                                                 withMapping:dataModel]];
 
+    
+    [wrapperMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"filters"
+                                                                                   toKeyPath:@"filters"
+                                                                                 withMapping:filtersModelMapping]];
+    
+    
     return wrapperMapping;
 }
 
 
 
 + (RKObjectMapping*) getObjectMappingForProduct {
+    RKObjectMapping* productImageMapping = [RKObjectMapping mappingForClass:[ProductImageModel class]];
+    [productImageMapping addAttributeMappingsFromDictionary:@{
+                                                                       @"url": @"url",
+                                                                       }];
+    
     RKObjectMapping* productCharacteristicMapping = [RKObjectMapping mappingForClass:[ProductCharacteristicModel class]];
     [productCharacteristicMapping addAttributeMappingsFromDictionary:@{
                                                                             @"key": @"key",
@@ -43,11 +82,25 @@
                                                                         }];
     [productCharacteristicGroupMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"keyValue" toKeyPath:@"characteristics"  withMapping:productCharacteristicMapping]];
     
+    
+    RKObjectMapping* shopModel = [RKObjectMapping mappingForClass:[ShopModel class]];
+    [shopModel addAttributeMappingsFromDictionary:@{
+                                                                        @"id": @"id",
+                                                                        @"name": @"name",
+                                                                        @"latitude": @"latitude",
+                                                                        @"longitude": @"longitude",
+                                                                        @"schedule": @"workhours",
+                                                                        @"telephones": @"telephones",
+                                                                        }];
+    
     RKObjectMapping* productAvailableInShopMapping = [RKObjectMapping mappingForClass:[ProductAvailableInShopModel class]];
     [productAvailableInShopMapping addAttributeMappingsFromDictionary:@{
                                                          @"name": @"name",
                                                          @"count": @"amount",
                                                          }];
+    
+    [productAvailableInShopMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"store" toKeyPath:@"shop"  withMapping:shopModel]];
+    
     
     RKObjectMapping* productMapping = [RKObjectMapping mappingForClass:[ProductModel class]];
     [productMapping addAttributeMappingsFromDictionary:@{
@@ -65,6 +118,8 @@
     
     [productMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"characteristics" toKeyPath:@"characteristics"  withMapping:productCharacteristicGroupMapping]];
     
+    [productMapping addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"images" toKeyPath:@"images"  withMapping:productImageMapping]];
+    
     return productMapping;
 }
 
@@ -72,11 +127,24 @@
 
 
 + (RKResponseDescriptor*) buildResponseDescriptorForCities {
+    RKObjectMapping* shopModel = [RKObjectMapping mappingForClass:[ShopModel class]];
+    [shopModel addAttributeMappingsFromDictionary:@{
+                                                    @"id": @"id",
+                                                    @"name": @"name",
+                                                    @"latitude": @"latitude",
+                                                    @"longitude": @"longitude",
+                                                    @"schedule": @"workhours",
+                                                    @"telephones": @"telephones",
+                                                    }];
+    
     RKObjectMapping* cityModel = [RKObjectMapping mappingForClass:[CityModel class]];
     [cityModel addAttributeMappingsFromDictionary:@{
                                                           @"id": @"id",
                                                           @"name": @"name",
+                                                          @"latitude": @"latitude",
+                                                          @"longitude": @"longitude",
                                                           }];
+    [cityModel addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"stores" toKeyPath:@"shops"  withMapping:shopModel]];
     
     RKObjectMapping* wrapperMapping = [DataModelHelper getObjectMappingForResponseWrapperModelWithDataMapping:cityModel];
     
@@ -123,6 +191,10 @@
     RKResponseDescriptor *responseWrapperDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:wrapperMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful) ];
     
     return responseWrapperDescriptor;
+}
+
++ (RKResponseDescriptor*) buildResponseDescriptorForCityShops {
+    return [DataModelHelper buildResponseDescriptorForCities];
 }
 
 @end

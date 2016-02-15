@@ -9,5 +9,9 @@
 #import <UIKit/UIKit.h>
 
 @interface ProductSwitcherTableViewCell : UITableViewCell
+- (IBAction)switcherModeChanged:(id)sender;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *switcherSegmentControl;
+
+@property UITableViewController *parentController;
 
 @end

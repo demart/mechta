@@ -9,6 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "ProductAvailableInShopModel.h"
 #import "ProductCharacteristicGroupModel.h"
+#import "ProductImageModel.h"
 
 @interface ProductModel : NSObject
 
@@ -28,9 +29,22 @@
 
 @property long numberOnSiteCategory;
 
+@property NSMutableArray *images;
+
+@property NSMutableArray *distinctImageUrlList;
+
 // Список где можно купить
 @property NSMutableArray *productAvailability;
 
 @property NSMutableArray *characteristics;
+
+@property NSMutableArray *characteristicsPlainList;
+
+- (NSMutableArray*) getCharacteristicsList;
+
+// Возвращает уникальные ссылки на картинки
+- (NSMutableArray*) distinctImageUrls;
+
+- (NSString*) formattedCost;
 
 @end

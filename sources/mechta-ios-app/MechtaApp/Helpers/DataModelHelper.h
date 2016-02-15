@@ -27,6 +27,8 @@
 
 + (RKResponseDescriptor*) buildResponseDescriptorForCities;
 
++ (RKResponseDescriptor*) buildResponseDescriptorForCityShops;
+
 + (RKResponseDescriptor*) buildResponseDescriptorForCategories;
 
 + (RKResponseDescriptor*) buildResponseDescriptorForProducts;

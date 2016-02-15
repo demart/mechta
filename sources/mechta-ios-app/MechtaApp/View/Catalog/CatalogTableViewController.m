@@ -37,7 +37,8 @@
     
     self.loadImageOperationQueue = [[NSOperationQueue alloc] init];
     [self.loadImageOperationQueue setMaxConcurrentOperationCount:3];
-
+    
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
 -(void) viewWillAppear:(BOOL)animated {
@@ -133,7 +134,10 @@
                     if (image != nil) {
                         [LocalStorageService  saveImageToLocalCache:imageUrl withData:image];
                     } else {
-                        cell.categoryImageView.image = [UIImage imageNamed:@"catalog_cell_default_icon"];
+                        //cell.categoryImageView.image = [UIImage imageNamed:@"catalog_cell_default_icon"];
+                        cell.categoryImageView.image = [UIImage imageNamed:@"no_category_icon"];
+                        
+                        //cell.categoryImageView.image = nil;
                     }
                     [self.loadImageOperations removeObjectForKey:indexPath];
                 }
@@ -175,7 +179,8 @@
     if (model.imageUrl != nil) {
         [self loadUserAvatarInCell:cell onIndexPath:indexPath withImageUrl:model.imageUrl];
     } else {
-        cell.categoryImageView.image = [UIImage imageNamed:@"catalog_cell_default_icon"];
+        cell.categoryImageView.image = [UIImage imageNamed:@"no_category_icon"];
+        //cell.categoryImageView.image = nil;
     }
     
     return cell;

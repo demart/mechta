@@ -21,7 +21,13 @@
 // Возвращает загруженные города
 + (NSMutableArray*) getCities;
 
+// Возвращает загруженные города и магазины
++ (NSMutableArray*) getCityShops;
+
 // Загружает города с сайта
 + (void) retrieveCities:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure;
+
+// загрузить магазины города
++ (void) retrieveCityShops:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure;
 
 @end

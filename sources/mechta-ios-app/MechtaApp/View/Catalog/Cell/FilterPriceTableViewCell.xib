@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FilterPriceCell" rowHeight="80" id="KGk-i7-Jjw" customClass="FilterPriceTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="80"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="79.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2zZ-4Q-oP0" customClass="NMRangeSlider">
+                        <rect key="frame" x="24" y="38" width="272" height="27.5"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="27.5" id="Zw3-iz-Kv4"/>
+                        </constraints>
+                        <connections>
+                            <action selector="filterPriceSliderValueChanged:" destination="KGk-i7-Jjw" eventType="valueChanged" id="LOT-bH-QPt"/>
+                        </connections>
+                    </view>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gMT-80-KIT">
+                        <rect key="frame" x="176" y="12" width="120" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="120" id="C5q-BZ-l8S"/>
+                            <constraint firstAttribute="height" constant="22" id="Wck-cS-dZa"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p4n-SO-8Zo">
+                        <rect key="frame" x="24" y="12" width="120" height="22"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="22" id="8hm-yS-fZk"/>
+                            <constraint firstAttribute="width" constant="120" id="ix8-Fd-KiU"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="2zZ-4Q-oP0" firstAttribute="top" secondItem="gMT-80-KIT" secondAttribute="bottom" constant="4" id="8aR-1s-ePv"/>
+                    <constraint firstItem="2zZ-4Q-oP0" firstAttribute="top" secondItem="gMT-80-KIT" secondAttribute="bottom" constant="2" id="BHf-GI-5b3"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="2zZ-4Q-oP0" secondAttribute="trailing" constant="16" id="JUX-H3-KTs"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="2zZ-4Q-oP0" secondAttribute="bottom" constant="6" id="TqF-OA-oQB"/>
+                    <constraint firstItem="2zZ-4Q-oP0" firstAttribute="top" secondItem="p4n-SO-8Zo" secondAttribute="bottom" constant="2" id="UVG-ke-5P0"/>
+                    <constraint firstItem="p4n-SO-8Zo" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="VaG-2k-d79"/>
+                    <constraint firstItem="2zZ-4Q-oP0" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="16" id="YP4-ua-KMR"/>
+                    <constraint firstItem="2zZ-4Q-oP0" firstAttribute="top" secondItem="p4n-SO-8Zo" secondAttribute="bottom" constant="4" id="l9B-ed-2zI"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="gMT-80-KIT" secondAttribute="trailing" constant="16" id="mw4-EE-XBz"/>
+                </constraints>
+                <variation key="default">
+                    <mask key="constraints">
+                        <exclude reference="BHf-GI-5b3"/>
+                        <exclude reference="UVG-ke-5P0"/>
+                    </mask>
+                </variation>
+            </tableViewCellContentView>
+            <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+            <inset key="separatorInset" minX="1000" minY="0.0" maxX="0.0" maxY="0.0"/>
+            <connections>
+                <outlet property="filterHighPriceLabel" destination="gMT-80-KIT" id="WAF-x8-rVx"/>
+                <outlet property="filterLowerPriceLabel" destination="p4n-SO-8Zo" id="xTh-0b-3d5"/>
+                <outlet property="filterPriceSlider" destination="2zZ-4Q-oP0" id="cGE-eV-4Ku"/>
+            </connections>
+            <point key="canvasLocation" x="245" y="232"/>
+        </tableViewCell>
+    </objects>
+</document>
