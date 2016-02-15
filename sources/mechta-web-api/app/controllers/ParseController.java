@@ -168,4 +168,18 @@ public class ParseController extends Controller {
 		renderJSON(wrapper);
 	}
 	
+	/**
+	 * список всех сервисных
+	 */
+	public static void readServiceStores () {
+		ResponseWrapper wrapper = new ResponseWrapper();
+		List<City> stores = CityService.getCities();
+		System.out.println (stores.size());
+		ArrayList<CityModel> models = CityService.getListServiceStores(stores);
+		System.out.println (models.size());
+    	wrapper.data = models.toArray();
+    	wrapper.count = CityService.getAllCountCities().intValue();
+    	wrapper.success = true;
+    	renderJSON(wrapper);
+	}
 }
