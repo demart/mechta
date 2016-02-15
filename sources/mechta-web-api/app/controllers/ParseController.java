@@ -125,4 +125,17 @@ public class ParseController extends Controller {
     	renderJSON(wrapper);
 	}
 	
+	public static void searchProduct (String text, Long cityId, Integer page) throws IOException {
+		ResponseWrapper wrapper = new ResponseWrapper();
+		StoreWrapper model = ParseService.searchProduct(text, cityId, page);
+		wrapper.success = true;
+		wrapper.countOfPages = model.getCountOfPages();
+		wrapper.countOfProducts = model.getCountOdProductsOnPage();
+		wrapper.currentPage = model.getCurrentpage();
+		if (model.getProducts() != null)
+			wrapper.data = model.getProducts().toArray();
+		renderJSON(wrapper);
+		
+	}
+	
 }

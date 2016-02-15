@@ -180,10 +180,7 @@ public class ParseService {
 			 */
 			if (filter != null)
 				filter = ParseService.encodeString(filter, countOfFilters);
-			//System.out.println (filter);
 			Document doc = null;
-			//System.out.println ("Answer: " + StringUtils.isNotEmpty(nameOnSiteCity));
-			//System.out.println ("Answer: " + StringUtils.isEmpty(nameOnSiteCity));
 			City city = City.findById(cityId);
 			OrderProduct orderProduct = OrderProduct.findById(typeOrder);
 			if (StringUtils.isEmpty(city.getNameOnSite())) {
@@ -191,8 +188,6 @@ public class ParseService {
 					if (filter == null) filter = "";
 					if (costLeft == null) costLeft = "";
 					if (costRight == null) costRight = "";
-					//System.out.println ("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
-					//+ "&arrFilter_pf%5BPROPERTIES%5D=&arrFilter_cf%5B2%5D%5BLEFT%5D=" + costLeft + "&arrFilter_cf%5B2%5D%5BRIGHT%5D=" + costRight +"&arrFilter_pf%5BARFP%5D=" + filter + "&set_filter=Фильтр&set_filter=Y");
 					Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
 					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight +"&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y");
 					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
@@ -642,6 +637,101 @@ public class ParseService {
 						//System.out.println (finishString);
 			
 			return finishString;
+		}
+
+		public static StoreWrapper searchProduct(String text, Long cityId, Integer page) throws IOException {
+			Document doc = null;
+			String url = null;
+			City city = City.findById(cityId);
+			if (StringUtils.isEmpty(city.getNameOnSite())) {
+					url = "http://www.mechta.kz/catalog/";
+					Connection connection = Jsoup.connect("http://www.mechta.kz/search/index.php?q=" + text + "&s=Найти&PAGEN_1=" + page);
+					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+					doc = connection.get();		
+				}
+			else {
+					url = "http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/";
+					Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/search/index.php?q=" + text + "&s=Найти&PAGEN_1=" + page);
+					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+					doc = connection.get();
+				}
+			
+			Document doc2 = null;
+			
+			if (StringUtils.isEmpty(city.getNameOnSite())) {
+				Connection connection = Jsoup.connect("http://www.mechta.kz/search/index.php?q=" + text + "&s=Найти&PAGEN_1=1");
+				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+				doc2 = connection.get();		
+			}
+			else {
+				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/search/index.php?q=" + text + "&s=Найти&PAGEN_1=1");
+				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+				doc2 = connection.get();
+			}
+			
+			Elements pages = doc2.select("div.modern-page-navigation");
+			
+			/*
+			 * Два условия для того, что бывают случаи, когда всего одна страница. Если 
+			 * в категории одна страница, то выполняется блок if
+			 */
+			Integer countOfPages = null;
+			
+			if (pages.select("a[href]").size() == 0)
+				countOfPages = 1;
+			else if (pages.select("a[href]").size() > 1)
+				countOfPages = Integer.parseInt(pages.select("a[href]").get(pages.select("a[href]").size() - 2).text());
+
+			//System.out.println ("Size of main class: " + doc.select("div.search-page").size());
+			//System.out.println ("Size of a[href]: " + doc.select("div.search-page > div.modern-page-navigation").select("a[href]").size());
+			//System.out.println ("Size of products: " + (doc.select("div.search-page").select("a[href]").size() - doc.select("div.search-page > div.modern-page-navigation").select("a[href]").size() - 
+				//	doc.select("div.search-page > div.m4_fleft").size() - 1));
+			System.out.println ("Size of all a href: " + doc.select("div.search-page").select("a[href]").size());
+			ArrayList<ProductModel> models = new ArrayList<ProductModel>();
+			Integer count = 0;
+			Integer check = 0;
+			String imageUrl = null;
+			for (int i = 0; i < doc.select("div.search-page").select("a[href]").size() - 1 ; i++) {
+				if (doc.select("div.search-page").select("a[href]").get(i).select("img[src]").size() > 0) {
+					check = 1;
+					imageUrl = doc.select("div.search-page").select("a[href]").get(i).select("img[src]").attr("abs:src");
+				}
+				else {
+					//System.out.println ("Ok");
+					//System.out.println(doc.select("div.search-page").select("a[href]").get(i).attr("abs:href").indexOf("PAGEN"));
+					if (doc.select("div.search-page").select("a[href]").get(i).attr("abs:href").indexOf("/search/") == -1) {
+						//System.out.println (doc.select("div.search-page").select("a[href]").get(i).text());
+
+							String str = doc.select("div.search-page").select("a[href]").get(i).attr("abs:href").
+									substring(url.length());
+							System.out.println ("STR: "  + str);
+						
+							String numberOfCategory = str.substring(0, str.indexOf("/"));
+							String numberOnSite = str.substring(str.indexOf("/")+1, str.indexOf("/?"));
+							System.out.println (numberOfCategory + "----" + numberOnSite);
+							if (numberOfCategory.equals("actions") == false) {
+							ProductModel model = ProductModel.buildModel(Long.parseLong(numberOnSite),
+									doc.select("div.search-page").select("a[href]").get(i).text(),
+									imageUrl, null, null, null, null, Long.parseLong(numberOfCategory), null, null);
+							models.add(model);
+							}
+							else {							count++;}
+							check = 0;
+							imageUrl = null;
+
+						
+							
+					}
+				}
+			}
+			
+
+			
+			StoreWrapper model = StoreWrapper.buildModel(page, countOfPages, 
+					(doc.select("div.search-page").select("a[href]").size() - doc.select("div.search-page > div.modern-page-navigation").select("a[href]").size() - 
+							doc.select("div.search-page > div.m4_fleft").size() - 1 - count)
+					, models, null);
+			return model;
 		}
 		
 		/*
