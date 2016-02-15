@@ -29,6 +29,7 @@ import kz.mechta.models.StoreWrapper;
 import kz.mechta.persistence.store.Store;
 import kz.mechta.persistence.category.Category;
 import kz.mechta.persistence.city.City;
+import kz.mechta.persistence.pages.StaticPage;
 import kz.mechta.persistence.product.OrderProduct;
 import play.db.jpa.JPA;
 
@@ -896,6 +897,10 @@ public class ParseService {
 			
 			
 			return model;
+		}
+
+		public static StaticPage getStaticPage(Long pageId) {
+			return (StaticPage)JPA.em().createQuery("from StaticPage where id = :pageId").setParameter("pageId", pageId).getSingleResult();
 		}
 		
 		/*
