@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ProductImageCell" rowHeight="180" id="KGk-i7-Jjw" customClass="ProductImageTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="180"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="320" height="179.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kbp-2v-U1s">
+                        <rect key="frame" x="8" y="8" width="304" height="155.5"/>
+                    </scrollView>
+                    <pageControl opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" hidesForSinglePage="YES" numberOfPages="3" translatesAutoresizingMaskIntoConstraints="NO" id="A6K-jt-fqp">
+                        <rect key="frame" x="8" y="154" width="304" height="37"/>
+                        <color key="pageIndicatorTintColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="currentPageIndicatorTintColor" red="0.92156862750000001" green="0.0" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
+                    </pageControl>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="kbp-2v-U1s" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="75X-PX-Adb"/>
+                    <constraint firstItem="kbp-2v-U1s" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="KfZ-S8-thL"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="A6K-jt-fqp" secondAttribute="trailing" id="NTJ-ho-zwN"/>
+                    <constraint firstItem="kbp-2v-U1s" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="Okh-eO-lVt"/>
+                    <constraint firstItem="A6K-jt-fqp" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="eMF-iV-JaG"/>
+                    <constraint firstItem="kbp-2v-U1s" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" constant="-8" id="fGU-3k-xHD"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="A6K-jt-fqp" secondAttribute="bottom" constant="-20" id="zDn-YF-mTF"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="productImagesPageControl" destination="A6K-jt-fqp" id="f96-Xt-bxu"/>
+                <outlet property="productImagesScrollView" destination="kbp-2v-U1s" id="10n-95-5Q9"/>
+            </connections>
+            <point key="canvasLocation" x="245" y="318"/>
+        </tableViewCell>
+    </objects>
+</document>

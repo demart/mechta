@@ -1,0 +1,24 @@
+# Routes
+# This file defines all application routes (Higher priority routes first)
+# ~~~~
+
+# Home page
+GET     /                                       Application.index
+
+
+# Rest Service
+GET		/rest/products							ParseController.parseProducts
+GET		/rest/cities							ParseController.readCities
+GET		/rest/categories						ParseController.readCategories
+GET		/parse/categories/all					ParseController.parseCategories
+GET		/rest/product/information				ParseController.parseProduct
+GET		/rest/orders							ParseController.readOrders
+
+# Ignore favicon requests
+GET     /favicon.ico                            404
+
+# Map static resources from the /app/public folder to the /public path
+GET     /public/                                staticDir:public
+
+# Catch all
+*       /{controller}/{action}                  {controller}.{action}

@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9532" systemVersion="15D21" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9530"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="none" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="ShopDetailMiniCell" rowHeight="65" id="KGk-i7-Jjw" customClass="ShopDetailMiniTableViewCell">
+            <rect key="frame" x="0.0" y="0.0" width="320" height="65"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
+                <rect key="frame" x="0.0" y="0.0" width="287" height="64.5"/>
+                <autoresizingMask key="autoresizingMask"/>
+                <subviews>
+                    <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="map_view_icon" translatesAutoresizingMaskIntoConstraints="NO" id="WC4-3Y-mZG">
+                        <rect key="frame" x="15" y="15" width="35" height="35"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="35" id="TXf-MI-3k2"/>
+                            <constraint firstAttribute="height" constant="35" id="eP4-Yz-dik"/>
+                        </constraints>
+                    </imageView>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ул. Амман 14, ул. Амман 14" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="12" translatesAutoresizingMaskIntoConstraints="NO" id="7mX-Ik-vhv">
+                        <rect key="frame" x="65" y="10" width="222" height="35"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1200 км." textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WFR-fs-0rj">
+                        <rect key="frame" x="242" y="41" width="48" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="width" constant="48" id="U5J-34-9eY"/>
+                            <constraint firstAttribute="height" constant="21" id="w37-s0-gjj"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Режим работы: с 10:00 до 22:00" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5H1-Ve-mbl">
+                        <rect key="frame" x="65" y="41" width="169" height="21"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="21" id="9mb-Pr-yTX"/>
+                        </constraints>
+                        <fontDescription key="fontDescription" type="system" pointSize="10"/>
+                        <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
+                        <nil key="highlightedColor"/>
+                    </label>
+                </subviews>
+                <constraints>
+                    <constraint firstItem="WC4-3Y-mZG" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="Asc-kt-qJJ"/>
+                    <constraint firstItem="5H1-Ve-mbl" firstAttribute="leading" secondItem="WC4-3Y-mZG" secondAttribute="trailing" constant="15" id="Dap-SV-5aa"/>
+                    <constraint firstItem="7mX-Ik-vhv" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="2" id="GnC-MA-CDB"/>
+                    <constraint firstItem="7mX-Ik-vhv" firstAttribute="leading" secondItem="WC4-3Y-mZG" secondAttribute="trailing" constant="15" id="QEw-J9-IKG"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="7mX-Ik-vhv" secondAttribute="bottom" constant="11.5" id="XMb-53-G6m"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="5H1-Ve-mbl" secondAttribute="bottom" constant="-5.5" id="ctp-5v-EBJ"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="7mX-Ik-vhv" secondAttribute="trailing" constant="-8" id="eWO-eX-QUK"/>
+                    <constraint firstItem="WFR-fs-0rj" firstAttribute="leading" secondItem="5H1-Ve-mbl" secondAttribute="trailing" constant="8" id="khL-BP-Swb"/>
+                    <constraint firstAttribute="trailingMargin" secondItem="WFR-fs-0rj" secondAttribute="trailing" constant="-11" id="msd-jC-Bfu"/>
+                    <constraint firstAttribute="bottomMargin" secondItem="WFR-fs-0rj" secondAttribute="bottom" constant="-5.5" id="s5c-EX-7ij"/>
+                    <constraint firstItem="WC4-3Y-mZG" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="7" id="stC-T2-8Ym"/>
+                </constraints>
+            </tableViewCellContentView>
+            <connections>
+                <outlet property="shopAddress" destination="7mX-Ik-vhv" id="asa-yd-3TR"/>
+                <outlet property="shopDistanceField" destination="WFR-fs-0rj" id="8q7-Uc-xhI"/>
+                <outlet property="shopImageView" destination="WC4-3Y-mZG" id="F8q-3S-Op1"/>
+                <outlet property="shopWorkhours" destination="5H1-Ve-mbl" id="Y8U-3e-PWs"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="254.5"/>
+        </tableViewCell>
+    </objects>
+    <resources>
+        <image name="map_view_icon" width="100" height="100"/>
+    </resources>
+</document>
