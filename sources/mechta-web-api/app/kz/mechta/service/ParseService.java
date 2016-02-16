@@ -458,19 +458,20 @@ public class ParseService {
 			 */
 			Integer cost = null;
 			System.out.println(doc.getElementsByClass("span.m4_prs30").size());
-			if (StringUtils.isNotEmpty(doc.select("span.m4_prs30").first().text()))
-				cost = Integer.parseInt(doc.select("span.m4_prs30").first().text().substring(0, doc.select("span.m4_prs30").first().text().length()).replaceAll(" ", ""));
+			if (doc.select("span.m4_prs30").first() != null)
+				if (StringUtils.isNotEmpty(doc.select("span.m4_prs30").first().text()))
+					cost = Integer.parseInt(doc.select("span.m4_prs30").first().text().substring(0, doc.select("span.m4_prs30").first().text().length()).replaceAll(" ", ""));
 					/*
 			 * Ссылка на картинку
 			 */
 			String url = null;
-			if (cost != null)  {
+			//if (cost != null)  {
 				if (doc.select("div.gal_more_photo").size() == 0) {
 					
 				}
 				else
 				url = doc.select("div.gal_more_photo").first().select("[src]").get(0).attr("abs:src");
-			}
+			//}
 			/*
 			 * Предыдущая цена
 			 */
@@ -486,7 +487,7 @@ public class ParseService {
 			Elements places = doc.select("table.m4_tablenal");
 			Elements counts = doc.select("div.nal_m, div.nal_s, div.nal_b, div.nal_1");
 			ArrayList<AvailabilityProductModel> modelsAvailabilityProduct = new ArrayList<AvailabilityProductModel>();
-			if (cost != null) {
+			//if (cost != null) {
 				for (int i = 0; i < counts.size(); i++) {
 					List<Store> stores = ParseService.searchStore(places.select("a[href]").get(i).text());
 					if (stores.size() == 0) {
@@ -504,16 +505,16 @@ public class ParseService {
 						}
 					}
 				}
-			}
+			//}
 			
 			/*
 			 * Описание товара
 			 */
 			String description = null;
-			if (cost != null) {
+			//if (cost != null) {
 				if (doc.select("div.detailtext").size() != 0)
 					description= doc.select("div.detailtext").first().html();
-			}
+			//}
 
 			/*
 			 * Блок отвечающий парсингу характеристик товара
@@ -521,7 +522,7 @@ public class ParseService {
 			ArrayList<CharacteristicsProductsModel> characteristics = new ArrayList<CharacteristicsProductsModel> ();
 			ArrayList<ImageModel> images = new ArrayList<ImageModel>();
 
-			if (cost != null) {
+			//if (cost != null) {
 				Elements resultLinks = doc.select("div.catalog-element > div.m4_pred > div");
 				System.out.println("Size: " + resultLinks.size());
 				
@@ -584,7 +585,7 @@ public class ParseService {
 					}
 				}
 				
-			}
+			//}
 			
 			ProductModel model = ProductModel.buildModel(numberOnSite, nameOfProduct, url, description, cost, 
 					modelsAvailabilityProduct, characteristics, numberOnSiteCategory, previousCost, images);
