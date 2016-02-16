@@ -7,6 +7,7 @@ public class ResponseWrapper {
 		public boolean success;
 		public Integer countOfPages;
 		public Integer countOfProducts;
+		public Integer countOfNews;
 		public Integer currentPage;
 		public Integer count;
 		public Object filters;
