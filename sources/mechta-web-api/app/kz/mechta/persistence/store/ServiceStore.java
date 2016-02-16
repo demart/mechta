@@ -28,6 +28,12 @@ public class ServiceStore extends PersistentObject {
 	@Column(name="telephones", length=255)
 	private String telephones;
 	
+	@Column(name="latitude", length=50)
+	private Float latitude;
+	
+	@Column(name="longitude", length=50)
+	private Float longitude;
+	
 	@ManyToOne
 	private City city;
 	
@@ -53,6 +59,14 @@ public class ServiceStore extends PersistentObject {
 	
 	public City getCity () {
 		return city;
+	}
+	
+	public Float getLatitude () {
+		return latitude;
+	}
+	
+	public Float getLongitude() {
+		return longitude;
 	}
 	
 	

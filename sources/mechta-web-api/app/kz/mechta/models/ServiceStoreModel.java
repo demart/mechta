@@ -14,6 +14,10 @@ public class ServiceStoreModel{
 	
 	private String workHours;
 	
+	private Float longitude;
+	
+	private Float latitude;
+	
 	private String telephones;
 	
 	public static ServiceStoreModel buildModel (ServiceStore service) {
@@ -24,6 +28,9 @@ public class ServiceStoreModel{
 		model.street = service.getStreet();
 		model.workHours = service.getWorkHours();
 		model.telephones = service.getTelephones();
+		model.latitude = service.getLatitude();
+		model.longitude = service.getLongitude();
+		
 		return model;
 	}
 }
