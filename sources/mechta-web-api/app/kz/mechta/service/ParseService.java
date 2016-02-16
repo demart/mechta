@@ -749,6 +749,8 @@ public class ParseService {
 			 */
 			Integer countOfPages = null;
 			
+			System.out.println (doc.select("div.search-page").select("p").size());
+			
 			if (pages.select("a[href]").size() == 0)
 				countOfPages = 1;
 			else if (pages.select("a[href]").size() > 1)
@@ -763,6 +765,7 @@ public class ParseService {
 			Integer count = 0;
 			Integer check = 0;
 			String imageUrl = null;
+			Integer countDescription = 0;
 			for (int i = 0; i < doc.select("div.search-page").select("a[href]").size() - 1 ; i++) {
 				if (doc.select("div.search-page").select("a[href]").get(i).select("img[src]").size() > 0) {
 					check = 1;
@@ -782,10 +785,12 @@ public class ParseService {
 							String numberOnSite = str.substring(str.indexOf("/")+1, str.indexOf("/?"));
 							System.out.println (numberOfCategory + "----" + numberOnSite);
 							if (numberOfCategory.equals("actions") == false) {
-							ProductModel model = ProductModel.buildModel(Long.parseLong(numberOnSite),
+							ProductModel model = ProductModel.buildSearchModel(Long.parseLong(numberOnSite),
 									doc.select("div.search-page").select("a[href]").get(i).text(),
-									imageUrl, null, null, null, null, Long.parseLong(numberOfCategory), null, null);
+									imageUrl, doc.select("div.search-page").select("p").get(countDescription).text(), null, null, null, Long.parseLong(numberOfCategory), null, null,
+									doc.select("div.search-page").select("small").first().text().substring(9));
 							models.add(model);
+							countDescription++;
 							}
 							else {							count++;}
 							check = 0;
