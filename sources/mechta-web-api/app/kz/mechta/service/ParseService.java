@@ -183,19 +183,34 @@ public class ParseService {
 				filter = ParseService.encodeString(filter, countOfFilters);
 			Document doc = null;
 			City city = City.findById(cityId);
-			OrderProduct orderProduct = OrderProduct.findById(typeOrder);
+			
+			OrderProduct orderProduct = null;
+			if (typeOrder != null)
+				orderProduct = OrderProduct.findById(typeOrder);
+			
 			if (StringUtils.isEmpty(city.getNameOnSite())) {
 				if (filter != null || costLeft != null || costRight != null) {
 					if (filter == null) filter = "";
 					if (costLeft == null) costLeft = "";
 					if (costRight == null) costRight = "";
-					Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
-					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight +"&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y");
+					String connectionURL = "http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page
+							+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight +"&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y";
+					if (orderProduct != null) {
+						connectionURL = connectionURL + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType(); 
+					}
+					Connection connection = Jsoup.connect(connectionURL);
+					//Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
+					//+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight +"&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y");
 					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 					doc = connection.get();		
 				}
 				else {
-					Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
+					String connectionURL = "http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page;
+					if (orderProduct != null) {
+						connectionURL = connectionURL  + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType();
+					}
+					Connection connection = Jsoup.connect(connectionURL);
+					//Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
 					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 					doc = connection.get();
 				}
@@ -204,13 +219,24 @@ public class ParseService {
 					if (filter == null) filter = "";
 					if (costLeft == null) costLeft = "";
 					if (costRight == null) costRight = "";
-					Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
-					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight +"&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y");
+					String connectionURL = "http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page
+							+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight +"&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y";
+					if (orderProduct != null) {
+						connectionURL = connectionURL  + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType();
+					}
+					Connection connection = Jsoup.connect(connectionURL);
+					//Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
+					//+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight +"&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y");
 					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 					doc = connection.get();
 				}
 				else {
-					Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
+					String connectionURL = "http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page;
+					if (orderProduct != null) {
+						connectionURL = connectionURL + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType();  
+					}
+					Connection connection = Jsoup.connect(connectionURL);
+					//Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=" + page + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
 					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 					doc = connection.get();
 				}
@@ -225,30 +251,53 @@ public class ParseService {
 					if (filter == null) filter = "";
 					if (costLeft == null) costLeft = "";
 					if (costRight == null) costRight = "";
-					Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
-					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight + "&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y");
+					
+					String connectionURL = "http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=1"
+							+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight + "&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y";
+					if (orderProduct != null) {
+						connectionURL = connectionURL + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType();
+					}
+					Connection connection = Jsoup.connect(connectionURL);
+					//Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory +  "/?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
+					//+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight + "&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y");
 					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 					doc2 = connection.get();
 				}
 				else {
-				Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory + "/"  + "?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
-				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
-				doc2 = connection.get();
+					String connectionURL = "http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory + "/"  + "?PAGEN_1=1";
+					if (orderProduct != null) {
+						connectionURL = connectionURL + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType();
+					}
+					Connection connection = Jsoup.connect(connectionURL);
+					//Connection connection = Jsoup.connect("http://www.mechta.kz/" + city.getNameOnSite() + "/catalog/" + numberOnSiteCategory + "/"  + "?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
+					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+					doc2 = connection.get();
 				}
 			} else {
 				if (filter != null || costLeft != null || costRight != null) {
 					if (filter == null) filter = "";
 					if (costLeft == null) costLeft = "";
 					if (costRight == null) costRight = "";
-					Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
-					+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight + "&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y");
+					String connectionURL = "http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=1"
+							+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight + "&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y";
+					if (orderProduct != null) {
+						connectionURL = connectionURL + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType();
+					}
+					Connection connection = Jsoup.connect(connectionURL);
+					//Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType()
+					//+ "&arrFilter_pf[PROPERTIES]=&arrFilter_cf[2][LEFT]=" + costLeft + "&arrFilter_cf[2][RIGHT]=" + costRight + "&arrFilter_pf[ARFP]=" + filter + "&set_filter=%D0%A4%D0%B8%D0%BB%D1%8C%D1%82%D1%80&set_filter=Y");
 					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
 					doc2 = connection.get();		
 				}
 				else {
-				Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/"  + "?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
-				connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
-				doc2 = connection.get();
+					String connectionURL = "http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/"  + "?PAGEN_1=1";
+					if (orderProduct != null) {
+						connectionURL = connectionURL + "&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType();
+					}
+					Connection connection = Jsoup.connect(connectionURL);
+					//Connection connection = Jsoup.connect("http://www.mechta.kz/catalog/" + numberOnSiteCategory + "/"  + "?PAGEN_1=1&sort=" + orderProduct.getName() + "&adesc=" + orderProduct.getType());
+					connection.request().headers().put("User-Agent", "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_11_3) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/48.0.2564.103 Safari/537.36");
+					doc2 = connection.get();
 				}
 			}
 			
