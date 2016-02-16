@@ -58,9 +58,11 @@
     
     BOOL isAlreadyInFilter = [self checkIsAlreadyInFilter:model];
     if (isAlreadyInFilter == YES) {
-        cell.filterMarkImageView.image = [UIImage imageNamed:@"filter_mark_checked"];
+        //cell.filterMarkImageView.image = [UIImage imageNamed:@"filter_mark_checked"];
+        cell.filterMarkImageView.image = [UIImage imageNamed:@"filter_mark_checked_green"];
     } else {
-        cell.filterMarkImageView.image = [UIImage imageNamed:@"filter_mark_unchecked"];
+        //cell.filterMarkImageView.image = [UIImage imageNamed:@"filter_mark_unchecked"];
+        cell.filterMarkImageView.image = nil;
     }
     
     return cell;
@@ -134,7 +136,7 @@
 
 
 - (CGFloat) tableView:(UITableView *)tableView heightForRowAtIndexPath:(NSIndexPath *)indexPath {
-    return 60;
+    return 40;
 }
 
 /*

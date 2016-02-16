@@ -29,4 +29,7 @@
  */
 @property int sortOrder;
 
+- (NSString*) buildFilterOptionsQueryParam;
+
+
 @end

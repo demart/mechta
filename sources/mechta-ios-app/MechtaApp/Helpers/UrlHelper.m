@@ -51,7 +51,7 @@
 }
 
 + (NSString*) productsUrlWithCategoryId:(long) categoryId withPage:(long)page inCityId:(long) cityId {
-    return [[NSString alloc] initWithFormat:@"%@/products?numberOnSiteCategory=%li&page=%li&cityId=%li&typeOrder=1", UrlHelper.baseUrl, categoryId, page, cityId];
+    return [[NSString alloc] initWithFormat:@"%@/products?numberOnSiteCategory=%li&page=%li&cityId=%li", UrlHelper.baseUrl, categoryId, page, cityId];
 }
 
 

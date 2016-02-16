@@ -30,6 +30,25 @@
 		8D29C3FC1C64C4ED00E7EFCD /* ProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D29C3FA1C64C4ED00E7EFCD /* ProductTableViewCell.m */; };
 		8D29C3FD1C64C4ED00E7EFCD /* ProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D29C3FB1C64C4ED00E7EFCD /* ProductTableViewCell.xib */; };
 		8D29C4001C64CD4100E7EFCD /* ProductDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D29C3FF1C64CD4100E7EFCD /* ProductDetailTableViewController.m */; };
+		8D3800BA1C71F282001553CD /* slider-default-handle-highlighted.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D38009C1C71F282001553CD /* slider-default-handle-highlighted.png */; };
+		8D3800BB1C71F282001553CD /* slider-default-handle-highlighted@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D38009D1C71F282001553CD /* slider-default-handle-highlighted@2x.png */; };
+		8D3800BC1C71F282001553CD /* slider-default-handle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D38009E1C71F282001553CD /* slider-default-handle.png */; };
+		8D3800BD1C71F282001553CD /* slider-default-handle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D38009F1C71F282001553CD /* slider-default-handle@2x.png */; };
+		8D3800BE1C71F282001553CD /* slider-default-track.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800A01C71F282001553CD /* slider-default-track.png */; };
+		8D3800BF1C71F282001553CD /* slider-default-track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800A11C71F282001553CD /* slider-default-track@2x.png */; };
+		8D3800C01C71F282001553CD /* slider-default-trackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800A21C71F282001553CD /* slider-default-trackBackground.png */; };
+		8D3800C11C71F282001553CD /* slider-default-trackCrossedOver.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800A31C71F282001553CD /* slider-default-trackCrossedOver.png */; };
+		8D3800C21C71F282001553CD /* slider-default-trackCrossedOver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800A41C71F282001553CD /* slider-default-trackCrossedOver@2x.png */; };
+		8D3800C31C71F282001553CD /* slider-default_trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800A51C71F282001553CD /* slider-default_trackBackground@2x.png */; };
+		8D3800C41C71F282001553CD /* slider-default7-handle.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800A71C71F282001553CD /* slider-default7-handle.png */; };
+		8D3800C51C71F282001553CD /* slider-default7-handle@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800A81C71F282001553CD /* slider-default7-handle@2x.png */; };
+		8D3800C61C71F282001553CD /* slider-default7-track.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800A91C71F282001553CD /* slider-default7-track.png */; };
+		8D3800C71C71F282001553CD /* slider-default7-track@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800AA1C71F282001553CD /* slider-default7-track@2x.png */; };
+		8D3800C81C71F282001553CD /* slider-default7-trackBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800AB1C71F282001553CD /* slider-default7-trackBackground.png */; };
+		8D3800C91C71F282001553CD /* slider-default7-trackBackground@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800AC1C71F282001553CD /* slider-default7-trackBackground@2x.png */; };
+		8D3800CA1C71F282001553CD /* slider-default7-trackCrossedOver.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800AD1C71F282001553CD /* slider-default7-trackCrossedOver.png */; };
+		8D3800CB1C71F282001553CD /* slider-default7-trackCrossedOver@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 8D3800AE1C71F282001553CD /* slider-default7-trackCrossedOver@2x.png */; };
+		8D3800D41C71F282001553CD /* NMRangeSlider.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D3800B91C71F282001553CD /* NMRangeSlider.m */; };
 		8D48501A1C689F0400A07CF0 /* UrlHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4850191C689F0400A07CF0 /* UrlHelper.m */; };
 		8D48501D1C68A20C00A07CF0 /* DataModelHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D48501C1C68A20C00A07CF0 /* DataModelHelper.m */; };
 		8D4850221C68B00000A07CF0 /* DejalActivityView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D4850211C68B00000A07CF0 /* DejalActivityView.m */; };
@@ -51,6 +70,10 @@
 		8D7F3FB31C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D7F3FB11C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib */; };
 		8D879ABD1C6491D100D802F4 /* CitiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D879ABC1C6491D100D802F4 /* CitiesTableViewController.m */; };
 		8D879AC01C6491FD00D802F4 /* CatalogTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D879ABF1C6491FD00D802F4 /* CatalogTableViewController.m */; };
+		8D90567F1C72F9B100CB72C8 /* UIBarButtonItem+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D90567C1C72F9B100CB72C8 /* UIBarButtonItem+Badge.m */; };
+		8D9056801C72F9B100CB72C8 /* UIButton+Badge.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D90567E1C72F9B100CB72C8 /* UIButton+Badge.m */; };
+		8D9056841C731F3200CB72C8 /* FilterSortOptionsTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9056821C731F3200CB72C8 /* FilterSortOptionsTableViewCell.m */; };
+		8D9056851C731F3200CB72C8 /* FilterSortOptionsTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9056831C731F3200CB72C8 /* FilterSortOptionsTableViewCell.xib */; };
 		8DB078751C68751C00C07F69 /* ExtraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB078741C68751C00C07F69 /* ExtraTableViewController.m */; };
 		8DB0787A1C68761000C07F69 /* ExtraHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB078781C68761000C07F69 /* ExtraHeaderTableViewCell.m */; };
 		8DB0787B1C68761000C07F69 /* ExtraHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DB078791C68761000C07F69 /* ExtraHeaderTableViewCell.xib */; };
@@ -130,6 +153,26 @@
 		8D29C3FB1C64C4ED00E7EFCD /* ProductTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductTableViewCell.xib; path = View/Catalog/Cell/ProductTableViewCell.xib; sourceTree = "<group>"; };
 		8D29C3FE1C64CD4100E7EFCD /* ProductDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductDetailTableViewController.h; path = View/Catalog/ProductDetailTableViewController.h; sourceTree = "<group>"; };
 		8D29C3FF1C64CD4100E7EFCD /* ProductDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductDetailTableViewController.m; path = View/Catalog/ProductDetailTableViewController.m; sourceTree = "<group>"; };
+		8D38009C1C71F282001553CD /* slider-default-handle-highlighted.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted.png"; sourceTree = "<group>"; };
+		8D38009D1C71F282001553CD /* slider-default-handle-highlighted@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle-highlighted@2x.png"; sourceTree = "<group>"; };
+		8D38009E1C71F282001553CD /* slider-default-handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle.png"; sourceTree = "<group>"; };
+		8D38009F1C71F282001553CD /* slider-default-handle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-handle@2x.png"; sourceTree = "<group>"; };
+		8D3800A01C71F282001553CD /* slider-default-track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-track.png"; sourceTree = "<group>"; };
+		8D3800A11C71F282001553CD /* slider-default-track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-track@2x.png"; sourceTree = "<group>"; };
+		8D3800A21C71F282001553CD /* slider-default-trackBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-trackBackground.png"; sourceTree = "<group>"; };
+		8D3800A31C71F282001553CD /* slider-default-trackCrossedOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-trackCrossedOver.png"; sourceTree = "<group>"; };
+		8D3800A41C71F282001553CD /* slider-default-trackCrossedOver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default-trackCrossedOver@2x.png"; sourceTree = "<group>"; };
+		8D3800A51C71F282001553CD /* slider-default_trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default_trackBackground@2x.png"; sourceTree = "<group>"; };
+		8D3800A71C71F282001553CD /* slider-default7-handle.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-handle.png"; sourceTree = "<group>"; };
+		8D3800A81C71F282001553CD /* slider-default7-handle@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-handle@2x.png"; sourceTree = "<group>"; };
+		8D3800A91C71F282001553CD /* slider-default7-track.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-track.png"; sourceTree = "<group>"; };
+		8D3800AA1C71F282001553CD /* slider-default7-track@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-track@2x.png"; sourceTree = "<group>"; };
+		8D3800AB1C71F282001553CD /* slider-default7-trackBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackBackground.png"; sourceTree = "<group>"; };
+		8D3800AC1C71F282001553CD /* slider-default7-trackBackground@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackBackground@2x.png"; sourceTree = "<group>"; };
+		8D3800AD1C71F282001553CD /* slider-default7-trackCrossedOver.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackCrossedOver.png"; sourceTree = "<group>"; };
+		8D3800AE1C71F282001553CD /* slider-default7-trackCrossedOver@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "slider-default7-trackCrossedOver@2x.png"; sourceTree = "<group>"; };
+		8D3800B81C71F282001553CD /* NMRangeSlider.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMRangeSlider.h; sourceTree = "<group>"; };
+		8D3800B91C71F282001553CD /* NMRangeSlider.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NMRangeSlider.m; sourceTree = "<group>"; };
 		8D4850181C689F0400A07CF0 /* UrlHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = UrlHelper.h; path = Helpers/UrlHelper.h; sourceTree = "<group>"; };
 		8D4850191C689F0400A07CF0 /* UrlHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = UrlHelper.m; path = Helpers/UrlHelper.m; sourceTree = "<group>"; };
 		8D48501B1C68A20C00A07CF0 /* DataModelHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = DataModelHelper.h; path = Helpers/DataModelHelper.h; sourceTree = "<group>"; };
@@ -166,6 +209,13 @@
 		8D879ABC1C6491D100D802F4 /* CitiesTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CitiesTableViewController.m; path = View/Catalog/CitiesTableViewController.m; sourceTree = "<group>"; };
 		8D879ABE1C6491FD00D802F4 /* CatalogTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = CatalogTableViewController.h; path = View/Catalog/CatalogTableViewController.h; sourceTree = "<group>"; };
 		8D879ABF1C6491FD00D802F4 /* CatalogTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = CatalogTableViewController.m; path = View/Catalog/CatalogTableViewController.m; sourceTree = "<group>"; };
+		8D90567B1C72F9B100CB72C8 /* UIBarButtonItem+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIBarButtonItem+Badge.h"; sourceTree = "<group>"; };
+		8D90567C1C72F9B100CB72C8 /* UIBarButtonItem+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIBarButtonItem+Badge.m"; sourceTree = "<group>"; };
+		8D90567D1C72F9B100CB72C8 /* UIButton+Badge.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIButton+Badge.h"; sourceTree = "<group>"; };
+		8D90567E1C72F9B100CB72C8 /* UIButton+Badge.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIButton+Badge.m"; sourceTree = "<group>"; };
+		8D9056811C731F3200CB72C8 /* FilterSortOptionsTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = FilterSortOptionsTableViewCell.h; path = View/Catalog/Cell/FilterSortOptionsTableViewCell.h; sourceTree = "<group>"; };
+		8D9056821C731F3200CB72C8 /* FilterSortOptionsTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = FilterSortOptionsTableViewCell.m; path = View/Catalog/Cell/FilterSortOptionsTableViewCell.m; sourceTree = "<group>"; };
+		8D9056831C731F3200CB72C8 /* FilterSortOptionsTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = FilterSortOptionsTableViewCell.xib; path = View/Catalog/Cell/FilterSortOptionsTableViewCell.xib; sourceTree = "<group>"; };
 		8DB078731C68751C00C07F69 /* ExtraTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtraTableViewController.h; path = View/Extra/ExtraTableViewController.h; sourceTree = "<group>"; };
 		8DB078741C68751C00C07F69 /* ExtraTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtraTableViewController.m; path = View/Extra/ExtraTableViewController.m; sourceTree = "<group>"; };
 		8DB078771C68761000C07F69 /* ExtraHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtraHeaderTableViewCell.h; path = View/Extra/Cell/ExtraHeaderTableViewCell.h; sourceTree = "<group>"; };
@@ -363,9 +413,55 @@
 			name = Models;
 			sourceTree = "<group>";
 		};
+		8D38009A1C71F282001553CD /* NMRangeSlider */ = {
+			isa = PBXGroup;
+			children = (
+				8D38009B1C71F282001553CD /* DefaultTheme */,
+				8D3800A61C71F282001553CD /* DefaultTheme7 */,
+				8D3800B81C71F282001553CD /* NMRangeSlider.h */,
+				8D3800B91C71F282001553CD /* NMRangeSlider.m */,
+			);
+			name = NMRangeSlider;
+			path = ThirdParty/NMRangeSlider;
+			sourceTree = "<group>";
+		};
+		8D38009B1C71F282001553CD /* DefaultTheme */ = {
+			isa = PBXGroup;
+			children = (
+				8D38009C1C71F282001553CD /* slider-default-handle-highlighted.png */,
+				8D38009D1C71F282001553CD /* slider-default-handle-highlighted@2x.png */,
+				8D38009E1C71F282001553CD /* slider-default-handle.png */,
+				8D38009F1C71F282001553CD /* slider-default-handle@2x.png */,
+				8D3800A01C71F282001553CD /* slider-default-track.png */,
+				8D3800A11C71F282001553CD /* slider-default-track@2x.png */,
+				8D3800A21C71F282001553CD /* slider-default-trackBackground.png */,
+				8D3800A31C71F282001553CD /* slider-default-trackCrossedOver.png */,
+				8D3800A41C71F282001553CD /* slider-default-trackCrossedOver@2x.png */,
+				8D3800A51C71F282001553CD /* slider-default_trackBackground@2x.png */,
+			);
+			path = DefaultTheme;
+			sourceTree = "<group>";
+		};
+		8D3800A61C71F282001553CD /* DefaultTheme7 */ = {
+			isa = PBXGroup;
+			children = (
+				8D3800A71C71F282001553CD /* slider-default7-handle.png */,
+				8D3800A81C71F282001553CD /* slider-default7-handle@2x.png */,
+				8D3800A91C71F282001553CD /* slider-default7-track.png */,
+				8D3800AA1C71F282001553CD /* slider-default7-track@2x.png */,
+				8D3800AB1C71F282001553CD /* slider-default7-trackBackground.png */,
+				8D3800AC1C71F282001553CD /* slider-default7-trackBackground@2x.png */,
+				8D3800AD1C71F282001553CD /* slider-default7-trackCrossedOver.png */,
+				8D3800AE1C71F282001553CD /* slider-default7-trackCrossedOver@2x.png */,
+			);
+			path = DefaultTheme7;
+			sourceTree = "<group>";
+		};
 		8D48501E1C68AFF000A07CF0 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				8D90567A1C72F9B100CB72C8 /* UIBarButtomItemBadge */,
+				8D38009A1C71F282001553CD /* NMRangeSlider */,
 				8D48501F1C68B00000A07CF0 /* DejalActivityView */,
 			);
 			name = Components;
@@ -450,6 +546,18 @@
 				8D4DBA111C69EBDD002E26B4 /* ProductDetail */,
 			);
 			name = Cell;
+			sourceTree = "<group>";
+		};
+		8D90567A1C72F9B100CB72C8 /* UIBarButtomItemBadge */ = {
+			isa = PBXGroup;
+			children = (
+				8D90567B1C72F9B100CB72C8 /* UIBarButtonItem+Badge.h */,
+				8D90567C1C72F9B100CB72C8 /* UIBarButtonItem+Badge.m */,
+				8D90567D1C72F9B100CB72C8 /* UIButton+Badge.h */,
+				8D90567E1C72F9B100CB72C8 /* UIButton+Badge.m */,
+			);
+			name = UIBarButtomItemBadge;
+			path = ThirdParty/UIBarButtomItemBadge;
 			sourceTree = "<group>";
 		};
 		8DB078701C6874DA00C07F69 /* Basket */ = {
@@ -547,6 +655,9 @@
 				8DCB2FD41C6E8546002CAB84 /* FilterClearTableViewCell.h */,
 				8DCB2FD51C6E8546002CAB84 /* FilterClearTableViewCell.m */,
 				8DCB2FD61C6E8546002CAB84 /* FilterClearTableViewCell.xib */,
+				8D9056811C731F3200CB72C8 /* FilterSortOptionsTableViewCell.h */,
+				8D9056821C731F3200CB72C8 /* FilterSortOptionsTableViewCell.m */,
+				8D9056831C731F3200CB72C8 /* FilterSortOptionsTableViewCell.xib */,
 			);
 			name = Filter;
 			sourceTree = "<group>";
@@ -641,29 +752,48 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8D3800C41C71F282001553CD /* slider-default7-handle.png in Resources */,
+				8D3800C01C71F282001553CD /* slider-default-trackBackground.png in Resources */,
 				8DC7E1FF1C69194F00E6E416 /* LoadMoreTableViewCell.xib in Resources */,
+				8D3800BB1C71F282001553CD /* slider-default-handle-highlighted@2x.png in Resources */,
+				8D3800BE1C71F282001553CD /* slider-default-track.png in Resources */,
 				8DB0787B1C68761000C07F69 /* ExtraHeaderTableViewCell.xib in Resources */,
+				8D3800C31C71F282001553CD /* slider-default_trackBackground@2x.png in Resources */,
 				8D29C3D81C64A6B800E7EFCD /* CityTableViewCell.xib in Resources */,
+				8D3800BC1C71F282001553CD /* slider-default-handle.png in Resources */,
 				8DF3C1C01C6E4F7C00391E9F /* FilterGroupTableViewCell.xib in Resources */,
+				8D3800C61C71F282001553CD /* slider-default7-track.png in Resources */,
 				8DC7E2041C692FE800E6E416 /* ProductImageTableViewCell.xib in Resources */,
+				8D3800C21C71F282001553CD /* slider-default-trackCrossedOver@2x.png in Resources */,
 				8D4DBA251C6A1473002E26B4 /* ProductCharacteristicTableViewCell.xib in Resources */,
 				8DF3C1BB1C6E4D2000391E9F /* FilterPriceTableViewCell.xib in Resources */,
+				8D3800C11C71F282001553CD /* slider-default-trackCrossedOver.png in Resources */,
 				8DB078801C6876A700C07F69 /* ExtraMenuItemTableViewCell.xib in Resources */,
 				8DD5AC8C1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.xib in Resources */,
+				8D3800C81C71F282001553CD /* slider-default7-trackBackground.png in Resources */,
 				8D4DBA1B1C6A1212002E26B4 /* ProductDescriptionTableViewCell.xib in Resources */,
+				8D3800CA1C71F282001553CD /* slider-default7-trackCrossedOver.png in Resources */,
 				8D4DBA161C6A0B91002E26B4 /* ProductAvailableTableViewCell.xib in Resources */,
 				8D29C3FD1C64C4ED00E7EFCD /* ProductTableViewCell.xib in Resources */,
+				8D3800BF1C71F282001553CD /* slider-default-track@2x.png in Resources */,
 				8DF3C1C51C6E504700391E9F /* FilterOptionTableViewCell.xib in Resources */,
 				8D4DBA201C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.xib in Resources */,
+				8D9056851C731F3200CB72C8 /* FilterSortOptionsTableViewCell.xib in Resources */,
 				8D16EE4B1C6480130009FD47 /* LaunchScreen.storyboard in Resources */,
 				8D7F3FB31C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib in Resources */,
 				8DCB2FD81C6E8546002CAB84 /* FilterClearTableViewCell.xib in Resources */,
+				8D3800C91C71F282001553CD /* slider-default7-trackBackground@2x.png in Resources */,
 				8D16EE481C6480130009FD47 /* Assets.xcassets in Resources */,
 				8DD5AC821C6B873A0021AFDA /* ShopCityTableViewCell.xib in Resources */,
+				8D3800C51C71F282001553CD /* slider-default7-handle@2x.png in Resources */,
 				8D4DBA2A1C6A4BE7002E26B4 /* ProductBasketTableViewCell.xib in Resources */,
+				8D3800BA1C71F282001553CD /* slider-default-handle-highlighted.png in Resources */,
+				8D3800C71C71F282001553CD /* slider-default7-track@2x.png in Resources */,
 				8D16EE461C6480130009FD47 /* Main.storyboard in Resources */,
+				8D3800CB1C71F282001553CD /* slider-default7-trackCrossedOver@2x.png in Resources */,
 				8DD5AC871C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.xib in Resources */,
 				8D29C3CB1C6494A400E7EFCD /* CatalogTableViewCell.xib in Resources */,
+				8D3800BD1C71F282001553CD /* slider-default-handle@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -736,9 +866,12 @@
 				8DF3C1BA1C6E4D2000391E9F /* FilterPriceTableViewCell.m in Sources */,
 				8D29C3E91C64BEE000E7EFCD /* ProductsTableViewController.m in Sources */,
 				8D29C3DB1C64A84400E7EFCD /* CityService.m in Sources */,
+				8D90567F1C72F9B100CB72C8 /* UIBarButtonItem+Badge.m in Sources */,
 				8DF3C1BF1C6E4F7C00391E9F /* FilterGroupTableViewCell.m in Sources */,
 				8DD5AC8B1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.m in Sources */,
+				8D3800D41C71F282001553CD /* NMRangeSlider.m in Sources */,
 				8D4DBA1A1C6A1212002E26B4 /* ProductDescriptionTableViewCell.m in Sources */,
+				8D9056841C731F3200CB72C8 /* FilterSortOptionsTableViewCell.m in Sources */,
 				8DF3C1B31C6E254200391E9F /* FilterOptionModel.m in Sources */,
 				8D29C3CA1C6494A400E7EFCD /* CatalogTableViewCell.m in Sources */,
 				8DCB2FD31C6E6446002CAB84 /* FilterOptionsTableViewController.m in Sources */,
@@ -748,6 +881,7 @@
 				8D16EE3D1C6480130009FD47 /* main.m in Sources */,
 				8D29C3F21C64C10400E7EFCD /* ProductAvailableInShopModel.m in Sources */,
 				8D4DBA151C6A0B91002E26B4 /* ProductAvailableTableViewCell.m in Sources */,
+				8D9056801C72F9B100CB72C8 /* UIButton+Badge.m in Sources */,
 				8D29C3F51C64C1DE00E7EFCD /* ProductService.m in Sources */,
 				8DF3C1C41C6E504700391E9F /* FilterOptionTableViewCell.m in Sources */,
 				8DC7E2031C692FE800E6E416 /* ProductImageTableViewCell.m in Sources */,

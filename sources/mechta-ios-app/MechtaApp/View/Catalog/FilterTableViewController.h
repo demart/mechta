@@ -9,12 +9,15 @@
 #import <UIKit/UIKit.h>
 #import "ResponseWrapperModel.h"
 
-@interface FilterTableViewController : UITableViewController
+@interface FilterTableViewController : UIViewController<UITableViewDataSource, UITableViewDelegate>
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
+
+@property (strong, nonatomic) IBOutlet UIView *activeteSearchView;
 
 - (IBAction)hideFiltersView:(UIBarButtonItem *)sender;
 
 - (IBAction)applyFiltersAction:(UIBarButtonItem *)sender;
 
-- (void) setFilterParameters:(FiltersModel*)filtersModel forViewController:(UITableViewController*) productController;
+- (void) setFilterParameters:(FiltersModel*)filtersModel withAppliedFilters:(FiltersModel*)appliedFilters forViewController:(UITableViewController*) productController;
 
 @end

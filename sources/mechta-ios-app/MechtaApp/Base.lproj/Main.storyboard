@@ -95,14 +95,7 @@
                             <outlet property="delegate" destination="d6V-4g-ttS" id="m7M-Ab-WuY"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Товары" id="KXd-KT-Jvg">
-                        <barButtonItem key="rightBarButtonItem" title="Фильтр" id="ReK-Es-jRB">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <action selector="showFilterAction:" destination="d6V-4g-ttS" id="GQo-9f-zof"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Товары" id="KXd-KT-Jvg"/>
                     <connections>
                         <segue destination="pcF-DS-UmP" kind="show" identifier="showProductDetailSergue" id="8uZ-xv-cBK"/>
                         <segue destination="43k-yd-6sY" kind="presentation" identifier="showFiltersSergue" id="0qO-Gd-jnT"/>
@@ -111,49 +104,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="G5P-Xp-FGS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2377" y="47"/>
-        </scene>
-        <!--Фильтры-->
-        <scene sceneID="bli-2a-LPH">
-            <objects>
-                <tableViewController id="Wd3-9V-Vfb" customClass="FilterTableViewController" sceneMemberID="viewController">
-                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="7yl-qG-eFT">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="Wkn-Yg-qfu">
-                                <rect key="frame" x="0.0" y="92" width="600" height="44"/>
-                                <autoresizingMask key="autoresizingMask"/>
-                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="Wkn-Yg-qfu" id="8d9-bo-nvx">
-                                    <rect key="frame" x="0.0" y="0.0" width="600" height="43.5"/>
-                                    <autoresizingMask key="autoresizingMask"/>
-                                </tableViewCellContentView>
-                            </tableViewCell>
-                        </prototypes>
-                        <connections>
-                            <outlet property="dataSource" destination="Wd3-9V-Vfb" id="0uW-gF-KGa"/>
-                            <outlet property="delegate" destination="Wd3-9V-Vfb" id="nge-Ad-nCo"/>
-                        </connections>
-                    </tableView>
-                    <navigationItem key="navigationItem" title="Фильтры" id="fja-JJ-XV6">
-                        <barButtonItem key="leftBarButtonItem" title="Отмена" id="TAs-zm-Xhl">
-                            <connections>
-                                <action selector="hideFiltersView:" destination="Wd3-9V-Vfb" id="rHc-Bq-uLi"/>
-                            </connections>
-                        </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" title="Готово" id="HVN-qR-4Mv">
-                            <connections>
-                                <action selector="applyFiltersAction:" destination="Wd3-9V-Vfb" id="Q6u-5v-kIM"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <segue destination="JbT-hd-Cof" kind="show" identifier="showFilterOptionsSegue" id="hYm-pi-y9f"/>
-                    </connections>
-                </tableViewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="rjC-zG-Mjk" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="3973" y="-739"/>
         </scene>
         <!--Фильтр-->
         <scene sceneID="iHY-Qg-fQP">
@@ -190,6 +140,83 @@
             </objects>
             <point key="canvasLocation" x="4752" y="-739"/>
         </scene>
+        <!--Фильтры-->
+        <scene sceneID="CgK-6E-fBv">
+            <objects>
+                <viewController id="3HK-Am-zUs" customClass="FilterTableViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="EiY-94-4sE"/>
+                        <viewControllerLayoutGuide type="bottom" id="2U9-rt-fc4"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="snn-GV-9xu">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="ubr-Km-qTJ">
+                                <rect key="frame" x="0.0" y="64" width="600" height="456"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </tableView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="piD-Qk-E7z">
+                                <rect key="frame" x="0.0" y="520" width="600" height="80"/>
+                                <subviews>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Найдено более 10 товаров" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8n-EC-SiG">
+                                        <rect key="frame" x="8" y="44.5" width="584" height="14.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="12"/>
+                                        <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Применить фильтр" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cX3-0a-mle">
+                                        <rect key="frame" x="8" y="22" width="584" height="20.5"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                        <nil key="highlightedColor"/>
+                                    </label>
+                                </subviews>
+                                <color key="backgroundColor" red="0.0" green="0.80000000000000004" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <constraints>
+                                    <constraint firstItem="K8n-EC-SiG" firstAttribute="leading" secondItem="piD-Qk-E7z" secondAttribute="leading" constant="8" id="6Tu-EP-NGb"/>
+                                    <constraint firstAttribute="trailing" secondItem="K8n-EC-SiG" secondAttribute="trailing" constant="8" id="b1x-0S-FUj"/>
+                                    <constraint firstItem="cX3-0a-mle" firstAttribute="centerY" secondItem="piD-Qk-E7z" secondAttribute="centerY" constant="-8" id="cZl-ci-aEl"/>
+                                    <constraint firstItem="cX3-0a-mle" firstAttribute="leading" secondItem="piD-Qk-E7z" secondAttribute="leading" constant="8" id="dkW-k6-Jr1"/>
+                                    <constraint firstAttribute="height" constant="80" id="lsF-jj-wbv"/>
+                                    <constraint firstAttribute="trailing" secondItem="cX3-0a-mle" secondAttribute="trailing" constant="8" id="vlN-p7-sg0"/>
+                                    <constraint firstItem="K8n-EC-SiG" firstAttribute="top" secondItem="cX3-0a-mle" secondAttribute="bottom" constant="2" id="vnX-xo-CaI"/>
+                                </constraints>
+                            </view>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="piD-Qk-E7z" firstAttribute="leading" secondItem="snn-GV-9xu" secondAttribute="leadingMargin" constant="-20" id="JDa-bU-0R0"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ubr-Km-qTJ" secondAttribute="trailing" constant="-20" id="LUf-Hn-giV"/>
+                            <constraint firstItem="2U9-rt-fc4" firstAttribute="top" secondItem="piD-Qk-E7z" secondAttribute="bottom" id="aCt-kJ-XBO"/>
+                            <constraint firstItem="ubr-Km-qTJ" firstAttribute="leading" secondItem="snn-GV-9xu" secondAttribute="leadingMargin" constant="-20" id="br2-0B-0qb"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="piD-Qk-E7z" secondAttribute="trailing" constant="-20" id="dVX-D7-3My"/>
+                            <constraint firstItem="ubr-Km-qTJ" firstAttribute="top" secondItem="EiY-94-4sE" secondAttribute="bottom" id="fl4-pb-9gx"/>
+                            <constraint firstItem="piD-Qk-E7z" firstAttribute="top" secondItem="ubr-Km-qTJ" secondAttribute="bottom" id="kHH-Xa-5Yh"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" title="Фильтры" id="6ri-az-oWa">
+                        <barButtonItem key="leftBarButtonItem" title="Отмена" id="rhS-Ug-k4O">
+                            <connections>
+                                <action selector="hideFiltersView:" destination="3HK-Am-zUs" id="q3Y-ub-JHo"/>
+                            </connections>
+                        </barButtonItem>
+                        <barButtonItem key="rightBarButtonItem" title="Готово" id="p6k-Rl-j04">
+                            <connections>
+                                <action selector="applyFiltersAction:" destination="3HK-Am-zUs" id="vgi-Pj-xbL"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="activeteSearchView" destination="piD-Qk-E7z" id="k6t-VX-E8K"/>
+                        <outlet property="tableView" destination="ubr-Km-qTJ" id="mhs-Km-gFy"/>
+                        <segue destination="JbT-hd-Cof" kind="show" identifier="showFilterOptionsSegue" id="3LR-gq-kT6"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hbo-xf-uKL" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="3868" y="-739"/>
+        </scene>
         <!--Navigation Controller-->
         <scene sceneID="7Sd-OX-Foq">
             <objects>
@@ -200,7 +227,7 @@
                         <color key="barTintColor" red="0.92156862750000001" green="0.0" blue="0.58039215690000001" alpha="1" colorSpace="calibratedRGB"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="Wd3-9V-Vfb" kind="relationship" relationship="rootViewController" id="uTP-yR-0ZW"/>
+                        <segue destination="3HK-Am-zUs" kind="relationship" relationship="rootViewController" id="dbZ-5F-yS2"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="W4j-T2-5aJ" userLabel="First Responder" sceneMemberID="firstResponder"/>

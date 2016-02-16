@@ -10,7 +10,7 @@
 
 @implementation ProductService
 
-+ (void) retrieveProductsWithCategoryId:(long)parentId withPage:(long)page inCityId:(long)cityId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure {
++ (void) retrieveProductsWithCategoryId:(long)parentId withPage:(long)page withFilter:(FiltersModel*)filtersModel withFilterCount:(long)filterCount inCityId:(long)cityId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure {
     
     /*
     ResponseWrapperModel *wrapper = [[ResponseWrapperModel alloc] init];
@@ -22,7 +22,34 @@
     return;
      */
     
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[UrlHelper productsUrlWithCategoryId:parentId withPage:page inCityId:cityId]] ];
+    // Long typeOrder, String filter, String costLeft, String costRight, Integer countOfFilters
+    
+    
+    NSMutableURLRequest *request = nil;
+    if (filtersModel != nil) {
+        int selectedCostLeft = filtersModel.selectedCostLeft == filtersModel.costLeft ? 0 : filtersModel.selectedCostLeft;
+        int selectedCostRight = filtersModel.selectedCostRight == filtersModel.costRight ? 0 : filtersModel.selectedCostRight;
+        NSString *queryParam = [filtersModel buildFilterOptionsQueryParam];
+
+        NSString *baseUrl = [UrlHelper productsUrlWithCategoryId:parentId withPage:page inCityId:cityId];
+        if (queryParam != nil && ![queryParam isEqualToString:@""]){
+            baseUrl = [[NSString alloc] initWithFormat:@"%@&filter=%@&countOfFilters=%li", baseUrl, queryParam, filterCount];
+        }
+        if (selectedCostLeft > 0){
+            baseUrl = [[NSString alloc] initWithFormat:@"%@&costLeft=%i", baseUrl, selectedCostLeft];
+        }
+        if (selectedCostRight > 0){
+            baseUrl = [[NSString alloc] initWithFormat:@"%@&costRight=%i", baseUrl, selectedCostRight];
+        }
+        
+        if (filtersModel.sortOrder > 0) {
+            baseUrl = [[NSString alloc] initWithFormat:@"%@&typeOrder=%i", baseUrl, filtersModel.sortOrder];
+        }
+        
+        request = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString: baseUrl]];
+    } else {
+        request = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[UrlHelper productsUrlWithCategoryId:parentId withPage:page inCityId:cityId]] ];
+    }
     
     RKResponseDescriptor *responseWrapperDescriptor = [DataModelHelper buildResponseDescriptorForProducts];
     
