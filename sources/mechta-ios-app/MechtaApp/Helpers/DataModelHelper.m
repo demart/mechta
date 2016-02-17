@@ -205,6 +205,8 @@
                                                         @"name": @"name",
                                                         @"imageUrl": @"imageUrl",
                                                         @"numberOnSiteCategory": @"numberOnSiteCategory",
+                                                        @"description": @"content",
+                                                        @"date": @"date",
                                                         }];
     
     RKObjectMapping* wrapperMapping = [DataModelHelper getObjectMappingForResponseWrapperModelWithDataMapping:searchObjectModel];

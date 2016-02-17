@@ -41,6 +41,9 @@ static int STATIC_ROW_COUNT = 3;
 @interface ProductDetailTableViewController ()
 
 @property ProductModel *product;
+@property NSAttributedString *productContent;
+@property CGSize productContentSize;
+
 @property int mode;
 
 @property NSMutableDictionary *loadImageOperations;
@@ -86,6 +89,7 @@ static int STATIC_ROW_COUNT = 3;
             ProductModel *product = (ProductModel*)response.data;
             if (product != nil) {
                 self.product = product;
+                [self buildDescriptionContent];
                 [self.tableView reloadData];
                 [DejalBezelActivityView removeViewAnimated:YES];
             } else {
@@ -112,6 +116,28 @@ static int STATIC_ROW_COUNT = 3;
     }];
 }
 
+- (void) buildDescriptionContent {
+    UIFont *font = [UIFont  systemFontOfSize:13.0];
+    NSString* content = [NSString stringWithFormat:@"<html><style>body{font-family: '%@'; font-size:%fpx;}</style><body>%@</body></html>",
+                         [font fontName],
+                         13.0,
+                         self.product.content];
+    
+    self.productContent = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    
+    UIFont *font1 = [UIFont  systemFontOfSize:14.0];
+    NSString* content1 = [NSString stringWithFormat:@"<html><style>body{font-family: '%@'; font-size:%fpx;}</style><body>%@</body></html>",
+                         [font1 fontName],
+                         14.0,
+                         self.product.content];
+    
+    NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[content1 dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
+    
+    CGFloat width = self.tableView.frame.size.width - 24; // whatever your desired width is
+    CGRect rect = [attrStr boundingRectWithSize:CGSizeMake(width, 10000) options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading context:nil];
+    
+    self.productContentSize = rect.size;
+}
 
 - (void) modeWasChanged:(UISegmentedControl*) segmentControl {
     self.mode = segmentControl.selectedSegmentIndex;
@@ -233,7 +259,6 @@ static int STATIC_ROW_COUNT = 3;
         }
         [cell.shopAmountField setText:availableInShop.amount];
 
-        
         return cell;
     }
 
@@ -244,21 +269,24 @@ static int STATIC_ROW_COUNT = 3;
         if (!cell) {
             [tableView registerNib:[UINib nibWithNibName:@"ProductDescriptionTableViewCell" bundle:nil]forCellReuseIdentifier:@"ProductDescriptionCell"];
             cell = [tableView dequeueReusableCellWithIdentifier:@"ProductDescriptionCell"];
+            
         }
         
         if (self.product.content != nil) {
-            UIFont *font = [UIFont  systemFontOfSize:13.0];
-            NSString* content = [NSString stringWithFormat:@"<html><style>body{font-family: '%@'; font-size:%fpx;}</style><body>%@</body></html>",
-                                 [font fontName],
-                                 13.0,
-                                 self.product.content];
+            /*
+             UIFont *font = [UIFont  systemFontOfSize:13.0];
+             NSString* content = [NSString stringWithFormat:@"<html><style>body{font-family: '%@'; font-size:%fpx;}</style><body>%@</body></html>",
+             [font fontName],
+             13.0,
+             self.product.content];
+             
+             NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
             
-            NSAttributedString * attrStr = [[NSAttributedString alloc] initWithData:[content dataUsingEncoding:NSUnicodeStringEncoding] options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
-            [cell.productDescriptionField setAttributedText:attrStr];
+             */
+            [cell.productDescriptionField setAttributedText:self.productContent];
         } else {
             [cell.productDescriptionField setText:@""];
         }
-        
         
         return cell;
         
@@ -336,6 +364,7 @@ static int STATIC_ROW_COUNT = 3;
     }
     
     if (self.mode == MODE_DESCRIPTION) {
+        /*
         UIFont *font = [UIFont  systemFontOfSize:14.0];
         NSString* content = [NSString stringWithFormat:@"<html><style>body{font-family: '%@'; font-size:%fpx;}</style><body>%@</body></html>",
                              [font fontName],
@@ -350,6 +379,8 @@ static int STATIC_ROW_COUNT = 3;
         CGSize labelHeighSizeKey = rect.size;
         
         return labelHeighSizeKey.height;
+         */
+        return self.productContentSize.height;
     }
     
     if (self.mode == MODE_AVAILABILITY) {

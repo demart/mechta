@@ -179,6 +179,8 @@
         
         SearchObjectModel *model = self.foundRecords[indexPath.row];
         [cell.productName setText:model.name];
+        [cell.productDescription setText:model.content];
+        [cell.productUpdatedDate setText:[[NSString alloc] initWithFormat:@"изменен: %@", model.date]];
         [self loadProductImageInCell:cell onIndexPath:indexPath withImageUrl:model.imageUrl];
         return cell;
     }

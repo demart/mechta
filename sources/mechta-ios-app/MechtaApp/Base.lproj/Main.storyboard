@@ -274,11 +274,7 @@
                             <outlet property="delegate" destination="pcF-DS-UmP" id="YcU-lu-45c"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Товар" id="hCe-ew-krs">
-                        <barButtonItem key="rightBarButtonItem" title="Позвонить" id="31f-l2-yPf">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                        </barButtonItem>
-                    </navigationItem>
+                    <navigationItem key="navigationItem" title="Товар" id="hCe-ew-krs"/>
                     <connections>
                         <segue destination="vMO-d0-MvR" kind="show" identifier="showShopDetailSergue" id="mQj-Qj-NPl"/>
                     </connections>

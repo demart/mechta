@@ -14,5 +14,7 @@
 @property NSString *name;
 @property NSString *imageUrl;
 @property long numberOnSiteCategory;
+@property NSString* content;
+@property NSString* date;
 
 @end
