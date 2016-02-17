@@ -9,10 +9,12 @@ import kz.mechta.models.CityModel;
 import kz.mechta.models.OrderProductModel;
 import kz.mechta.models.ProductModel;
 import kz.mechta.models.ResponseWrapper;
+import kz.mechta.models.StaticPageModel;
 import kz.mechta.models.StoreModel;
 import kz.mechta.models.StoreWrapper;
 import kz.mechta.persistence.category.Category;
 import kz.mechta.persistence.city.City;
+import kz.mechta.persistence.pages.StaticPage;
 import kz.mechta.persistence.product.OrderProduct;
 import kz.mechta.persistence.store.Store;
 import kz.mechta.service.CategoryService;
@@ -168,4 +170,28 @@ public class ParseController extends Controller {
 		renderJSON(wrapper);
 	}
 	
+	/**
+	 * список всех сервисных
+	 */
+	public static void readServiceStores () {
+		ResponseWrapper wrapper = new ResponseWrapper();
+		List<City> stores = CityService.getCities();
+		System.out.println (stores.size());
+		ArrayList<CityModel> models = CityService.getListServiceStores(stores);
+		System.out.println (models.size());
+    	wrapper.data = models.toArray();
+    	wrapper.count = CityService.getAllCountCities().intValue();
+    	wrapper.success = true;
+    	renderJSON(wrapper);
+	}
+	
+	public static void readStaticPage (Long pageId) {
+		ResponseWrapper wrapper = new ResponseWrapper();
+		StaticPage page = ParseService.getStaticPage(pageId);
+		StaticPageModel model = StaticPageModel.buildModel(page);
+		wrapper.data = model;
+		wrapper.success = true;
+		renderJSON (wrapper);
+		
+	}
 }

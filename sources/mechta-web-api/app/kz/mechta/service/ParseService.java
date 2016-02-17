@@ -29,6 +29,7 @@ import kz.mechta.models.StoreWrapper;
 import kz.mechta.persistence.store.Store;
 import kz.mechta.persistence.category.Category;
 import kz.mechta.persistence.city.City;
+import kz.mechta.persistence.pages.StaticPage;
 import kz.mechta.persistence.product.OrderProduct;
 import play.db.jpa.JPA;
 
@@ -457,19 +458,20 @@ public class ParseService {
 			 */
 			Integer cost = null;
 			System.out.println(doc.getElementsByClass("span.m4_prs30").size());
-			if (StringUtils.isNotEmpty(doc.select("span.m4_prs30").first().text()))
-				cost = Integer.parseInt(doc.select("span.m4_prs30").first().text().substring(0, doc.select("span.m4_prs30").first().text().length()).replaceAll(" ", ""));
+			if (doc.select("span.m4_prs30").first() != null)
+				if (StringUtils.isNotEmpty(doc.select("span.m4_prs30").first().text()))
+					cost = Integer.parseInt(doc.select("span.m4_prs30").first().text().substring(0, doc.select("span.m4_prs30").first().text().length()).replaceAll(" ", ""));
 					/*
 			 * Ссылка на картинку
 			 */
 			String url = null;
-			if (cost != null)  {
+			//if (cost != null)  {
 				if (doc.select("div.gal_more_photo").size() == 0) {
 					
 				}
 				else
 				url = doc.select("div.gal_more_photo").first().select("[src]").get(0).attr("abs:src");
-			}
+			//}
 			/*
 			 * Предыдущая цена
 			 */
@@ -485,7 +487,7 @@ public class ParseService {
 			Elements places = doc.select("table.m4_tablenal");
 			Elements counts = doc.select("div.nal_m, div.nal_s, div.nal_b, div.nal_1");
 			ArrayList<AvailabilityProductModel> modelsAvailabilityProduct = new ArrayList<AvailabilityProductModel>();
-			if (cost != null) {
+			//if (cost != null) {
 				for (int i = 0; i < counts.size(); i++) {
 					List<Store> stores = ParseService.searchStore(places.select("a[href]").get(i).text());
 					if (stores.size() == 0) {
@@ -503,16 +505,16 @@ public class ParseService {
 						}
 					}
 				}
-			}
+			//}
 			
 			/*
 			 * Описание товара
 			 */
 			String description = null;
-			if (cost != null) {
+			//if (cost != null) {
 				if (doc.select("div.detailtext").size() != 0)
 					description= doc.select("div.detailtext").first().html();
-			}
+			//}
 
 			/*
 			 * Блок отвечающий парсингу характеристик товара
@@ -520,7 +522,7 @@ public class ParseService {
 			ArrayList<CharacteristicsProductsModel> characteristics = new ArrayList<CharacteristicsProductsModel> ();
 			ArrayList<ImageModel> images = new ArrayList<ImageModel>();
 
-			if (cost != null) {
+			//if (cost != null) {
 				Elements resultLinks = doc.select("div.catalog-element > div.m4_pred > div");
 				System.out.println("Size: " + resultLinks.size());
 				
@@ -583,7 +585,7 @@ public class ParseService {
 					}
 				}
 				
-			}
+			//}
 			
 			ProductModel model = ProductModel.buildModel(numberOnSite, nameOfProduct, url, description, cost, 
 					modelsAvailabilityProduct, characteristics, numberOnSiteCategory, previousCost, images);
@@ -748,6 +750,8 @@ public class ParseService {
 			 */
 			Integer countOfPages = null;
 			
+			System.out.println (doc.select("div.search-page").select("p").size());
+			
 			if (pages.select("a[href]").size() == 0)
 				countOfPages = 1;
 			else if (pages.select("a[href]").size() > 1)
@@ -762,6 +766,7 @@ public class ParseService {
 			Integer count = 0;
 			Integer check = 0;
 			String imageUrl = null;
+			Integer countDescription = 0;
 			for (int i = 0; i < doc.select("div.search-page").select("a[href]").size() - 1 ; i++) {
 				if (doc.select("div.search-page").select("a[href]").get(i).select("img[src]").size() > 0) {
 					check = 1;
@@ -781,10 +786,12 @@ public class ParseService {
 							String numberOnSite = str.substring(str.indexOf("/")+1, str.indexOf("/?"));
 							System.out.println (numberOfCategory + "----" + numberOnSite);
 							if (numberOfCategory.equals("actions") == false) {
-							ProductModel model = ProductModel.buildModel(Long.parseLong(numberOnSite),
+							ProductModel model = ProductModel.buildSearchModel(Long.parseLong(numberOnSite),
 									doc.select("div.search-page").select("a[href]").get(i).text(),
-									imageUrl, null, null, null, null, Long.parseLong(numberOfCategory), null, null);
+									imageUrl, doc.select("div.search-page").select("p").get(countDescription).text(), null, null, null, Long.parseLong(numberOfCategory), null, null,
+									doc.select("div.search-page").select("small").first().text().substring(9));
 							models.add(model);
+							countDescription++;
 							}
 							else {							count++;}
 							check = 0;
@@ -896,6 +903,10 @@ public class ParseService {
 			
 			
 			return model;
+		}
+
+		public static StaticPage getStaticPage(Long pageId) {
+			return (StaticPage)JPA.em().createQuery("from StaticPage where id = :pageId").setParameter("pageId", pageId).getSingleResult();
 		}
 		
 		/*

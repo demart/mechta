@@ -17,6 +17,8 @@ GET		/rest/stores							ParseController.readStores
 GET		/rest/filters							ParseService.parseFilter
 GET		/rest/search/product					ParseController.searchProduct
 GET		/rest/news								ParseController.parseNews
+GET		/rest/service/stores					ParseController.readServiceStores
+GET		/rest/page								ParseController.readStaticPage
 
 # Ignore favicon requests
 GET     /favicon.ico                            404

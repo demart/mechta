@@ -24,6 +24,8 @@ public class ProductModel {
 	
 	private List<ImageModel> images;
 	
+	private String date;
+	
 	public static ProductModel buildModel (Long numberOnSite, String name, String imageUrl, 
 			String description, Integer cost, List<AvailabilityProductModel> productAvailability,
 			List<CharacteristicsProductsModel> characteristics, Long numberOnSiteCategory, 
@@ -39,6 +41,26 @@ public class ProductModel {
 		model.numberOnSiteCategory = numberOnSiteCategory;
 		model.previousCost = previousCost;
 		model.images = images;
+		
+		return model;
+	}
+	
+	public static ProductModel buildSearchModel (Long numberOnSite, String name, String imageUrl, 
+			String description, Integer cost, List<AvailabilityProductModel> productAvailability,
+			List<CharacteristicsProductsModel> characteristics, Long numberOnSiteCategory, 
+			Integer previousCost, List<ImageModel> images, String date) {
+		ProductModel model = new ProductModel();
+		model.imageUrl = imageUrl;
+		model.name = name;
+		model.numberOnSite = numberOnSite;
+		model.description = description;
+		model.cost = cost;
+		model.productAvailability = productAvailability;
+		model.characteristics = characteristics;
+		model.numberOnSiteCategory = numberOnSiteCategory;
+		model.previousCost = previousCost;
+		model.images = images;
+		model.date = date;
 		
 		return model;
 	}
