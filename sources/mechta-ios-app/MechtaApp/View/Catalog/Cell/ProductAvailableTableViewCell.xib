@@ -43,7 +43,6 @@
                     <constraint firstAttribute="bottomMargin" secondItem="W8z-eC-DrI" secondAttribute="bottom" constant="1.5" id="5yr-bR-6Yp"/>
                     <constraint firstItem="XzP-hk-yH4" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" constant="8" id="7eX-jr-hLK"/>
                     <constraint firstItem="W8z-eC-DrI" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="CKm-Er-NHE"/>
-                    <constraint firstItem="XzP-hk-yH4" firstAttribute="leading" secondItem="tgA-FY-I1l" secondAttribute="trailing" constant="8" id="Cez-UR-xOa"/>
                     <constraint firstAttribute="bottomMargin" secondItem="XzP-hk-yH4" secondAttribute="bottom" constant="-8" id="Tq2-Sx-HcS"/>
                     <constraint firstItem="W8z-eC-DrI" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="VX1-6Q-xNO"/>
                     <constraint firstItem="XzP-hk-yH4" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="Wbg-Cy-CV4"/>
@@ -52,14 +51,10 @@
                     <constraint firstItem="tgA-FY-I1l" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-8" id="lYy-8Z-dDr"/>
                     <constraint firstItem="XzP-hk-yH4" firstAttribute="leading" secondItem="tgA-FY-I1l" secondAttribute="trailing" constant="8" id="pxl-KV-hGA"/>
                 </constraints>
-                <variation key="default">
-                    <mask key="constraints">
-                        <exclude reference="Cez-UR-xOa"/>
-                    </mask>
-                </variation>
             </tableViewCellContentView>
             <connections>
                 <outlet property="shopAmountField" destination="XzP-hk-yH4" id="Zlg-Re-eer"/>
+                <outlet property="shopAmountRightConstraint" destination="7eX-jr-hLK" id="moW-wO-zfz"/>
                 <outlet property="shopNameField" destination="tgA-FY-I1l" id="gKo-Gb-keW"/>
             </connections>
             <point key="canvasLocation" x="245" y="244"/>

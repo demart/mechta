@@ -11,6 +11,7 @@
 @implementation FilterSortOptionsTableViewCell
 
 - (void)awakeFromNib {
+    self.selectionStyle = UITableViewCellSelectionStyleNone;
 }
 
 - (void)setSelected:(BOOL)selected animated:(BOOL)animated {
@@ -19,10 +20,11 @@
 
 - (void) setAppliedFiltersModel:(FiltersModel*)filters {
     self.filtersModel = filters;
+    [self initSegmentsWithAppliedFilter];
 }
 
 
-- (void) initSegmetsWithAppliedFilter {
+- (void) initSegmentsWithAppliedFilter {
     switch (self.filtersModel.sortOrder) {
         case 0:
             [self.sortSegmentForDate setSelectedSegmentIndex:0];
@@ -95,7 +97,6 @@
         if (sender.selectedSegmentIndex == 2)
             self.filtersModel.sortOrder = 2;
     }
-    [self initSegmetsWithAppliedFilter];
-    NSLog(@"segment value changed");
+    [self initSegmentsWithAppliedFilter];
 }
 @end

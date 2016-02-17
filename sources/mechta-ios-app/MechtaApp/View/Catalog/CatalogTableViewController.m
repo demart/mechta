@@ -41,7 +41,15 @@
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
 }
 
+
 -(void) viewWillAppear:(BOOL)animated {
+    [super viewWillAppear:animated];
+    
+    /*
+    CGPoint contentOffset = self.tableView.contentOffset;
+    contentOffset.y += CGRectGetHeight(self.tableView.tableHeaderView.frame);
+    self.tableView.contentOffset = contentOffset;
+    */
     
     // Загружаем выбранный город
     CityModel *cityModel = [CityService getSelectedCityModel];
@@ -203,7 +211,6 @@
 
 #pragma mark - Navigation
 
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // IF CITY -> SHOW SELECTED CITY
     if ([segue.destinationViewController isKindOfClass:[CitiesTableViewController class]]) {

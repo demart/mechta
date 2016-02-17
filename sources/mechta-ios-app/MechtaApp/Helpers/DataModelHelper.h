@@ -12,6 +12,7 @@
 #import "CityModel.h"
 #import "CategoryModel.h"
 #import "ProductModel.h"
+#import "SearchObjectModel.h"
 
 #import "RKObjectManager.h"
 #import "RKObjectMapping.h"
@@ -34,5 +35,7 @@
 + (RKResponseDescriptor*) buildResponseDescriptorForProducts;
 
 + (RKResponseDescriptor*) buildResponseDescriptorForProductDetail;
+
++ (RKResponseDescriptor*) buildResponseDescriptorForSearch;
 
 @end

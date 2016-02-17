@@ -9,7 +9,7 @@
 #import <Foundation/Foundation.h>
 #import "CityModel.h"
 
-@interface ShopModel : NSObject
+@interface ShopModel : NSObject<NSCoding>
 
 @property int id;
 

@@ -11,5 +11,6 @@
 @interface ProductAvailableTableViewCell : UITableViewCell
 @property (weak, nonatomic) IBOutlet UILabel *shopNameField;
 @property (weak, nonatomic) IBOutlet UILabel *shopAmountField;
+@property (weak, nonatomic) IBOutlet NSLayoutConstraint *shopAmountRightConstraint;
 
 @end

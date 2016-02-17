@@ -197,4 +197,22 @@
     return [DataModelHelper buildResponseDescriptorForCities];
 }
 
+
++ (RKResponseDescriptor*) buildResponseDescriptorForSearch {
+    RKObjectMapping* searchObjectModel = [RKObjectMapping mappingForClass:[SearchObjectModel class]];
+    [searchObjectModel addAttributeMappingsFromDictionary:@{
+                                                        @"numberOnSite": @"numberOnSite",
+                                                        @"name": @"name",
+                                                        @"imageUrl": @"imageUrl",
+                                                        @"numberOnSiteCategory": @"numberOnSiteCategory",
+                                                        }];
+    
+    RKObjectMapping* wrapperMapping = [DataModelHelper getObjectMappingForResponseWrapperModelWithDataMapping:searchObjectModel];
+    
+    RKResponseDescriptor *responseWrapperDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:wrapperMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful) ];
+    
+    return responseWrapperDescriptor;
+}
+
+
 @end

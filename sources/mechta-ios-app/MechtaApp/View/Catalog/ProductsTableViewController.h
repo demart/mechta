@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchTableViewController.h"
 
-@interface ProductsTableViewController : UITableViewController
+@interface ProductsTableViewController : SearchTableViewController
 
 - (void) setProductsCategory:(long)categoryId;
 - (IBAction)showFilterAction:(UIBarButtonItem *)sender;

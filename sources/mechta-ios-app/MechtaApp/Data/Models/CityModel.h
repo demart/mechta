@@ -8,9 +8,9 @@
 
 #import <Foundation/Foundation.h>
 
-@interface CityModel : NSObject
+@interface CityModel : NSObject<NSCoding>
 
-@property long id;
+@property int id;
 
 @property NSString* name;
 

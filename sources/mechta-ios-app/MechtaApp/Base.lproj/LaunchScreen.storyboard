@@ -38,6 +38,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="mechta_small_logo" width="976" height="976"/>
+        <image name="mechta_small_logo" width="450" height="450"/>
     </resources>
 </document>

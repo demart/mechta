@@ -22,5 +22,7 @@
 // Загрузить категории
 + (void) retrieveCategoriesWithParentId:(long)parentId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure;
 
+// Поиск товаров
++ (void) searchProductsWithText:(NSString*)text withPage:(long)page inCityId:(long)cityId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure;
 
 @end

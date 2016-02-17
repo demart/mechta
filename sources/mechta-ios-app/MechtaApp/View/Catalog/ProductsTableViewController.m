@@ -50,10 +50,10 @@ static long PAGE_LIMIT = 10;
     [self.loadImageOperationQueue setMaxConcurrentOperationCount:5];
     
     self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
-    //self.tableView.separatorColor = [UIColor clearColor];
 
     [DejalBezelActivityView activityViewForView:self.view withLabel:@"Подождите\nИдет загрузка..."];
     [self loadProducts];
+    [self.searchController.searchBar sizeToFit];
 }
 
 - (void)didReceiveMemoryWarning {

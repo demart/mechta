@@ -223,13 +223,15 @@ static int STATIC_ROW_COUNT = 3;
         }
         
         if (availableInShop.shop != nil) {
+            cell.shopAmountRightConstraint.constant = 8;
             [cell.shopNameField setText:availableInShop.shop.name];
             cell.accessoryType = UITableViewCellAccessoryDisclosureIndicator;
         } else {
+            cell.shopAmountRightConstraint.constant = -26;
             [cell.shopNameField setText:availableInShop.name];
             cell.accessoryType = UITableViewCellAccessoryNone;
         }
-        [cell.shopAmountField setText:availableInShop.amount ];
+        [cell.shopAmountField setText:availableInShop.amount];
 
         
         return cell;
@@ -256,7 +258,6 @@ static int STATIC_ROW_COUNT = 3;
         } else {
             [cell.productDescriptionField setText:@""];
         }
-        
         
         
         return cell;

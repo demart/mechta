@@ -6,10 +6,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="LMd-Gb-gNs">
             <objects>
-                <tabBarController id="Lw7-A2-FCu" sceneMemberID="viewController">
+                <tabBarController id="Lw7-A2-FCu" customClass="MainTabBarController" sceneMemberID="viewController">
                     <tabBar key="tabBar" contentMode="scaleToFill" id="nsd-y9-8HG">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -64,11 +64,28 @@
                     </navigationItem>
                     <connections>
                         <outlet property="cityChoiceButton" destination="HXx-Re-4B4" id="vgw-7I-1y5"/>
+                        <outlet property="searchDisplayController" destination="naz-gi-dpO" id="flQ-u6-Nz8"/>
                         <segue destination="Sct-bt-pEf" kind="show" identifier="chooseCitySergue" id="uI9-jV-8ds"/>
                         <segue destination="d6V-4g-ttS" kind="show" identifier="showProductsSergue" id="54N-IS-O5u"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NUo-5r-syO" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <searchDisplayController id="dVe-Fc-4ir">
+                    <connections>
+                        <outlet property="delegate" destination="3Ju-vG-Ico" id="YrN-tg-v7m"/>
+                        <outlet property="searchContentsController" destination="3Ju-vG-Ico" id="LwN-pD-O2D"/>
+                        <outlet property="searchResultsDataSource" destination="3Ju-vG-Ico" id="2Qv-P1-w9n"/>
+                        <outlet property="searchResultsDelegate" destination="3Ju-vG-Ico" id="Pqi-Fi-jGa"/>
+                    </connections>
+                </searchDisplayController>
+                <searchDisplayController id="naz-gi-dpO">
+                    <connections>
+                        <outlet property="delegate" destination="3Ju-vG-Ico" id="VUG-Ev-ICL"/>
+                        <outlet property="searchContentsController" destination="3Ju-vG-Ico" id="eik-Nh-O0W"/>
+                        <outlet property="searchResultsDataSource" destination="3Ju-vG-Ico" id="xtY-p5-xZN"/>
+                        <outlet property="searchResultsDelegate" destination="3Ju-vG-Ico" id="oOq-0T-08l"/>
+                    </connections>
+                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="1579" y="-217"/>
         </scene>
@@ -159,14 +176,14 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="piD-Qk-E7z">
                                 <rect key="frame" x="0.0" y="520" width="600" height="80"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Найдено более 10 товаров" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8n-EC-SiG">
-                                        <rect key="frame" x="8" y="44.5" width="584" height="14.5"/>
+                                    <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Найдено более 10 товаров" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="K8n-EC-SiG">
+                                        <rect key="frame" x="8" y="53" width="584" height="14.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="12"/>
                                         <color key="textColor" red="0.93725490199999995" green="0.93725490199999995" blue="0.95686274510000002" alpha="1" colorSpace="calibratedRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Применить фильтр" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cX3-0a-mle">
-                                        <rect key="frame" x="8" y="22" width="584" height="20.5"/>
+                                        <rect key="frame" x="8" y="29" width="584" height="20.5"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                         <nil key="highlightedColor"/>
@@ -176,7 +193,7 @@
                                 <constraints>
                                     <constraint firstItem="K8n-EC-SiG" firstAttribute="leading" secondItem="piD-Qk-E7z" secondAttribute="leading" constant="8" id="6Tu-EP-NGb"/>
                                     <constraint firstAttribute="trailing" secondItem="K8n-EC-SiG" secondAttribute="trailing" constant="8" id="b1x-0S-FUj"/>
-                                    <constraint firstItem="cX3-0a-mle" firstAttribute="centerY" secondItem="piD-Qk-E7z" secondAttribute="centerY" constant="-8" id="cZl-ci-aEl"/>
+                                    <constraint firstItem="cX3-0a-mle" firstAttribute="centerY" secondItem="piD-Qk-E7z" secondAttribute="centerY" id="cZl-ci-aEl"/>
                                     <constraint firstItem="cX3-0a-mle" firstAttribute="leading" secondItem="piD-Qk-E7z" secondAttribute="leading" constant="8" id="dkW-k6-Jr1"/>
                                     <constraint firstAttribute="height" constant="80" id="lsF-jj-wbv"/>
                                     <constraint firstAttribute="trailing" secondItem="cX3-0a-mle" secondAttribute="trailing" constant="8" id="vlN-p7-sg0"/>
@@ -237,7 +254,7 @@
         <!--Товар-->
         <scene sceneID="TaX-e8-Ryo">
             <objects>
-                <tableViewController id="pcF-DS-UmP" customClass="ProductDetailTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="productDetailController" id="pcF-DS-UmP" customClass="ProductDetailTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="N0e-Nq-oaU">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -273,7 +290,7 @@
         <!--Ваш город-->
         <scene sceneID="V5G-9n-H72">
             <objects>
-                <tableViewController id="Sct-bt-pEf" customClass="CitiesTableViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="CitiesViewController" id="Sct-bt-pEf" customClass="CitiesTableViewController" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" id="DmO-A7-V50">
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -555,7 +572,7 @@
         <image name="shopping_cart" width="32" height="32"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="BWu-Sk-4dS"/>
         <segue reference="mQj-Qj-NPl"/>
+        <segue reference="BWu-Sk-4dS"/>
     </inferredMetricsTieBreakers>
 </document>

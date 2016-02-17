@@ -9,6 +9,7 @@
 #import "CityService.h"
 #import "UrlHelper.h"
 #import "DataModelHelper.h"
+#import "LocalStorageService.h"
 
 
 @implementation CityService
@@ -22,12 +23,19 @@ static NSMutableArray *cityShops;
 // Выбрать город
 + (void) selectCityModel:(CityModel*)model {
     // TODO: Persist
-    cityModel = model;
+    //cityModel = model;
+    
+    NSData *encodedObject = [NSKeyedArchiver archivedDataWithRootObject:model];
+    [LocalStorageService setSettingsKey:SELECTED_CITY_KEY withObject:encodedObject];
 }
 
 // Возвращает выбранный город
 + (CityModel*) getSelectedCityModel {
-    return cityModel;
+    NSData *data = (NSData*)[LocalStorageService getSettingsValueByKey:SELECTED_CITY_KEY];
+    CityModel *model = (CityModel*)[NSKeyedUnarchiver unarchiveObjectWithData:data];
+    return model;
+    
+    //return cityModel;
 }
 
 
@@ -103,6 +111,21 @@ static NSMutableArray *cityShops;
         
         if (response.success)
             cityShops = (NSMutableArray*)response.data;
+        
+        CityModel *model = [self getSelectedCityModel];
+        if (model == nil) {
+            [self selectCityModel:cities[0]];
+        } else {
+            // Update existing city after load from Server
+            for (CityModel *loadedModel in cities) {
+                if (model.id == loadedModel.id) {
+                    [self selectCityModel:loadedModel];
+                    break;
+                }
+            }
+        }
+        
+        
         
         success(response);
         

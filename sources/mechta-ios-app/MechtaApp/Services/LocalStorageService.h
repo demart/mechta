@@ -18,6 +18,9 @@ static NSString* AUTH_LOGIN = @"settings.auth.login";
 // Ключ для хранения токена для получения PUSH
 static NSString* PUSH_TOKEN = @"settings.push.token";
 
+// Ключ для хранения токена выбранного города
+static NSString* SELECTED_CITY_KEY = @"settings.selected.city";
+
 
 @interface LocalStorageService : NSObject
 

@@ -17,9 +17,14 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     [self initDesignScheme];
+    
     return YES;
 }
 
+-(void)setRootViewController:(UIViewController *)rootViewController {
+    self.window.rootViewController = rootViewController;
+    [self.window makeKeyAndVisible];
+}
 
 -(void) initDesignScheme {
     
@@ -51,8 +56,8 @@
     [[UITabBarItem appearance] setTitleTextAttributes:@{ NSForegroundColorAttributeName : [UIColor whiteColor], [UIFont systemFontOfSize:12.0f]: NSFontAttributeName }
                                              forState:UIControlStateSelected];
     
-    //[[UISearchBar appearance] setBarTintColor: [Constants SYSTEM_COLOR_PURPLE]];
-    //[[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor whiteColor]];
+    [[UISearchBar appearance] setBarTintColor: [Constants SYSTEM_COLOR_PURPLE]];
+    [[UIBarButtonItem appearanceWhenContainedIn: [UISearchBar class], nil] setTintColor:[UIColor whiteColor]];
     
     
     [UISegmentedControl appearance].tintColor = [Constants SYSTEM_COLOR_PURPLE];

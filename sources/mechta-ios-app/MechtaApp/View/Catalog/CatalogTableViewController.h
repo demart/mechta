@@ -7,8 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "SearchTableViewController.h"
 
-@interface CatalogTableViewController : UITableViewController
+@interface CatalogTableViewController : SearchTableViewController
 
 @property (weak, nonatomic) IBOutlet UIBarButtonItem *cityChoiceButton;
 

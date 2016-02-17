@@ -21,12 +21,6 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
 }
 
 - (void)didReceiveMemoryWarning {
@@ -101,6 +95,7 @@
     CityModel *cityModel = [CityService getCities][indexPath.row];
     if ([CityService getSelectedCityModel].id == cityModel.id) {
         cell.accessoryType = UITableViewCellAccessoryCheckmark;
+        cell.accessoryView = [self addMarkButton];
     } else {
         cell.accessoryType = UITableViewCellAccessoryNone;
     }
@@ -114,6 +109,14 @@
     [CityService selectCityModel:[CityService getCities][indexPath.row]];
     [self.tableView reloadData];
     [self.navigationController popViewControllerAnimated:YES];
+}
+
+- (UIView*) addMarkButton {
+    UIImage *image = [UIImage imageNamed:@"filter_mark_checked_green"];
+    UIButton *button = [UIButton buttonWithType:UIButtonTypeCustom];
+    button.frame = CGRectMake(0, 0, 15, 15);
+    [button setImage:image forState:UIControlStateNormal];
+    return button;
 }
 
 /*

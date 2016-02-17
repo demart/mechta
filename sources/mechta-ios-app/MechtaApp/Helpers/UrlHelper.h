@@ -24,4 +24,8 @@
 
 + (NSString*) productDetailUrlWithId:(long)productId withCategoryId:(long)categoryId inCityId:(long)cityId;
 
++ (NSString*) searchUrlWithText:(NSString*)text withPage:(long)page inCity:(long)cityId;
+
++ (NSString *)urlEncode:(NSString*)input;
+
 @end
