@@ -17,8 +17,8 @@
 
 +(NSString*) baseUrl {
 #if DEBUG
-    return @"http://localhost:9000/rest";
-    //return @"http://54.201.103.165:8081/rest";
+    //return @"http://localhost:9000/rest";
+    return @"http://54.201.103.165:8081/rest";
     
     //    return @"http://localhost:9000";
     //return @"http://aphion.kz/mechta/rest";
