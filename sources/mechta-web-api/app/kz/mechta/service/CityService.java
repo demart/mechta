@@ -45,7 +45,7 @@ public class CityService {
 	public static ArrayList<CityModel> getListCities(List<City> cities) {
 		ArrayList<CityModel> models = new ArrayList<CityModel>();
 		for (City city: cities) {
-			CityModel model = CityModel.buildModel(city, null);
+			CityModel model = CityModel.buildModel(city, null, null);
 			models.add(model);
 		}
 		return models;
@@ -79,6 +79,7 @@ public class CityService {
 		ArrayList<CityModel> models = new ArrayList<CityModel>();
 		for (City city : cities) {
 			List<Store> stores = CityService.getStores(city.getId());
+			List<ServiceStore> services = CityService.getServiceStores(city.getId());
 			ArrayList<StoreModel> storeModels = new ArrayList<StoreModel>();
 			for (Store store: stores) {
 			StoreModel model = StoreModel.buildModel(store.getId(), store.getName(), 
@@ -86,29 +87,16 @@ public class CityService {
 					store.getTelephones());
 			storeModels.add(model);
 			}
-			CityModel mod = CityModel.buildModel(city, storeModels);
+			ArrayList<ServiceStoreModel> servicesModels = new ArrayList<ServiceStoreModel>();
+			for (ServiceStore service: services) {
+				ServiceStoreModel model = ServiceStoreModel.buildModel(service);
+				servicesModels.add(model);
+			}
+			
+			CityModel mod = CityModel.buildModel(city, storeModels, servicesModels);
 			models.add(mod);
 		}
 		return models;
 	}
 
-	/**
-	 * Содание моделей с магазинами
-	 * @param cities
-	 * @return
-	 */
-		public static ArrayList<CityModel> getListServiceStores(List<City> cities) {
-			ArrayList<CityModel> models = new ArrayList<CityModel>();
-			for (City city : cities) {
-				List<ServiceStore> stores = CityService.getServiceStores(city.getId());
-				ArrayList<ServiceStoreModel> storeModels = new ArrayList<ServiceStoreModel>();
-				for (ServiceStore store: stores) {
-					ServiceStoreModel model = ServiceStoreModel.buildModel(store);
-				storeModels.add(model);
-				}
-				CityModel mod = CityModel.buildServiceModel(city, storeModels);
-				models.add(mod);
-			}
-			return models;
-		}
 }

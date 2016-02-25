@@ -13,13 +13,14 @@ public class CityModel {
 	private List<StoreModel> stores;
 	private List<ServiceStoreModel> serviceStores;
 	
-	public static CityModel buildModel (City city, List<StoreModel> stores) {
+	public static CityModel buildModel (City city, List<StoreModel> stores, List<ServiceStoreModel> serviceStores) {
 		CityModel model = new CityModel();
 		model.id = city.getId();
 		model.name = city.getName();
 		model.latitude = city.getLatitude();
 		model.longitude = city.getLongitude();
 		model.stores = stores;
+		model.serviceStores = serviceStores;
 	
 		return model;
 	}
