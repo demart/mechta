@@ -20,6 +20,8 @@ static NSMutableArray *cities;
 
 static NSMutableArray *cityShops;
 
+static NSMutableArray *serviceCenters;
+
 // Выбрать город
 + (void) selectCityModel:(CityModel*)model {
     // TODO: Persist
@@ -61,33 +63,6 @@ static NSMutableArray *cityShops;
 // Загрузить города с сайта
 + (void) retrieveCities:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure {
     [CityService retrieveCityShops:success onFailure:failure];
-    /*
-    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[UrlHelper citiesUrl]] ];
-    
-    RKResponseDescriptor *responseWrapperDescriptor = [DataModelHelper buildResponseDescriptorForCities];
-    
-    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseWrapperDescriptor ]];
-    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
-        ResponseWrapperModel *response = (ResponseWrapperModel*)[mappingResult.array objectAtIndex:0];
-        
-        NSLog(@"Success: %i", response.success);
-        NSLog(@"Data: %@", response.data);
-        NSLog(@"Count: %i", response.count);
-        NSLog(@"CountOfPages: %i", response.countOfPages);
-        NSLog(@"CountOfProducts: %i", response.countOfProducts);
-        
-        if (response.success)
-            cities = (NSMutableArray*)response.data;
-        
-        success(response);
-        
-    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
-        NSLog(@"Operation failed with error: %@", error);
-        failure(error);
-    }];
-    
-    [objectRequestOperation start];
-     */
 }
 
 // загрузить магазины города
@@ -125,7 +100,51 @@ static NSMutableArray *cityShops;
             }
         }
         
+        success(response);
         
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Operation failed with error: %@", error);
+        failure(error);
+    }];
+    
+    [objectRequestOperation start];
+}
+
+
+// загрузить список сервис центров
++ (void) retrieveCityServiceCenters:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure {
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[UrlHelper cityServiceCentersUrl]] ];
+    
+    RKResponseDescriptor *responseWrapperDescriptor = [DataModelHelper buildResponseDescriptorForCityServiceCenters];
+    
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseWrapperDescriptor ]];
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        ResponseWrapperModel *response = (ResponseWrapperModel*)[mappingResult.array objectAtIndex:0];
+        
+        NSLog(@"Success: %i", response.success);
+        NSLog(@"Data: %@", response.data);
+        NSLog(@"Count: %i", response.count);
+        NSLog(@"CountOfPages: %i", response.countOfPages);
+        NSLog(@"CountOfProducts: %i", response.countOfProducts);
+        
+        if (response.success)
+            cities = (NSMutableArray*)response.data;
+        
+        if (response.success)
+            serviceCenters = (NSMutableArray*)response.data;
+        
+        CityModel *model = [self getSelectedCityModel];
+        if (model == nil) {
+            [self selectCityModel:cities[0]];
+        } else {
+            // Update existing city after load from Server
+            for (CityModel *loadedModel in cities) {
+                if (model.id == loadedModel.id) {
+                    [self selectCityModel:loadedModel];
+                    break;
+                }
+            }
+        }
         
         success(response);
         
@@ -137,5 +156,30 @@ static NSMutableArray *cityShops;
     [objectRequestOperation start];
 }
 
++ (void) retrieveCityAnnouncementsWithType:(long)type withPage:(long)page inCityId:(long)cityId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure {
+    
+    NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[UrlHelper announcementsUrlWithType:type andPage:page inCityId:cityId]] ];
+    
+    RKResponseDescriptor *responseWrapperDescriptor = [DataModelHelper buildResponseDescriptorForAnnouncements];
+    
+    RKObjectRequestOperation *objectRequestOperation = [[RKObjectRequestOperation alloc] initWithRequest:request responseDescriptors:@[ responseWrapperDescriptor ]];
+    [objectRequestOperation setCompletionBlockWithSuccess:^(RKObjectRequestOperation *operation, RKMappingResult *mappingResult) {
+        ResponseWrapperModel *response = (ResponseWrapperModel*)[mappingResult.array objectAtIndex:0];
+        
+        NSLog(@"Success: %i", response.success);
+        NSLog(@"Data: %@", response.data);
+        NSLog(@"Count: %i", response.count);
+        NSLog(@"CountOfPages: %i", response.countOfPages);
+        NSLog(@"CountOfProducts: %i", response.countOfProducts);
+        
+        success(response);
+        
+    } failure:^(RKObjectRequestOperation *operation, NSError *error) {
+        NSLog(@"Operation failed with error: %@", error);
+        failure(error);
+    }];
+    
+    [objectRequestOperation start];
+}
 
 @end

@@ -127,6 +127,18 @@
 
 
 + (RKResponseDescriptor*) buildResponseDescriptorForCities {
+    RKObjectMapping* serviceCenterModel = [RKObjectMapping mappingForClass:[ServiceCenterModel class]];
+    [serviceCenterModel addAttributeMappingsFromDictionary:@{
+                                                    @"id": @"id",
+                                                    @"name": @"name",
+                                                    @"latitude": @"latitude",
+                                                    @"longitude": @"longitude",
+                                                    @"telephones": @"telephones",
+                                                    @"description": @"content",
+                                                    @"workHours": @"workhours",
+                                                    @"street": @"street",
+                                                    }];
+    
     RKObjectMapping* shopModel = [RKObjectMapping mappingForClass:[ShopModel class]];
     [shopModel addAttributeMappingsFromDictionary:@{
                                                     @"id": @"id",
@@ -145,6 +157,8 @@
                                                           @"longitude": @"longitude",
                                                           }];
     [cityModel addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"stores" toKeyPath:@"shops"  withMapping:shopModel]];
+    
+    [cityModel addPropertyMapping:[RKRelationshipMapping relationshipMappingFromKeyPath:@"serviceStores" toKeyPath:@"serviceCenters"  withMapping:serviceCenterModel]];
     
     RKObjectMapping* wrapperMapping = [DataModelHelper getObjectMappingForResponseWrapperModelWithDataMapping:cityModel];
     
@@ -197,6 +211,10 @@
     return [DataModelHelper buildResponseDescriptorForCities];
 }
 
++ (RKResponseDescriptor*) buildResponseDescriptorForCityServiceCenters {
+    return [DataModelHelper buildResponseDescriptorForCities];
+}
+
 
 + (RKResponseDescriptor*) buildResponseDescriptorForSearch {
     RKObjectMapping* searchObjectModel = [RKObjectMapping mappingForClass:[SearchObjectModel class]];
@@ -214,6 +232,26 @@
     RKResponseDescriptor *responseWrapperDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:wrapperMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful) ];
     
     return responseWrapperDescriptor;
+}
+
+
++ (RKResponseDescriptor*) buildResponseDescriptorForAnnouncements {
+    RKObjectMapping* announcementModel = [RKObjectMapping mappingForClass:[AnnouncementModel class]];
+    [announcementModel addAttributeMappingsFromDictionary:@{
+                                                            @"numberOnSite": @"numberOnSite",
+                                                            @"name": @"name",
+                                                            @"imageUrl": @"imageUrl",
+                                                            @"date": @"date",
+                                                            @"description": @"content",
+                                                            @"type": @"type",
+                                                            }];
+    
+    RKObjectMapping* wrapperMapping = [DataModelHelper getObjectMappingForResponseWrapperModelWithDataMapping:announcementModel];
+    
+    RKResponseDescriptor *responseWrapperDescriptor = [RKResponseDescriptor responseDescriptorWithMapping:wrapperMapping method:RKRequestMethodAny pathPattern:nil keyPath:@"" statusCodes:RKStatusCodeIndexSetForClass(RKStatusCodeClassSuccessful) ];
+    
+    return responseWrapperDescriptor;
+
 }
 
 

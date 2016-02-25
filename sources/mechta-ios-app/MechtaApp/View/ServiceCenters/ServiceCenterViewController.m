@@ -1,29 +1,29 @@
 //
-//  ShopsViewController.m
+//  ServiceCenterViewController.m
 //  MechtaApp
 //
-//  Created by Artem Demidovich on 2/10/16.
+//  Created by Artem Demidovich on 2/25/16.
 //  Copyright © 2016 Aphion Software. All rights reserved.
 //
 
-#import "ShopsViewController.h"
-
-#import "MapLocationModel.h"
-#import "ShopDetailTableViewController.h"
+#import "ServiceCenterViewController.h"
+#import "ServiceCenterMapLocationModel.h"
 #import "CityService.h"
 #import "DejalActivityView.h"
 #import "ShopCityTableViewCell.h"
-#import "ShopDetailMiniTableViewCell.h"
+#import "ServiceCenterDetailMiniTableViewCell.h"
+#import "ServiceCenterDetailTableViewController.h"
 
 static int VIEW_MODE_MAP = 0;
 static int VIEW_MODE_LIST = 1;
 
-@interface ShopsViewController ()
+
+@interface ServiceCenterViewController ()
 
 @property NSString *latitude;
 @property NSString *longitude;
 
-@property MapLocationModel *selectedLocation;
+@property ServiceCenterMapLocationModel *selectedLocation;
 
 @property int viewMode;
 
@@ -32,10 +32,11 @@ static int VIEW_MODE_LIST = 1;
 
 @end
 
-@implementation ShopsViewController
+@implementation ServiceCenterViewController
 
 /* Менеджер получения геолокации */
-CLLocationManager *locationManager;
+CLLocationManager *scLocationManager;
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -46,31 +47,31 @@ CLLocationManager *locationManager;
     self.menuTableView.delegate = self;
     self.menuTableView.dataSource = self;
     
-    self.shopTableView.delegate = self;
-    self.shopTableView.dataSource = self;
-    self.shopTableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    self.tableView.delegate = self;
+    self.tableView.dataSource = self;
+    self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
     //self.shopTableView.separatorColor = [UIColor clearColor];
     
     self.viewMode = VIEW_MODE_MAP;
     
-    locationManager = [[CLLocationManager alloc] init];
-    locationManager.delegate = self;
-    locationManager.desiredAccuracy = kCLLocationAccuracyBest;
-    locationManager.distanceFilter = kCLDistanceFilterNone;
+    scLocationManager = [[CLLocationManager alloc] init];
+    scLocationManager.delegate = self;
+    scLocationManager.desiredAccuracy = kCLLocationAccuracyBest;
+    scLocationManager.distanceFilter = kCLDistanceFilterNone;
 }
 
 
 - (void) viewWillAppear:(BOOL)animated {
     [super viewWillAppear:animated];
-    [self loadCityShops];
-    [self.shopTableView reloadData];
+    [self loadServiceCenters];
+    [self.tableView reloadData];
     
     // enable location service
     if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 &&
         [CLLocationManager authorizationStatus] != kCLAuthorizationStatusAuthorizedWhenInUse) {
-        [locationManager requestWhenInUseAuthorization];
+        [scLocationManager requestWhenInUseAuthorization];
     } else {
-        [locationManager startUpdatingLocation];
+        [scLocationManager startUpdatingLocation];
     }
 }
 
@@ -84,7 +85,7 @@ CLLocationManager *locationManager;
         } break;
         case kCLAuthorizationStatusAuthorizedWhenInUse:
         case kCLAuthorizationStatusAuthorizedAlways: {
-            [locationManager startUpdatingLocation];
+            [scLocationManager startUpdatingLocation];
         } break;
         default:
             break;
@@ -99,7 +100,7 @@ CLLocationManager *locationManager;
     CLLocation *lastLocation = [locations lastObject];
     NSLog(@"didUpdateToLocations: %@", lastLocation);
     self.location = lastLocation;
-    [locationManager stopUpdatingLocation];
+    [scLocationManager stopUpdatingLocation];
 }
 
 - (void) setNavigationBarTitle:(NSString*) cityName {
@@ -136,10 +137,10 @@ CLLocationManager *locationManager;
     }
 }
 
-- (void) loadCityShops {
-    if ([CityService getCities] == nil) {
+- (void) loadServiceCenters {
+    //if ([CityService getCities] == nil) {
         [DejalBezelActivityView activityViewForView:self.view withLabel:@"Подождите\nИдет загрузка..."];
-        [CityService retrieveCities:^(ResponseWrapperModel *response) {
+        [CityService retrieveCityServiceCenters:^(ResponseWrapperModel *response) {
             if (response.success) {
                 // TODO: DO some operations
                 [self fillPointsOnTheMap];
@@ -167,9 +168,9 @@ CLLocationManager *locationManager;
             [self presentViewController:alert animated:YES completion:nil];
         }];
         
-    } else {
-        [self fillPointsOnTheMap];
-    }
+    //} else {
+    //    [self fillPointsOnTheMap];
+    //}
 }
 
 
@@ -197,9 +198,9 @@ CLLocationManager *locationManager;
         [self.mapView setRegion:region animated:YES];
         
         for (CityModel *city in [CityService getCities]) {
-            if (city.shops != nil || [city.shops count] < 1) {
-                for (ShopModel *shopModel in city.shops) {
-                    [self addShopOnTheMap:shopModel withCity:city];
+            if (city.serviceCenters != nil) {
+                for (ServiceCenterModel *serviceCenterModel in city.serviceCenters) {
+                    [self addServiceCenterOnTheMap:serviceCenterModel withCity:city];
                 }
             }
         }
@@ -221,9 +222,9 @@ CLLocationManager *locationManager;
             // SHOP MESSAGE "PLESAE CHOOSE CITY" or set default
             return;
         }
-        if (cityModel.shops != nil || [cityModel.shops count] < 1) {
-            for (ShopModel *shopModel in cityModel.shops) {
-                [self addShopOnTheMap:shopModel withCity:cityModel];
+        if (cityModel.serviceCenters != nil) {
+            for (ServiceCenterModel *serviceCenterModel  in cityModel.serviceCenters) {
+                [self addServiceCenterOnTheMap:serviceCenterModel withCity:cityModel];
             }
         }
         
@@ -233,42 +234,42 @@ CLLocationManager *locationManager;
 }
 
 
-- (void) addShopOnTheMap:(ShopModel*)shopModel withCity:(CityModel*)cityModel {
-    if (shopModel == nil)
+- (void) addServiceCenterOnTheMap:(ServiceCenterModel*)serviceCenterModel withCity:(CityModel*)cityModel {
+    if (serviceCenterModel == nil)
         return;
     CLLocationCoordinate2D coord;
-    coord.latitude = shopModel.latitude;
-    coord.longitude = shopModel.longitude;
-    NSString* address = [[NSString alloc] initWithFormat:@"%@, %@", cityModel.name, shopModel.name];
-    MapLocationModel *model = [[MapLocationModel alloc] initWithName:@"Магазин «Мечта»" address:address coordinate:coord];
-    model.shop = shopModel;
+    coord.latitude = serviceCenterModel.latitude;
+    coord.longitude = serviceCenterModel.longitude;
+    NSString* address = [[NSString alloc] initWithFormat:@"%@, %@", cityModel.name, serviceCenterModel.name];
+    ServiceCenterMapLocationModel *model = [[ServiceCenterMapLocationModel alloc] initWithName:@"Магазин «Мечта»" address:address coordinate:coord];
+    model.serviceCenter = serviceCenterModel;
     [self.mapView addAnnotation:model];
 }
 
 - (MKAnnotationView *)mapView:(MKMapView *)mapView viewForAnnotation:(id <MKAnnotation>)annotation {
     static NSString *identifier = @"MapLocationModel";
-        MKAnnotationView *annotationView = (MKAnnotationView *) [self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
-        if (annotationView == nil) {
-            annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
-            annotationView.enabled = YES;
-            annotationView.canShowCallout = YES;
-            annotationView.image = [UIImage imageNamed:@"map_mechta_point_icon"];
-        } else {
-            annotationView.annotation = annotation;
-        }
-        annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
-        return annotationView;
+    MKAnnotationView *annotationView = (MKAnnotationView *) [self.mapView dequeueReusableAnnotationViewWithIdentifier:identifier];
+    if (annotationView == nil) {
+        annotationView = [[MKAnnotationView alloc] initWithAnnotation:annotation reuseIdentifier:identifier];
+        annotationView.enabled = YES;
+        annotationView.canShowCallout = YES;
+        annotationView.image = [UIImage imageNamed:@"map_mechta_point_icon"];
+    } else {
+        annotationView.annotation = annotation;
+    }
+    annotationView.rightCalloutAccessoryView = [UIButton buttonWithType:UIButtonTypeDetailDisclosure];
+    return annotationView;
 }
 
 - (void)mapView:(MKMapView *)mapView annotationView:(MKAnnotationView *)view calloutAccessoryControlTapped:(UIControl *)control {
-    MapLocationModel *location = (MapLocationModel*)view.annotation;
+    ServiceCenterMapLocationModel *location = (ServiceCenterMapLocationModel*)view.annotation;
     self.selectedLocation = location;
-    [self performSegueWithIdentifier:@"showShopDetailSergue" sender:self];
+    [self performSegueWithIdentifier:@"showServiceCenterDetailSergue" sender:self];
     NSLog(@"Clicked on localtion name %@", location.name);
 }
 
 - (void)mapView:(MKMapView *)mapView didSelectAnnotationView:(MKAnnotationView *)view NS_AVAILABLE(10_9, 4_0) {
-    MapLocationModel *location = (MapLocationModel*)view.annotation;
+    ServiceCenterMapLocationModel *location = (ServiceCenterMapLocationModel*)view.annotation;
     NSLog(@"Clicked on didSelectAnnotationView name %@", location.name);
 }
 
@@ -329,10 +330,10 @@ CLLocationManager *locationManager;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    if (self.shopTableView == tableView) {
+    if (self.tableView == tableView) {
         CityModel *model = [CityService getSelectedCityModel];
-        if (model != nil && model.shops != nil) {
-            return [model.shops count];
+        if (model != nil && model.serviceCenters != nil) {
+            return [model.serviceCenters count];
         }
         return 0;
     }
@@ -353,33 +354,33 @@ CLLocationManager *locationManager;
         return cell;
     } else {
         
-        ShopDetailMiniTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShopDetailMiniCell"];
+        ServiceCenterDetailMiniTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ServiceCenterDetailMiniCell"];
         if (!cell) {
-            [tableView registerNib:[UINib nibWithNibName:@"ShopDetailMiniTableViewCell" bundle:nil]forCellReuseIdentifier:@"ShopDetailMiniCell"];
-            cell = [tableView dequeueReusableCellWithIdentifier:@"ShopDetailMiniCell"];
+            [tableView registerNib:[UINib nibWithNibName:@"ServiceCenterDetailMiniTableViewCell" bundle:nil]forCellReuseIdentifier:@"ServiceCenterDetailMiniCell"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"ServiceCenterDetailMiniCell"];
         }
         
         CityModel *model = [CityService getSelectedCityModel];
-        ShopModel *shopModel = model.shops[indexPath.row];
-        [cell.shopAddress setText:[[NSString alloc] initWithFormat:@"%@, %@", model.name, shopModel.name]];
-        [cell.shopWorkhours setText:[[NSString alloc] initWithFormat:@"Режим работы: %@", shopModel.workhours]];
-
-        if (self.location != nil && shopModel.distance == 0) {
-            CLLocation *current = [[CLLocation alloc] initWithLatitude:shopModel.latitude longitude:shopModel.longitude];
+        ServiceCenterModel *serviceCenterModel = model.serviceCenters[indexPath.row];
+        [cell.serviceCenterAddress setText:[[NSString alloc] initWithFormat:@"%@, %@", model.name, serviceCenterModel.name]];
+        [cell.serviceCenterWorkhours setText:[[NSString alloc] initWithFormat:@"Режим работы: %@", serviceCenterModel.workhours]];
+        
+        if (self.location != nil && serviceCenterModel.distance == 0) {
+            CLLocation *current = [[CLLocation alloc] initWithLatitude:serviceCenterModel.latitude longitude:serviceCenterModel.longitude];
             CLLocationDistance distance = [self.location distanceFromLocation:current];
-            shopModel.distance = distance;
+            serviceCenterModel.distance = distance;
         }
-
-        if (shopModel.distance != 0) {
+        
+        if (serviceCenterModel.distance != 0) {
             MKDistanceFormatter *df = [[MKDistanceFormatter alloc]init];
             df.unitStyle = MKDistanceFormatterUnitStyleAbbreviated;
             df.units = MKDistanceFormatterUnitsMetric;
-            NSString *prettyString = [df stringFromDistance:shopModel.distance];
-            [cell.shopDistanceField setText:prettyString];
+            NSString *prettyString = [df stringFromDistance:serviceCenterModel.distance];
+            [cell.serviceCenterDistanceField setText:prettyString];
         } else {
-            [cell.shopDistanceField setText:@""];
+            [cell.serviceCenterDistanceField setText:@""];
         }
-       
+        
         return cell;
         
     }
@@ -389,11 +390,11 @@ CLLocationManager *locationManager;
     if (self.menuTableView == tableView) {
         [CityService selectCityModel:[CityService getCities][indexPath.row]];
         [self.dropdownView hide];
-        [self.shopTableView reloadData];
+        [self.tableView reloadData];
         [DejalBezelActivityView activityViewForView:self.view withLabel:@"Подождите\nИдет загрузка..."];
         [self fillPointsOnTheMap];
     } else {
-        [self performSegueWithIdentifier:@"showShopDetailSergue" sender:self];
+        [self performSegueWithIdentifier:@"showServiceCenterDetailSergue" sender:self];
     }
     [tableView deselectRowAtIndexPath:indexPath animated:NO];
 }
@@ -403,7 +404,7 @@ CLLocationManager *locationManager;
         return 40;
     }
     
-    if (self.shopTableView == tableView) {
+    if (self.tableView == tableView) {
         return 70;
     }
     
@@ -413,15 +414,15 @@ CLLocationManager *locationManager;
 #pragma mark - Navigation
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    if ([segue.destinationViewController isKindOfClass:[ShopDetailTableViewController class]]) {
-        ShopDetailTableViewController *viewController = (ShopDetailTableViewController*)segue.destinationViewController;
+    if ([segue.destinationViewController isKindOfClass:[ServiceCenterDetailTableViewController class]]) {
+        ServiceCenterDetailTableViewController *viewController = (ServiceCenterDetailTableViewController*)segue.destinationViewController;
         
         if (self.viewMode == VIEW_MODE_MAP) {
-            [viewController setSelectedShopModel:self.selectedLocation.shop];
+            [viewController setSelectedServiceCetnerModel:self.selectedLocation.serviceCenter];
         } else {
-            NSIndexPath *indexPath = [self.shopTableView indexPathForSelectedRow];
-            ShopModel *model = [CityService getSelectedCityModel].shops[indexPath.row];
-            [viewController setSelectedShopModel:model];
+            NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+            ServiceCenterModel *model = [CityService getSelectedCityModel].serviceCenters[indexPath.row];
+            [viewController setSelectedServiceCetnerModel:model];
         }
     }
 }
@@ -430,15 +431,15 @@ CLLocationManager *locationManager;
     if (self.viewMode == VIEW_MODE_MAP) {
         self.viewMode = VIEW_MODE_LIST;
         [self.changeMapViewItem setTitle:@"Карта"];
-
+        
         [UIView transitionWithView:self.view
                           duration:0.6
                            options:UIViewAnimationOptionTransitionFlipFromLeft
                         animations:^{
                             self.mapView.hidden = YES;
-                            self.shopTableView.hidden = NO;
+                            self.tableView.hidden = NO;
                         } completion:^(BOOL finished) {
-                            [self.shopTableView reloadData];
+                            [self.tableView reloadData];
                         }];
         
     } else {
@@ -450,9 +451,11 @@ CLLocationManager *locationManager;
                            options:UIViewAnimationOptionTransitionFlipFromRight
                         animations:^{
                             self.mapView.hidden = NO;
-                            self.shopTableView.hidden = YES;
+                            self.tableView.hidden = YES;
                         } completion:^(BOOL finished) {
                         }];
     }
 }
+
+
 @end

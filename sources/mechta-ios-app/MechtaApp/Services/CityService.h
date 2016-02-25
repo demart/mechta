@@ -9,6 +9,8 @@
 #import <Foundation/Foundation.h>
 #import "ResponseWrapperModel.h"
 #import "CityModel.h"
+#import "ShopModel.h"
+#import "ServiceCenterModel.h"
 
 @interface CityService : NSObject
 
@@ -29,5 +31,10 @@
 
 // загрузить магазины города
 + (void) retrieveCityShops:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure;
+
+// загрузить список сервис центров
++ (void) retrieveCityServiceCenters:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure;
+
++ (void) retrieveCityAnnouncementsWithType:(long)type withPage:(long)page inCityId:(long)cityId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure;
 
 @end

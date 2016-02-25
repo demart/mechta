@@ -1,22 +1,22 @@
 //
-//  ShopDetailTableViewController.m
+//  ServiceCenterDetailTableViewController.m
 //  MechtaApp
 //
-//  Created by Artem Demidovich on 2/10/16.
+//  Created by Artem Demidovich on 2/25/16.
 //  Copyright © 2016 Aphion Software. All rights reserved.
 //
 
-#import "ShopDetailTableViewController.h"
-#import "ShopDetailMapViewTableViewCell.h"
-#import "MapLocationModel.h"
+#import "ServiceCenterDetailTableViewController.h"
+#import "ServiceCenterDetailMapViewTableViewCell.h"
+#import "ServiceCenterMapLocationModel.h"
 
-@interface ShopDetailTableViewController ()
+@interface ServiceCenterDetailTableViewController ()
 
-@property ShopModel *shopModel;
+@property ServiceCenterModel *serviceCenterModel;
 
 @end
 
-@implementation ShopDetailTableViewController
+@implementation ServiceCenterDetailTableViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,8 +25,8 @@
 }
 
 
--(void) setSelectedShopModel:(ShopModel*) model {
-    self.shopModel = model;
+-(void) setSelectedServiceCetnerModel:(ServiceCenterModel*) model {
+    self.serviceCenterModel = model;
 }
 
 - (void) viewWillAppear:(BOOL)animated {
@@ -53,13 +53,13 @@
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     if (indexPath.row == 0) {
-        ShopDetailMapViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ShopDetailMapViewCell"];
+        ServiceCenterDetailMapViewTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"ServiceCenterDetailMapViewCell"];
         if (!cell) {
-            [tableView registerNib:[UINib nibWithNibName:@"ShopDetailMapViewTableViewCell" bundle:nil]forCellReuseIdentifier:@"ShopDetailMapViewCell"];
-            cell = [tableView dequeueReusableCellWithIdentifier:@"ShopDetailMapViewCell"];
+            [tableView registerNib:[UINib nibWithNibName:@"ShopDetailMapViewTableViewCell" bundle:nil]forCellReuseIdentifier:@"ServiceCenterDetailMapViewCell"];
+            cell = [tableView dequeueReusableCellWithIdentifier:@"ServiceCenterDetailMapViewCell"];
         }
         
-        [cell initMapView:self.shopModel];
+        [cell initMapView:self.serviceCenterModel];
         
         return cell;
     }
@@ -74,16 +74,5 @@
     }
     return 44;
 }
-
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end

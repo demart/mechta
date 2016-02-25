@@ -1,8 +1,8 @@
 //
-//  ShopsViewController.h
+//  ServiceCenterViewController.h
 //  MechtaApp
 //
-//  Created by Artem Demidovich on 2/10/16.
+//  Created by Artem Demidovich on 2/25/16.
 //  Copyright © 2016 Aphion Software. All rights reserved.
 //
 
@@ -11,18 +11,14 @@
 #import "LMDropdownView.h"
 #import <CoreLocation/CoreLocation.h>
 
-static int MAP_MODE_SHOPS = 0;
-
-static int MAP_MODE_SERVICE_CENTERS = 1;
-
-@interface ShopsViewController : UIViewController<MKMapViewDelegate,LMDropdownViewDelegate,UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate>
+@interface ServiceCenterViewController : UIViewController<MKMapViewDelegate,LMDropdownViewDelegate,UITableViewDelegate, UITableViewDataSource, CLLocationManagerDelegate>
 
 @property (weak, nonatomic) IBOutlet MKMapView *mapView;
 
 // Выпадающий список типов подразделений
 @property (strong, nonatomic) IBOutlet UITableView *menuTableView;
 
-@property (weak, nonatomic) IBOutlet UITableView *shopTableView;
+@property (weak, nonatomic) IBOutlet UITableView *tableView;
 
 @property (strong, nonatomic) LMDropdownView *dropdownView;
 
@@ -30,7 +26,5 @@ static int MAP_MODE_SERVICE_CENTERS = 1;
 - (IBAction)changeMavViewAction:(UIBarButtonItem *)sender;
 
 @property (weak, nonatomic) IBOutlet UINavigationItem *topCityTitleNavigationItem;
-
-- (void) setMapMode:(int) mode;
 
 @end

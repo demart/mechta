@@ -42,6 +42,13 @@
     return [[NSString alloc] initWithFormat:@"%@/stores", UrlHelper.baseUrl];
 }
 
++ (NSString*) cityServiceCentersUrl {
+    return [[NSString alloc] initWithFormat:@"%@/service/stores", UrlHelper.baseUrl];
+}
+
++ (NSString*) announcementsUrlWithType:(long) type andPage:(long)page inCityId:(long)cityId {
+    return [[NSString alloc] initWithFormat:@"%@/news?cityId=%li&type=%li&page=%li", UrlHelper.baseUrl, cityId, type, page];
+}
 
 +(NSString*) categoriesUrlWithParentId:(long) parentId {
     if (parentId < 1) {

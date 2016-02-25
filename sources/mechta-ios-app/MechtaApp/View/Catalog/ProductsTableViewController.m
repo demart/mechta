@@ -104,7 +104,7 @@ static long PAGE_LIMIT = 10;
              self.hasMoreRecords = NO;
          } else {
              [self.products addObjectsFromArray:products];
-             if ([products count] == PAGE_LIMIT) {
+             if (response.countOfPages > self.page) {
                  self.page = self.page + 1;
                  self.hasMoreRecords = YES;
              } else {

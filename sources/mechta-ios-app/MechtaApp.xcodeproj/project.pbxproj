@@ -66,6 +66,17 @@
 		8D77CA081C688B9E00DA2C26 /* ResponseWrapperModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D77CA071C688B9E00DA2C26 /* ResponseWrapperModel.m */; };
 		8D77CA0B1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D77CA0A1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m */; };
 		8D77CA0E1C68971100DA2C26 /* ProductCharacteristicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D77CA0D1C68971100DA2C26 /* ProductCharacteristicModel.m */; };
+		8D7A2B1D1C7F422900A97495 /* ServiceCenterViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A2B1C1C7F422900A97495 /* ServiceCenterViewController.m */; };
+		8D7A2B211C7F42BA00A97495 /* ServiceCenterMapLocationModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A2B201C7F42BA00A97495 /* ServiceCenterMapLocationModel.m */; };
+		8D7A2B241C7F447300A97495 /* ServiceCenterDetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A2B231C7F447300A97495 /* ServiceCenterDetailTableViewController.m */; };
+		8D7A2B281C7F4A8F00A97495 /* ServiceCenterDetailMiniTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A2B261C7F4A8F00A97495 /* ServiceCenterDetailMiniTableViewCell.m */; };
+		8D7A2B291C7F4A8F00A97495 /* ServiceCenterDetailMiniTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D7A2B271C7F4A8F00A97495 /* ServiceCenterDetailMiniTableViewCell.xib */; };
+		8D7A2B2D1C7F4F0F00A97495 /* ServiceCenterDetailMapViewTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A2B2B1C7F4F0F00A97495 /* ServiceCenterDetailMapViewTableViewCell.m */; };
+		8D7A2B2E1C7F4F0F00A97495 /* ServiceCenterDetailMapViewTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D7A2B2C1C7F4F0F00A97495 /* ServiceCenterDetailMapViewTableViewCell.xib */; };
+		8D7A2B321C7F5BDC00A97495 /* AnnouncementsTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A2B311C7F5BDC00A97495 /* AnnouncementsTableViewController.m */; };
+		8D7A2B351C7F5C1900A97495 /* AnnouncementModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A2B341C7F5C1900A97495 /* AnnouncementModel.m */; };
+		8D7A2B3A1C7F60FC00A97495 /* AnnouncementTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7A2B381C7F60FC00A97495 /* AnnouncementTableViewCell.m */; };
+		8D7A2B3B1C7F60FC00A97495 /* AnnouncementTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D7A2B391C7F60FC00A97495 /* AnnouncementTableViewCell.xib */; };
 		8D7F3FB21C69DA6A008E00D4 /* ProductSwitcherTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D7F3FB01C69DA6A008E00D4 /* ProductSwitcherTableViewCell.m */; };
 		8D7F3FB31C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D7F3FB11C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib */; };
 		8D879ABD1C6491D100D802F4 /* CitiesTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D879ABC1C6491D100D802F4 /* CitiesTableViewController.m */; };
@@ -80,6 +91,9 @@
 		8D9CDEDF1C742FDC00D919F3 /* SearchProductTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9CDEDD1C742FDC00D919F3 /* SearchProductTableViewCell.m */; };
 		8D9CDEE01C742FDC00D919F3 /* SearchProductTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8D9CDEDE1C742FDC00D919F3 /* SearchProductTableViewCell.xib */; };
 		8D9CDEE61C7469AD00D919F3 /* MainTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9CDEE51C7469AD00D919F3 /* MainTabBarController.m */; };
+		8D9FFA291C7DD141006431C7 /* BasketTableTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9FFA281C7DD141006431C7 /* BasketTableTableViewController.m */; };
+		8D9FFA2C1C7DD169006431C7 /* ProfileTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9FFA2B1C7DD169006431C7 /* ProfileTableViewController.m */; };
+		8D9FFA2F1C7EFE5D006431C7 /* ServiceCenterModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 8D9FFA2E1C7EFE5D006431C7 /* ServiceCenterModel.m */; };
 		8DB078751C68751C00C07F69 /* ExtraTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB078741C68751C00C07F69 /* ExtraTableViewController.m */; };
 		8DB0787A1C68761000C07F69 /* ExtraHeaderTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 8DB078781C68761000C07F69 /* ExtraHeaderTableViewCell.m */; };
 		8DB0787B1C68761000C07F69 /* ExtraHeaderTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8DB078791C68761000C07F69 /* ExtraHeaderTableViewCell.xib */; };
@@ -208,6 +222,25 @@
 		8D77CA0A1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCharacteristicGroupModel.m; path = Data/Models/ProductCharacteristicGroupModel.m; sourceTree = "<group>"; };
 		8D77CA0C1C68971100DA2C26 /* ProductCharacteristicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductCharacteristicModel.h; path = Data/Models/ProductCharacteristicModel.h; sourceTree = "<group>"; };
 		8D77CA0D1C68971100DA2C26 /* ProductCharacteristicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductCharacteristicModel.m; path = Data/Models/ProductCharacteristicModel.m; sourceTree = "<group>"; };
+		8D7A2B1B1C7F422900A97495 /* ServiceCenterViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServiceCenterViewController.h; path = View/ServiceCenters/ServiceCenterViewController.h; sourceTree = "<group>"; };
+		8D7A2B1C1C7F422900A97495 /* ServiceCenterViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServiceCenterViewController.m; path = View/ServiceCenters/ServiceCenterViewController.m; sourceTree = "<group>"; };
+		8D7A2B1F1C7F42BA00A97495 /* ServiceCenterMapLocationModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServiceCenterMapLocationModel.h; path = View/ServiceCenters/ServiceCenterMapLocationModel.h; sourceTree = "<group>"; };
+		8D7A2B201C7F42BA00A97495 /* ServiceCenterMapLocationModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServiceCenterMapLocationModel.m; path = View/ServiceCenters/ServiceCenterMapLocationModel.m; sourceTree = "<group>"; };
+		8D7A2B221C7F447300A97495 /* ServiceCenterDetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServiceCenterDetailTableViewController.h; path = View/ServiceCenters/ServiceCenterDetailTableViewController.h; sourceTree = "<group>"; };
+		8D7A2B231C7F447300A97495 /* ServiceCenterDetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServiceCenterDetailTableViewController.m; path = View/ServiceCenters/ServiceCenterDetailTableViewController.m; sourceTree = "<group>"; };
+		8D7A2B251C7F4A8F00A97495 /* ServiceCenterDetailMiniTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServiceCenterDetailMiniTableViewCell.h; path = View/ServiceCenters/Cell/ServiceCenterDetailMiniTableViewCell.h; sourceTree = "<group>"; };
+		8D7A2B261C7F4A8F00A97495 /* ServiceCenterDetailMiniTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServiceCenterDetailMiniTableViewCell.m; path = View/ServiceCenters/Cell/ServiceCenterDetailMiniTableViewCell.m; sourceTree = "<group>"; };
+		8D7A2B271C7F4A8F00A97495 /* ServiceCenterDetailMiniTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServiceCenterDetailMiniTableViewCell.xib; path = View/ServiceCenters/Cell/ServiceCenterDetailMiniTableViewCell.xib; sourceTree = "<group>"; };
+		8D7A2B2A1C7F4F0F00A97495 /* ServiceCenterDetailMapViewTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServiceCenterDetailMapViewTableViewCell.h; path = View/ServiceCenters/Cell/ServiceCenterDetailMapViewTableViewCell.h; sourceTree = "<group>"; };
+		8D7A2B2B1C7F4F0F00A97495 /* ServiceCenterDetailMapViewTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServiceCenterDetailMapViewTableViewCell.m; path = View/ServiceCenters/Cell/ServiceCenterDetailMapViewTableViewCell.m; sourceTree = "<group>"; };
+		8D7A2B2C1C7F4F0F00A97495 /* ServiceCenterDetailMapViewTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ServiceCenterDetailMapViewTableViewCell.xib; path = View/ServiceCenters/Cell/ServiceCenterDetailMapViewTableViewCell.xib; sourceTree = "<group>"; };
+		8D7A2B301C7F5BDC00A97495 /* AnnouncementsTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnnouncementsTableViewController.h; path = View/Announcements/AnnouncementsTableViewController.h; sourceTree = "<group>"; };
+		8D7A2B311C7F5BDC00A97495 /* AnnouncementsTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnnouncementsTableViewController.m; path = View/Announcements/AnnouncementsTableViewController.m; sourceTree = "<group>"; };
+		8D7A2B331C7F5C1900A97495 /* AnnouncementModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnnouncementModel.h; path = Data/Models/AnnouncementModel.h; sourceTree = "<group>"; };
+		8D7A2B341C7F5C1900A97495 /* AnnouncementModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnnouncementModel.m; path = Data/Models/AnnouncementModel.m; sourceTree = "<group>"; };
+		8D7A2B371C7F60FC00A97495 /* AnnouncementTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = AnnouncementTableViewCell.h; path = View/Announcements/Cell/AnnouncementTableViewCell.h; sourceTree = "<group>"; };
+		8D7A2B381C7F60FC00A97495 /* AnnouncementTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = AnnouncementTableViewCell.m; path = View/Announcements/Cell/AnnouncementTableViewCell.m; sourceTree = "<group>"; };
+		8D7A2B391C7F60FC00A97495 /* AnnouncementTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = AnnouncementTableViewCell.xib; path = View/Announcements/Cell/AnnouncementTableViewCell.xib; sourceTree = "<group>"; };
 		8D7F3FAF1C69DA6A008E00D4 /* ProductSwitcherTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProductSwitcherTableViewCell.h; path = View/Catalog/Cell/ProductSwitcherTableViewCell.h; sourceTree = "<group>"; };
 		8D7F3FB01C69DA6A008E00D4 /* ProductSwitcherTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProductSwitcherTableViewCell.m; path = View/Catalog/Cell/ProductSwitcherTableViewCell.m; sourceTree = "<group>"; };
 		8D7F3FB11C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = ProductSwitcherTableViewCell.xib; path = View/Catalog/Cell/ProductSwitcherTableViewCell.xib; sourceTree = "<group>"; };
@@ -233,6 +266,12 @@
 		8D9CDEDE1C742FDC00D919F3 /* SearchProductTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; name = SearchProductTableViewCell.xib; path = View/Search/Cell/SearchProductTableViewCell.xib; sourceTree = "<group>"; };
 		8D9CDEE41C7469AD00D919F3 /* MainTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = MainTabBarController.h; path = View/MainTabBarController.h; sourceTree = "<group>"; };
 		8D9CDEE51C7469AD00D919F3 /* MainTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = MainTabBarController.m; path = View/MainTabBarController.m; sourceTree = "<group>"; };
+		8D9FFA271C7DD141006431C7 /* BasketTableTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BasketTableTableViewController.h; path = View/Basket/BasketTableTableViewController.h; sourceTree = "<group>"; };
+		8D9FFA281C7DD141006431C7 /* BasketTableTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BasketTableTableViewController.m; path = View/Basket/BasketTableTableViewController.m; sourceTree = "<group>"; };
+		8D9FFA2A1C7DD169006431C7 /* ProfileTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ProfileTableViewController.h; path = View/Profile/ProfileTableViewController.h; sourceTree = "<group>"; };
+		8D9FFA2B1C7DD169006431C7 /* ProfileTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ProfileTableViewController.m; path = View/Profile/ProfileTableViewController.m; sourceTree = "<group>"; };
+		8D9FFA2D1C7EFE5D006431C7 /* ServiceCenterModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ServiceCenterModel.h; path = Data/Models/ServiceCenterModel.h; sourceTree = "<group>"; };
+		8D9FFA2E1C7EFE5D006431C7 /* ServiceCenterModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ServiceCenterModel.m; path = Data/Models/ServiceCenterModel.m; sourceTree = "<group>"; };
 		8DB078731C68751C00C07F69 /* ExtraTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtraTableViewController.h; path = View/Extra/ExtraTableViewController.h; sourceTree = "<group>"; };
 		8DB078741C68751C00C07F69 /* ExtraTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = ExtraTableViewController.m; path = View/Extra/ExtraTableViewController.m; sourceTree = "<group>"; };
 		8DB078771C68761000C07F69 /* ExtraHeaderTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = ExtraHeaderTableViewCell.h; path = View/Extra/Cell/ExtraHeaderTableViewCell.h; sourceTree = "<group>"; };
@@ -428,6 +467,10 @@
 				8D4DBA2F1C6A6B1E002E26B4 /* ProductImageModel.m */,
 				8D9CDECE1C73448200D919F3 /* SearchObjectModel.h */,
 				8D9CDECF1C73448200D919F3 /* SearchObjectModel.m */,
+				8D9FFA2D1C7EFE5D006431C7 /* ServiceCenterModel.h */,
+				8D9FFA2E1C7EFE5D006431C7 /* ServiceCenterModel.m */,
+				8D7A2B331C7F5C1900A97495 /* AnnouncementModel.h */,
+				8D7A2B341C7F5C1900A97495 /* AnnouncementModel.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -524,6 +567,53 @@
 			name = ProductDetail;
 			sourceTree = "<group>";
 		};
+		8D7A2B1A1C7F41EF00A97495 /* ServiceCenters */ = {
+			isa = PBXGroup;
+			children = (
+				8D7A2B1E1C7F425200A97495 /* Cell */,
+				8D7A2B1B1C7F422900A97495 /* ServiceCenterViewController.h */,
+				8D7A2B1C1C7F422900A97495 /* ServiceCenterViewController.m */,
+				8D7A2B1F1C7F42BA00A97495 /* ServiceCenterMapLocationModel.h */,
+				8D7A2B201C7F42BA00A97495 /* ServiceCenterMapLocationModel.m */,
+				8D7A2B221C7F447300A97495 /* ServiceCenterDetailTableViewController.h */,
+				8D7A2B231C7F447300A97495 /* ServiceCenterDetailTableViewController.m */,
+			);
+			name = ServiceCenters;
+			sourceTree = "<group>";
+		};
+		8D7A2B1E1C7F425200A97495 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8D7A2B251C7F4A8F00A97495 /* ServiceCenterDetailMiniTableViewCell.h */,
+				8D7A2B261C7F4A8F00A97495 /* ServiceCenterDetailMiniTableViewCell.m */,
+				8D7A2B271C7F4A8F00A97495 /* ServiceCenterDetailMiniTableViewCell.xib */,
+				8D7A2B2A1C7F4F0F00A97495 /* ServiceCenterDetailMapViewTableViewCell.h */,
+				8D7A2B2B1C7F4F0F00A97495 /* ServiceCenterDetailMapViewTableViewCell.m */,
+				8D7A2B2C1C7F4F0F00A97495 /* ServiceCenterDetailMapViewTableViewCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
+		8D7A2B2F1C7F5BA000A97495 /* Announcements */ = {
+			isa = PBXGroup;
+			children = (
+				8D7A2B361C7F60C700A97495 /* Cell */,
+				8D7A2B301C7F5BDC00A97495 /* AnnouncementsTableViewController.h */,
+				8D7A2B311C7F5BDC00A97495 /* AnnouncementsTableViewController.m */,
+			);
+			name = Announcements;
+			sourceTree = "<group>";
+		};
+		8D7A2B361C7F60C700A97495 /* Cell */ = {
+			isa = PBXGroup;
+			children = (
+				8D7A2B371C7F60FC00A97495 /* AnnouncementTableViewCell.h */,
+				8D7A2B381C7F60FC00A97495 /* AnnouncementTableViewCell.m */,
+				8D7A2B391C7F60FC00A97495 /* AnnouncementTableViewCell.xib */,
+			);
+			name = Cell;
+			sourceTree = "<group>";
+		};
 		8D879AB91C64916F00D802F4 /* View */ = {
 			isa = PBXGroup;
 			children = (
@@ -534,6 +624,8 @@
 				8DB078701C6874DA00C07F69 /* Basket */,
 				8D879ABA1C64917A00D802F4 /* Catalog */,
 				8DD5AC701C6B53C90021AFDA /* Shop */,
+				8D7A2B1A1C7F41EF00A97495 /* ServiceCenters */,
+				8D7A2B2F1C7F5BA000A97495 /* Announcements */,
 				8D9CDEE41C7469AD00D919F3 /* MainTabBarController.h */,
 				8D9CDEE51C7469AD00D919F3 /* MainTabBarController.m */,
 			);
@@ -607,6 +699,8 @@
 		8DB078701C6874DA00C07F69 /* Basket */ = {
 			isa = PBXGroup;
 			children = (
+				8D9FFA271C7DD141006431C7 /* BasketTableTableViewController.h */,
+				8D9FFA281C7DD141006431C7 /* BasketTableTableViewController.m */,
 			);
 			name = Basket;
 			sourceTree = "<group>";
@@ -614,6 +708,8 @@
 		8DB078711C6874E400C07F69 /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				8D9FFA2A1C7DD169006431C7 /* ProfileTableViewController.h */,
+				8D9FFA2B1C7DD169006431C7 /* ProfileTableViewController.m */,
 			);
 			name = Profile;
 			sourceTree = "<group>";
@@ -826,6 +922,7 @@
 				8D9056851C731F3200CB72C8 /* FilterSortOptionsTableViewCell.xib in Resources */,
 				8D16EE4B1C6480130009FD47 /* LaunchScreen.storyboard in Resources */,
 				8D7F3FB31C69DA6A008E00D4 /* ProductSwitcherTableViewCell.xib in Resources */,
+				8D7A2B291C7F4A8F00A97495 /* ServiceCenterDetailMiniTableViewCell.xib in Resources */,
 				8DCB2FD81C6E8546002CAB84 /* FilterClearTableViewCell.xib in Resources */,
 				8D3800C91C71F282001553CD /* slider-default7-trackBackground@2x.png in Resources */,
 				8D16EE481C6480130009FD47 /* Assets.xcassets in Resources */,
@@ -833,9 +930,11 @@
 				8D3800C51C71F282001553CD /* slider-default7-handle@2x.png in Resources */,
 				8D4DBA2A1C6A4BE7002E26B4 /* ProductBasketTableViewCell.xib in Resources */,
 				8D3800BA1C71F282001553CD /* slider-default-handle-highlighted.png in Resources */,
+				8D7A2B3B1C7F60FC00A97495 /* AnnouncementTableViewCell.xib in Resources */,
 				8D3800C71C71F282001553CD /* slider-default7-track@2x.png in Resources */,
 				8D16EE461C6480130009FD47 /* Main.storyboard in Resources */,
 				8D3800CB1C71F282001553CD /* slider-default7-trackCrossedOver@2x.png in Resources */,
+				8D7A2B2E1C7F4F0F00A97495 /* ServiceCenterDetailMapViewTableViewCell.xib in Resources */,
 				8DD5AC871C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.xib in Resources */,
 				8D29C3CB1C6494A400E7EFCD /* CatalogTableViewCell.xib in Resources */,
 				8D3800BD1C71F282001553CD /* slider-default-handle@2x.png in Resources */,
@@ -883,6 +982,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D48501D1C68A20C00A07CF0 /* DataModelHelper.m in Sources */,
+				8D9FFA2F1C7EFE5D006431C7 /* ServiceCenterModel.m in Sources */,
+				8D7A2B351C7F5C1900A97495 /* AnnouncementModel.m in Sources */,
 				8DD5AC791C6B65310021AFDA /* ShopDetailTableViewController.m in Sources */,
 				8DB0787A1C68761000C07F69 /* ExtraHeaderTableViewCell.m in Sources */,
 				8D29C3EF1C64C01700E7EFCD /* ShopModel.m in Sources */,
@@ -890,6 +991,7 @@
 				8D4DBA1F1C6A133D002E26B4 /* ProductCharacteristicGroupTableViewCell.m in Sources */,
 				8DF3C1AA1C6E1B1A00391E9F /* FilterTableViewController.m in Sources */,
 				8D29C3E61C64BA2600E7EFCD /* CategoryModel.m in Sources */,
+				8D7A2B2D1C7F4F0F00A97495 /* ServiceCenterDetailMapViewTableViewCell.m in Sources */,
 				8D77CA0B1C6896CD00DA2C26 /* ProductCharacteristicGroupModel.m in Sources */,
 				8D7F3FB21C69DA6A008E00D4 /* ProductSwitcherTableViewCell.m in Sources */,
 				8DC7E1F91C68D4CA00E6E416 /* LocalStorageService.m in Sources */,
@@ -914,6 +1016,7 @@
 				8D29C3E91C64BEE000E7EFCD /* ProductsTableViewController.m in Sources */,
 				8D9CDEE61C7469AD00D919F3 /* MainTabBarController.m in Sources */,
 				8D29C3DB1C64A84400E7EFCD /* CityService.m in Sources */,
+				8D7A2B321C7F5BDC00A97495 /* AnnouncementsTableViewController.m in Sources */,
 				8D90567F1C72F9B100CB72C8 /* UIBarButtonItem+Badge.m in Sources */,
 				8DF3C1BF1C6E4F7C00391E9F /* FilterGroupTableViewCell.m in Sources */,
 				8DD5AC8B1C6CB9570021AFDA /* ShopDetailMiniTableViewCell.m in Sources */,
@@ -925,12 +1028,16 @@
 				8DCB2FD31C6E6446002CAB84 /* FilterOptionsTableViewController.m in Sources */,
 				8DB078751C68751C00C07F69 /* ExtraTableViewController.m in Sources */,
 				8D4DBA241C6A1473002E26B4 /* ProductCharacteristicTableViewCell.m in Sources */,
+				8D7A2B211C7F42BA00A97495 /* ServiceCenterMapLocationModel.m in Sources */,
 				8D77CA0E1C68971100DA2C26 /* ProductCharacteristicModel.m in Sources */,
+				8D7A2B1D1C7F422900A97495 /* ServiceCenterViewController.m in Sources */,
 				8D9CDED71C7427AB00D919F3 /* SearchTableViewController.m in Sources */,
 				8D16EE3D1C6480130009FD47 /* main.m in Sources */,
 				8D29C3F21C64C10400E7EFCD /* ProductAvailableInShopModel.m in Sources */,
+				8D9FFA2C1C7DD169006431C7 /* ProfileTableViewController.m in Sources */,
 				8D4DBA151C6A0B91002E26B4 /* ProductAvailableTableViewCell.m in Sources */,
 				8D9056801C72F9B100CB72C8 /* UIButton+Badge.m in Sources */,
+				8D9FFA291C7DD141006431C7 /* BasketTableTableViewController.m in Sources */,
 				8D29C3F51C64C1DE00E7EFCD /* ProductService.m in Sources */,
 				8DF3C1C41C6E504700391E9F /* FilterOptionTableViewCell.m in Sources */,
 				8DC7E2031C692FE800E6E416 /* ProductImageTableViewCell.m in Sources */,
@@ -941,9 +1048,12 @@
 				8D29C3FC1C64C4ED00E7EFCD /* ProductTableViewCell.m in Sources */,
 				8DD5AC761C6B5A4C0021AFDA /* MapLocationModel.m in Sources */,
 				8DD5AC861C6C638E0021AFDA /* ShopDetailMapViewTableViewCell.m in Sources */,
+				8D7A2B281C7F4A8F00A97495 /* ServiceCenterDetailMiniTableViewCell.m in Sources */,
 				8D29C3DE1C64AD2B00E7EFCD /* CatalogService.m in Sources */,
+				8D7A2B3A1C7F60FC00A97495 /* AnnouncementTableViewCell.m in Sources */,
 				8DCB2FD71C6E8546002CAB84 /* FilterClearTableViewCell.m in Sources */,
 				8D29C3EC1C64BF3100E7EFCD /* ProductModel.m in Sources */,
+				8D7A2B241C7F447300A97495 /* ServiceCenterDetailTableViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

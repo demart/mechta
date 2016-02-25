@@ -9,6 +9,9 @@
 #import "ExtraTableViewController.h"
 #import "ExtraHeaderTableViewCell.h"
 #import "ExtraMenuItemTableViewCell.h"
+#import "Constants.h"
+#import "ShopsViewController.h"
+#import "AnnouncementsTableViewController.h"
 
 @interface ExtraTableViewController ()
 
@@ -18,12 +21,8 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
-    
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    //self.tableView.tableFooterView = [[UIView alloc] initWithFrame:CGRectZero];
+    //[self.tableView setSeparatorInset:UIEdgeInsetsZero];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -80,27 +79,33 @@
         [tableView registerNib:[UINib nibWithNibName:@"ExtraMenuItemTableViewCell" bundle:nil]forCellReuseIdentifier:@"ExtraMenuItemCell"];
         cell = [tableView dequeueReusableCellWithIdentifier:@"ExtraMenuItemCell"];
     }
-    
+
+    [cell.menuItemTitle setTextColor:[Constants SYSTEM_COLOR_LIGHT_GREY]];
     if (indexPath.section == 0) {
         
         if (indexPath.row == 0) {
             [cell.menuItemTitle setText:@"О компании"];
+
         }
         
         if (indexPath.row == 1) {
             [cell.menuItemTitle setText:@"Наши магазины"];
+            [cell.menuItemTitle setTextColor:[UIColor darkGrayColor]];
         }
 
         if (indexPath.row == 2) {
             [cell.menuItemTitle setText:@"Сервис центры"];
+            [cell.menuItemTitle setTextColor:[UIColor darkGrayColor]];
         }
 
         if (indexPath.row == 3) {
             [cell.menuItemTitle setText:@"Акции"];
+            [cell.menuItemTitle setTextColor:[UIColor darkGrayColor]];
         }
 
         if (indexPath.row == 4) {
             [cell.menuItemTitle setText:@"Новости"];
+            [cell.menuItemTitle setTextColor:[UIColor darkGrayColor]];
         }
     }
     
@@ -157,52 +162,40 @@
 
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    [self performSegueWithIdentifier:@"showShopsSergue" sender:self];
+    if (indexPath.section == 0 && indexPath.row == 1) {
+        [self performSegueWithIdentifier:@"showShopsSergue" sender:self];
+    }
+    if (indexPath.section == 0 && indexPath.row == 2) {
+        [self performSegueWithIdentifier:@"showServiceCentersSergue" sender:self];
+    }
+    if (indexPath.section == 0 && indexPath.row == 3) {
+        [self performSegueWithIdentifier:@"showAnnouncementsSergue" sender:self];
+    }
+    if (indexPath.section == 0 && indexPath.row == 4) {
+        [self performSegueWithIdentifier:@"showAnnouncementsSergue" sender:self];
+    }
 }
 
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
-
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath {
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath {
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath {
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
 #pragma mark - Navigation
 
 // In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    
+    if ([[segue destinationViewController] isKindOfClass:[AnnouncementsTableViewController class]]) {
+        NSIndexPath *indexPath = self.tableView.indexPathForSelectedRow;
+        AnnouncementsTableViewController *viewController = [segue destinationViewController];
+        if (indexPath.section == 0) {
+            if (indexPath.row == 3) {
+                [viewController setAnnouncementMode:ANNOUNCEMENT_MODE_ACTIONS];
+            }
+        
+            if (indexPath.row == 4) {
+                [viewController setAnnouncementMode:ANNOUNCEMENT_MODE_NEWS];
+            }
+        }
+    }
 }
-*/
+
 
 @end

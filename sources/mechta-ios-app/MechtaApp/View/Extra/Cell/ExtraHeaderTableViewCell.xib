@@ -16,7 +16,7 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Компания" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2yZ-1n-tQ8">
-                        <rect key="frame" x="8" y="24" width="304" height="20.5"/>
+                        <rect key="frame" x="16" y="24" width="296" height="20.5"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="21" id="HNZ-oI-efL"/>
                         </constraints>
@@ -28,7 +28,7 @@
                 <constraints>
                     <constraint firstItem="2yZ-1n-tQ8" firstAttribute="bottom" secondItem="H2p-sc-9uM" secondAttribute="bottomMargin" id="5rN-Su-caS"/>
                     <constraint firstItem="2yZ-1n-tQ8" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="kmh-cy-xs6"/>
-                    <constraint firstItem="2yZ-1n-tQ8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" id="ziV-7U-cIw"/>
+                    <constraint firstItem="2yZ-1n-tQ8" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leadingMargin" constant="8" id="ziV-7U-cIw"/>
                 </constraints>
             </tableViewCellContentView>
             <connections>

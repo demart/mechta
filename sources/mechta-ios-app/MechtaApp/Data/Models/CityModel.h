@@ -20,4 +20,6 @@
 
 @property NSMutableArray *shops;
 
+@property NSMutableArray *serviceCenters;
+
 @end

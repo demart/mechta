@@ -18,6 +18,10 @@
 
 + (NSString*) cityShopsUrl;
 
++ (NSString*) cityServiceCentersUrl;
+
++ (NSString*) announcementsUrlWithType:(long) type andPage:(long)page inCityId:(long)cityId;
+
 + (NSString*) categoriesUrlWithParentId:(long) parentId;
 
 + (NSString*) productsUrlWithCategoryId:(long) parentId withPage:(long)page inCityId:(long) cityId;
