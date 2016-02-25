@@ -85,7 +85,6 @@
         
         if (indexPath.row == 0) {
             [cell.menuItemTitle setText:@"О компании"];
-
         }
         
         if (indexPath.row == 1) {

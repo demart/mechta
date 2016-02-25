@@ -138,7 +138,7 @@ CLLocationManager *scLocationManager;
 }
 
 - (void) loadServiceCenters {
-    //if ([CityService getCities] == nil) {
+    if ([CityService getCities] == nil) {
         [DejalBezelActivityView activityViewForView:self.view withLabel:@"Подождите\nИдет загрузка..."];
         [CityService retrieveCityServiceCenters:^(ResponseWrapperModel *response) {
             if (response.success) {
@@ -168,9 +168,9 @@ CLLocationManager *scLocationManager;
             [self presentViewController:alert animated:YES completion:nil];
         }];
         
-    //} else {
-    //    [self fillPointsOnTheMap];
-    //}
+    } else {
+        [self fillPointsOnTheMap];
+    }
 }
 
 

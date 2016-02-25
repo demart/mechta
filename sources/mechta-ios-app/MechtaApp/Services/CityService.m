@@ -113,6 +113,9 @@ static NSMutableArray *serviceCenters;
 
 // загрузить список сервис центров
 + (void) retrieveCityServiceCenters:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure {
+    [CityService retrieveCityShops:success onFailure:failure];
+    
+    /*
     NSMutableURLRequest *request = [[NSMutableURLRequest alloc] initWithURL:[[NSURL alloc] initWithString:[UrlHelper cityServiceCentersUrl]] ];
     
     RKResponseDescriptor *responseWrapperDescriptor = [DataModelHelper buildResponseDescriptorForCityServiceCenters];
@@ -153,7 +156,7 @@ static NSMutableArray *serviceCenters;
         failure(error);
     }];
     
-    [objectRequestOperation start];
+    [objectRequestOperation start]; */
 }
 
 + (void) retrieveCityAnnouncementsWithType:(long)type withPage:(long)page inCityId:(long)cityId onSuccess:(void (^)(ResponseWrapperModel *response))success onFailure:(void (^)(NSError *error))failure {
